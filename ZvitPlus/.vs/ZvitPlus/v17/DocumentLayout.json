@@ -5,10 +5,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{1B4C3573-5307-4F69-912C-3A1FE649187A}|ZvitPlus.API\\ZvitPlus.API.csproj|f:\\programmes\\github\\reps\\zvitplus\\zvitplus\\zvitplus.api\\zvitplus.api.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
       "RelativeMoniker": "D:0:0:{1B4C3573-5307-4F69-912C-3A1FE649187A}|ZvitPlus.API\\ZvitPlus.API.csproj|solutionrelative:zvitplus.api\\zvitplus.api.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A23C6AFD-F7D1-498D-907B-7B7525D63311}|ZvitPlus.DAL\\ZvitPlus.DAL.csproj|f:\\programmes\\github\\reps\\zvitplus\\zvitplus\\zvitplus.dal\\zvitplus.dal.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{A23C6AFD-F7D1-498D-907B-7B7525D63311}|ZvitPlus.DAL\\ZvitPlus.DAL.csproj|solutionrelative:zvitplus.dal\\zvitplus.dal.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     }
   ],
   "DocumentGroupContainers": [
@@ -28,22 +24,9 @@
               "RelativeDocumentMoniker": "ZvitPlus.API\\ZvitPlus.API.csproj",
               "ToolTip": "F:\\Programmes\\Github\\Reps\\ZvitPlus\\ZvitPlus\\ZvitPlus.API\\ZvitPlus.API.csproj",
               "RelativeToolTip": "ZvitPlus.API\\ZvitPlus.API.csproj",
-              "ViewState": "AQIAAAMAAAAAAAAAAAAAAA0AAAABAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-11-16T18:19:45.949Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "ZvitPlus.DAL",
-              "DocumentMoniker": "F:\\Programmes\\Github\\Reps\\ZvitPlus\\ZvitPlus\\ZvitPlus.DAL\\ZvitPlus.DAL.csproj",
-              "RelativeDocumentMoniker": "ZvitPlus.DAL\\ZvitPlus.DAL.csproj",
-              "ToolTip": "F:\\Programmes\\Github\\Reps\\ZvitPlus\\ZvitPlus\\ZvitPlus.DAL\\ZvitPlus.DAL.csproj",
-              "RelativeToolTip": "ZvitPlus.DAL\\ZvitPlus.DAL.csproj",
-              "ViewState": "AQIAAAYAAAAAAAAAAAAAAAoAAABRAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-11-16T18:19:32.898Z",
+              "WhenOpened": "2025-11-16T21:54:04.456Z",
               "EditorCaption": ""
             },
             {

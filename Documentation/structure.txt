@@ -1,0 +1,11 @@
+﻿my_template.rep  (ZIP)
+│
+├── template.json       # Main template structure (text fields, tables, diagrams)
+├── media/              # Image folder
+│   ├── img_1.png
+│   ├── img_2.jpg
+│   └── ...
+├── data/               # Diagram data
+│   ├── sales.json
+│   └── ...
+└── metadata.json       # Template version, author, creation date

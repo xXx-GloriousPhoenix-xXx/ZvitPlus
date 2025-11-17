@@ -1,5 +1,5 @@
 ﻿using ZvitPlus.BLL.Interfaces.DTOs;
-using ZvitPlus.Domain.Enums;
+using ZvitPlus.DAL.Enums;
 
 namespace ZvitPlus.BLL.DTOs.Requests
 {

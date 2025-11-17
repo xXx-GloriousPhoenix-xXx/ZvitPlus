@@ -59,7 +59,11 @@ namespace ZvitPlus.BLL.Services
             return result;
         }
 
-        // ToDo Add Search by name
-        // Return IEnumerable<T> by string Name
+        public async Task<IEnumerable<TemplateReadDTO>> GetByNameAsync(string name)
+        {
+            var entityCollection = await repository.GetByNameAsync(name);
+            var result = entityCollection.Select(mapper.Map<TemplateReadDTO>);
+            return result;
+        }
     }
 }

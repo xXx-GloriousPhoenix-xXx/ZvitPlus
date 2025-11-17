@@ -4,5 +4,8 @@ using ZvitPlus.BLL.Interfaces.DTOs;
 
 namespace ZvitPlus.BLL.Interfaces
 {
-    public interface IReportService : ICRUDService<ReportCreateDTO, ReportUpdateDTO, ReportReadDTO, IReportDTO>;
+    public interface IReportService : ICRUDService<ReportCreateDTO, ReportUpdateDTO, ReportReadDTO, IReportDTO>
+    {
+        Task<IEnumerable<ReportReadDTO>> GetByNameAsync(string name);
+    }
 }

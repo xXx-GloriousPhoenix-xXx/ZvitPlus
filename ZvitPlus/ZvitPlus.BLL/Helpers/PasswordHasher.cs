@@ -1,14 +1,16 @@
-﻿namespace ZvitPlus.BLL.Helpers;
+﻿using ZvitPlus.BLL.Interfaces.Helpers;
 
-public static class PasswordHasher
+namespace ZvitPlus.BLL.Helpers;
+
+public class PasswordHasher : IPasswordHasher
 {
-    public static string HashPassword(string password)
+    public string HashPassword(string password)
     {
         return BCrypt.Net.BCrypt.HashPassword(password);
     }
 
-    public static bool VerifyPassword(string password, string hash)
+    public bool Verify(string plainPassword, string hashedPassword)
     {
-        return BCrypt.Net.BCrypt.Verify(password, hash);
+        return BCrypt.Net.BCrypt.Verify(plainPassword, hashedPassword);
     }
 }

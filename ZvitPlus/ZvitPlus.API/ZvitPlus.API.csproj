@@ -22,6 +22,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ZvitPlus.DAL\ZvitPlus.DAL.csproj" />
+    <ProjectReference Include="..\ZvitPlus.BLL\ZvitPlus.BLL.csproj" />
+ 
   </ItemGroup>
 
 </Project>

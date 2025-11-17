@@ -10,4 +10,9 @@ namespace ZvitPlus.BLL.DTOs.Responses
         public ICollection<TemplateReadDTO> Templates { get; set; } = [];
         public ICollection<ReportReadDTO> Reports { get; set; } = [];
     }
+    public class AuthenticationDTO : IAuthDTO
+    {
+        public required string Login { get; set; }
+        public required string Password { get; set; }
+    }
 }

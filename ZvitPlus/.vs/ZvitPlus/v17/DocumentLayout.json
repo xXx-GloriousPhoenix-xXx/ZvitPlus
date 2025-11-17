@@ -1,12 +1,7 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "F:\\Programmes\\Github\\Reps\\ZvitPlus\\ZvitPlus\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{80CC99FB-4566-405A-A73C-A4FB6D406F86}|ZvitPlus.BLL\\ZvitPlus.BLL.csproj|f:\\programmes\\github\\reps\\zvitplus\\zvitplus\\zvitplus.bll\\services\\reportservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{80CC99FB-4566-405A-A73C-A4FB6D406F86}|ZvitPlus.BLL\\ZvitPlus.BLL.csproj|solutionrelative:zvitplus.bll\\services\\reportservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -14,7 +9,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": -1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -27,19 +22,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "ReportService.cs",
-              "DocumentMoniker": "F:\\Programmes\\Github\\Reps\\ZvitPlus\\ZvitPlus\\ZvitPlus.BLL\\Services\\ReportService.cs",
-              "RelativeDocumentMoniker": "ZvitPlus.BLL\\Services\\ReportService.cs",
-              "ToolTip": "F:\\Programmes\\Github\\Reps\\ZvitPlus\\ZvitPlus\\ZvitPlus.BLL\\Services\\ReportService.cs",
-              "RelativeToolTip": "ZvitPlus.BLL\\Services\\ReportService.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-17T06:58:22.896Z",
-              "EditorCaption": ""
             }
           ]
         },

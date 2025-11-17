@@ -1,0 +1,31 @@
+﻿using AutoMapper;
+using ZvitPlus.BLL.DTOs.Requests;
+using ZvitPlus.BLL.DTOs.Responses;
+using ZvitPlus.BLL.Helpers;
+using ZvitPlus.DAL.Entities;
+
+namespace ZvitPlus.BLL.Mapping
+{
+    public class UserProfile : Profile
+    {
+        public UserProfile()
+        {
+            CreateMap<UserCreateDTO, User>()
+                .ForMember(dest => dest.Id, opt => opt.Ignore())
+                .ForMember(dest => dest.Login, opt => opt.MapFrom(src => src.Login))
+                .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.Email))
+                .ForMember(dest => dest.PasswordHash, opt => opt.MapFrom(src => PasswordHasher.HashPassword(src.Password)));
+
+            CreateMap<UserUpdateDTO, User>()
+                .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
+                .ForMember(dest => dest.PasswordHash, opt =>
+                {
+                    opt.PreCondition(src => src.Password is not null);
+                    opt.MapFrom(src => PasswordHasher.HashPassword(src.Password!));
+                });
+
+            CreateMap<User, UserReadDTO>()
+                .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember is not null));
+        }
+    }
+}

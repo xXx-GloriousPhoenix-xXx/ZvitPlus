@@ -3,10 +3,10 @@
     public interface IBasicCRUD<T>
     {
         Task<T?> GetByIdAsync(Guid id);
-        Task<IEnumerable<T>> GetAllAsync();
-        Task AddAsync(T entity);
-        Task UpdateAsync(T entity);
-        Task DeleteAsync(T entity);
-        Task DeleteByIdAsync(Guid id);
+        Task<IEnumerable<T>> GetPaginated(int page, int itemsPerPage);
+        Task<Guid?> AddAsync(T entity);
+        Task<bool> UpdateAsync(T entity);
+        Task<bool> DeleteAsync(T entity);
+        Task<bool> DeleteByIdAsync(Guid id);
     }
 }

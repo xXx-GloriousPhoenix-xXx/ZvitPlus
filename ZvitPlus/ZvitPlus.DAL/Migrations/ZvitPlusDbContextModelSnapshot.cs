@@ -37,6 +37,10 @@ namespace ZvitPlus.DAL.Migrations
                         .HasColumnType("datetime2")
                         .HasColumnName("created_at");
 
+                    b.Property<bool>("IsPrivate")
+                        .HasColumnType("bit")
+                        .HasColumnName("is_private");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)")

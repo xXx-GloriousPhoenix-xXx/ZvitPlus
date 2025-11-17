@@ -1,4 +1,4 @@
-﻿using ZvitPlus.Domain.Entities;
+﻿using ZvitPlus.DAL.Entities;
 
 namespace ZvitPlus.DAL.Interfaces
 {

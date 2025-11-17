@@ -1,17 +1,18 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using ZvitPlus.DAL.Entities;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace ZvitPlus.Domain.Entities
+namespace ZvitPlus.DAL.Entities
 {
     [Table("reports")]
     public class Report : BaseEntity
     {
         [Column("name")]
-        public string Name { get; set; } = string.Empty;
+        public required string Name { get; set; }
+
+        [Column("is_private")]
+        public bool IsPrivate { get; set; } = false;
 
         [Column("created_at")]
-        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+        public DateTime CreatedAt { get; set; }
 
         [Column("updated_at")]
         public DateTime UpdatedAt { get; set; }

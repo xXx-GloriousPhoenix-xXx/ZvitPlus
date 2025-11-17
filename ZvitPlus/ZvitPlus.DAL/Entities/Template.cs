@@ -1,26 +1,25 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
-using ZvitPlus.DAL.Entities;
-using ZvitPlus.Domain.Enums;
+using ZvitPlus.DAL.Enums;
 
-namespace ZvitPlus.Domain.Entities
+namespace ZvitPlus.DAL.Entities
 {
     [Table("templates")]
     public class Template : BaseEntity
     {
         [Column("name")]
-        public string Name { get; set; } = string.Empty;
+        public required string Name { get; set; }
 
         [Column("type")]
         public TemplateType Type { get; set; }
 
         [Column("local_path")]
-        public string LocalPath { get; set; } = string.Empty;
+        public string LocalPath { get; set; }
 
         [Column("is_private")]
         public bool IsPrivate { get; set; } = false;
 
         [Column("created_at")]
-        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+        public DateTime CreatedAt { get; set; }
 
         [Column("updated_at")]
         public DateTime UpdatedAt { get; set; }

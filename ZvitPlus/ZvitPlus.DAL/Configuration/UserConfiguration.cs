@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using ZvitPlus.Domain.Entities;
+using ZvitPlus.DAL.Entities;
 
 namespace ZvitPlus.DAL.Configuration
 {

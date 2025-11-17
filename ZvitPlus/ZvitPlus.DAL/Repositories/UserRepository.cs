@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ZvitPlus.DAL.Context;
 using ZvitPlus.DAL.Interfaces;
-using ZvitPlus.Domain.Entities;
+using ZvitPlus.DAL.Entities;
 
 namespace ZvitPlus.DAL.Repository
 {
@@ -9,25 +9,30 @@ namespace ZvitPlus.DAL.Repository
     {
         private readonly ZvitPlusDbContext context = context;
 
-        public async Task AddAsync(User entity)
+        public async Task<Guid?> AddAsync(User entity)
         {
             await context.Users.AddAsync(entity);
-            await context.SaveChangesAsync();
+            var rowsAffected = await context.SaveChangesAsync();
+            return rowsAffected > 0 ? entity.Id : null;
         }
 
-        public async Task DeleteAsync(User entity)
+        public async Task<bool> DeleteAsync(User entity)
         {
-            await DeleteByIdAsync(entity.Id);
+            return await DeleteByIdAsync(entity.Id);
         }
 
-        public async Task DeleteByIdAsync(Guid id)
+        public async Task<bool> DeleteByIdAsync(Guid id)
         {
-            await context.Users.Where(x => x.Id == id).ExecuteDeleteAsync();
+            var rowsAffected = await context.Users.Where(x => x.Id == id).ExecuteDeleteAsync();
+            return rowsAffected > 0;
         }
 
-        public async Task<IEnumerable<User>> GetAllAsync()
+        public async Task<IEnumerable<User>> GetPaginated(int page, int itemsPerPage)
         {
-            return await context.Users.ToListAsync();
+            return await context.Users
+                .Skip((page - 1) * itemsPerPage)
+                .Take(itemsPerPage)
+                .ToListAsync();
         }
 
         public async Task<User?> GetByIdAsync(Guid id)
@@ -40,9 +45,9 @@ namespace ZvitPlus.DAL.Repository
             return await context.Users.SingleOrDefaultAsync(x => x.Login == login);
         }
 
-        public async Task UpdateAsync(User entity)
+        public async Task<bool> UpdateAsync(User entity)
         {
-            await context.Users
+            var rowsAffected = await context.Users
                 .Where(x => x.Id == entity.Id)
                 .ExecuteUpdateAsync(s => s
                     .SetProperty(x => x.Login, entity.Login)
@@ -50,7 +55,7 @@ namespace ZvitPlus.DAL.Repository
                     .SetProperty(x => x.PasswordHash, entity.PasswordHash)
                     .SetProperty(x => x.Templates, entity.Templates)
                     .SetProperty(x => x.Reports, entity.Reports));
-            await context.SaveChangesAsync();
+            return rowsAffected > 0;
         }
     }
 }

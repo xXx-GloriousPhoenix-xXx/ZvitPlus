@@ -17,7 +17,7 @@
   <ItemGroup>
     <Folder Include="Controllers\" />
     <Folder Include="Middleware\" />
-    <Folder Include="Exceptions\" />
+    <Folder Include="Extensions\" />
   </ItemGroup>
 
   <ItemGroup>

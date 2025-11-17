@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Reflection;
-using ZvitPlus.Domain.Entities;
+using ZvitPlus.DAL.Entities;
 
 namespace ZvitPlus.DAL.Context
 {

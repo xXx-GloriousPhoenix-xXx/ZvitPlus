@@ -1,12 +1,7 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "F:\\Programmes\\Github\\Reps\\ZvitPlus\\ZvitPlus\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{1B4C3573-5307-4F69-912C-3A1FE649187A}|ZvitPlus.API\\ZvitPlus.API.csproj|f:\\programmes\\github\\reps\\zvitplus\\zvitplus\\zvitplus.api\\zvitplus.api.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{1B4C3573-5307-4F69-912C-3A1FE649187A}|ZvitPlus.API\\ZvitPlus.API.csproj|solutionrelative:zvitplus.api\\zvitplus.api.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -14,21 +9,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": -1,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "ZvitPlus.API",
-              "DocumentMoniker": "F:\\Programmes\\Github\\Reps\\ZvitPlus\\ZvitPlus\\ZvitPlus.API\\ZvitPlus.API.csproj",
-              "RelativeDocumentMoniker": "ZvitPlus.API\\ZvitPlus.API.csproj",
-              "ToolTip": "F:\\Programmes\\Github\\Reps\\ZvitPlus\\ZvitPlus\\ZvitPlus.API\\ZvitPlus.API.csproj",
-              "RelativeToolTip": "ZvitPlus.API\\ZvitPlus.API.csproj",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-11-16T21:54:04.456Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{fbcae063-e2c0-4ab1-a516-996ea3dafb72}"

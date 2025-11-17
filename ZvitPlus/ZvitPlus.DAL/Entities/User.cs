@@ -1,19 +1,18 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
-using ZvitPlus.DAL.Entities;
 
-namespace ZvitPlus.Domain.Entities
+namespace ZvitPlus.DAL.Entities
 {
     [Table("users")]
     public class User : BaseEntity
     {
         [Column("email")]
-        public string Email { get; set; } = string.Empty;
+        public required string Email { get; set; }
 
         [Column("login")]
-        public string Login { get; set; } = string.Empty;
+        public required string Login { get; set; } = string.Empty;
 
         [Column("password_hash")]
-        public string PasswordHash { get; set; } = string.Empty;
+        public required string PasswordHash { get; set; }
 
         public ICollection<Template> Templates { get; set; } = [];
 

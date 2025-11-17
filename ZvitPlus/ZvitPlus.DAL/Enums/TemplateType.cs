@@ -1,4 +1,4 @@
-﻿namespace ZvitPlus.Domain.Enums
+﻿namespace ZvitPlus.DAL.Enums
 {
     public enum TemplateType
     {

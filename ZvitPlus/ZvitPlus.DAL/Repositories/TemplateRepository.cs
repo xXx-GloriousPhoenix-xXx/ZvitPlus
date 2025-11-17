@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ZvitPlus.DAL.Context;
 using ZvitPlus.DAL.Interfaces;
-using ZvitPlus.Domain.Entities;
+using ZvitPlus.DAL.Entities;
 
 namespace ZvitPlus.DAL.Repository
 {
@@ -9,25 +9,30 @@ namespace ZvitPlus.DAL.Repository
     {
         private readonly ZvitPlusDbContext context = context;
 
-        public async Task AddAsync(Template entity)
+        public async Task<Guid?> AddAsync(Template entity)
         {
             await context.Templates.AddAsync(entity);
-            await context.SaveChangesAsync();
+            var rowsAffected = await context.SaveChangesAsync();
+            return rowsAffected > 0 ? entity.Id : null;
         }
 
-        public async Task DeleteAsync(Template entity)
+        public async Task<bool> DeleteAsync(Template entity)
         {
-            await DeleteByIdAsync(entity.Id);
+            return await DeleteByIdAsync(entity.Id);
         }
 
-        public async Task DeleteByIdAsync(Guid id)
+        public async Task<bool> DeleteByIdAsync(Guid id)
         {
-            await context.Templates.Where(x => x.Id == id).ExecuteDeleteAsync();
+            var rowsAffected = await context.Templates.Where(x => x.Id == id).ExecuteDeleteAsync();
+            return rowsAffected > 0;
         }
 
-        public async Task<IEnumerable<Template>> GetAllAsync()
+        public async Task<IEnumerable<Template>> GetPaginated(int page, int itemsPerPage)
         {
-            return await context.Templates.ToListAsync();
+            return await context.Templates
+                .Skip((page - 1) * itemsPerPage)
+                .Take(itemsPerPage)
+                .ToListAsync();
         }
 
         public async Task<Template?> GetByIdAsync(Guid id)
@@ -40,9 +45,9 @@ namespace ZvitPlus.DAL.Repository
             return await context.Templates.Where(x => x.Name == name).ToListAsync();
         }
 
-        public async Task UpdateAsync(Template entity)
+        public async Task<bool> UpdateAsync(Template entity)
         {
-            await context.Templates
+            var rowsAffected = await context.Templates
                 .Where(x => x.Id == entity.Id)
                 .ExecuteUpdateAsync(s => s
                     .SetProperty(x => x.Name, entity.Name)
@@ -54,6 +59,7 @@ namespace ZvitPlus.DAL.Repository
                     .SetProperty(x => x.AuthorId, entity.AuthorId)
                     .SetProperty(x => x.Author, entity.Author)
                     .SetProperty(x => x.Reports, entity.Reports));
+            return rowsAffected > 0;
         }
     }
 }

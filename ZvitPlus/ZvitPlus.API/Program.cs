@@ -4,6 +4,9 @@ using ZvitPlus.BLL.Helpers;
 using ZvitPlus.BLL.Interfaces.Helpers;
 using ZvitPlus.BLL.Interfaces;
 using ZvitPlus.BLL.Services;
+using ZvitPlus.DAL.Interfaces;
+using ZvitPlus.DAL.Repository;
+using ZvitPlus.BLL.Mapping;
 
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
@@ -18,12 +21,26 @@ builder.Services.AddDbContext<ZvitPlusDbContext>(
         options.UseSqlServer(configuration.GetConnectionString(nameof(ZvitPlusDbContext)));
     });
 
-builder.Services.Configure<JwtSettings>(configuration.GetSection(nameof(JwtSettings)));
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IReportRepository, ReportRepository>();
+builder.Services.AddScoped<ITemplateRepository, TemplateRepository>();
 
-builder.Services.AddScoped<ITokenGenerator, TokenGenerator>();
 builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IReportService, ReportService>();
+builder.Services.AddScoped<ITemplateService, TemplateService>();
+
+builder.Services.AddScoped<IPasswordHasher, PasswordHasher>();
+
+builder.Services.Configure<JwtSettings>(configuration.GetSection(nameof(JwtSettings)));
+builder.Services.AddScoped<ITokenGenerator, TokenGenerator>();
+
+builder.Services.AddAutoMapper(cfg =>
+{
+    cfg.AddProfile<UserProfile>();
+    cfg.AddProfile<TemplateProfile>();
+    cfg.AddProfile<ReportProfile>();
+});
 
 var app = builder.Build();
 

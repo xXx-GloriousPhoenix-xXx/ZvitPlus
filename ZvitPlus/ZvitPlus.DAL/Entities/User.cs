@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
+using ZvitPlus.DAL.Enums;
 
 namespace ZvitPlus.DAL.Entities
 {
@@ -13,6 +14,9 @@ namespace ZvitPlus.DAL.Entities
 
         [Column("password_hash")]
         public required string PasswordHash { get; set; }
+
+        [Column("role")]
+        public required UserRole Role { get; set; }
 
         public ICollection<Template> Templates { get; set; } = [];
 

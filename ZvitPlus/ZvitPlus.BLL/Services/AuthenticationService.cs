@@ -6,6 +6,7 @@ using ZvitPlus.BLL.Interfaces;
 using ZvitPlus.BLL.Interfaces.Helpers;
 using ZvitPlus.DAL.Entities;
 using ZvitPlus.DAL.Interfaces;
+using ZvitPlus.DAL.Enums;
 
 namespace ZvitPlus.BLL.Services
 {
@@ -56,6 +57,7 @@ namespace ZvitPlus.BLL.Services
             }
 
             var user = mapper.Map<User>(dto);
+            user.Role = UserRole.User;
             var id = await userRepository.AddAsync(user);
             if (id is null)
             {

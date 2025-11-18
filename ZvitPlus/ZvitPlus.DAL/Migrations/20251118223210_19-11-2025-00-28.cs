@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace ZvitPlus.DAL.Migrations
 {
     /// <inheritdoc />
-    public partial class _161120252018 : Migration
+    public partial class _191120250028 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -18,7 +18,8 @@ namespace ZvitPlus.DAL.Migrations
                     id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     login = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    password_hash = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    password_hash = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    role = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -56,6 +57,7 @@ namespace ZvitPlus.DAL.Migrations
                 {
                     id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    is_private = table.Column<bool>(type: "bit", nullable: false),
                     created_at = table.Column<DateTime>(type: "datetime2", nullable: false),
                     updated_at = table.Column<DateTime>(type: "datetime2", nullable: false),
                     template_id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -69,7 +71,7 @@ namespace ZvitPlus.DAL.Migrations
                         column: x => x.template_id,
                         principalTable: "templates",
                         principalColumn: "author_id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_reports_users_author_id",
                         column: x => x.author_id,
@@ -77,6 +79,11 @@ namespace ZvitPlus.DAL.Migrations
                         principalColumn: "id",
                         onDelete: ReferentialAction.Restrict);
                 });
+
+            migrationBuilder.InsertData(
+                table: "users",
+                columns: new[] { "id", "email", "login", "password_hash", "role" },
+                values: new object[] { new Guid("aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa"), "admin@zvitplus.com", "admin", "$2a$11$VItJx2dEyqoR2dtqcYxBkuK0OGD1VLD1Q6yYAEZ9rXy8jzvRw7D6K", 3 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_reports_author_id",

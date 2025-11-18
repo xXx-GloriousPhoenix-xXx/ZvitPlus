@@ -22,7 +22,7 @@ namespace ZvitPlus.DAL.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("ZvitPlus.Domain.Entities.Report", b =>
+            modelBuilder.Entity("ZvitPlus.DAL.Entities.Report", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -63,7 +63,7 @@ namespace ZvitPlus.DAL.Migrations
                     b.ToTable("reports");
                 });
 
-            modelBuilder.Entity("ZvitPlus.Domain.Entities.Template", b =>
+            modelBuilder.Entity("ZvitPlus.DAL.Entities.Template", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -105,10 +105,9 @@ namespace ZvitPlus.DAL.Migrations
                     b.ToTable("templates");
                 });
 
-            modelBuilder.Entity("ZvitPlus.Domain.Entities.User", b =>
+            modelBuilder.Entity("ZvitPlus.DAL.Entities.User", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("id");
 
@@ -127,24 +126,38 @@ namespace ZvitPlus.DAL.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("password_hash");
 
+                    b.Property<int>("Role")
+                        .HasColumnType("int")
+                        .HasColumnName("role");
+
                     b.HasKey("Id");
 
                     b.ToTable("users");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa"),
+                            Email = "admin@zvitplus.com",
+                            Login = "admin",
+                            PasswordHash = "$2a$11$VItJx2dEyqoR2dtqcYxBkuK0OGD1VLD1Q6yYAEZ9rXy8jzvRw7D6K",
+                            Role = 3
+                        });
                 });
 
-            modelBuilder.Entity("ZvitPlus.Domain.Entities.Report", b =>
+            modelBuilder.Entity("ZvitPlus.DAL.Entities.Report", b =>
                 {
-                    b.HasOne("ZvitPlus.Domain.Entities.User", "Author")
+                    b.HasOne("ZvitPlus.DAL.Entities.User", "Author")
                         .WithMany("Reports")
                         .HasForeignKey("AuthorId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("ZvitPlus.Domain.Entities.Template", "Template")
+                    b.HasOne("ZvitPlus.DAL.Entities.Template", "Template")
                         .WithMany("Reports")
                         .HasForeignKey("TemplateId")
                         .HasPrincipalKey("AuthorId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Author");
@@ -152,9 +165,9 @@ namespace ZvitPlus.DAL.Migrations
                     b.Navigation("Template");
                 });
 
-            modelBuilder.Entity("ZvitPlus.Domain.Entities.Template", b =>
+            modelBuilder.Entity("ZvitPlus.DAL.Entities.Template", b =>
                 {
-                    b.HasOne("ZvitPlus.Domain.Entities.User", "Author")
+                    b.HasOne("ZvitPlus.DAL.Entities.User", "Author")
                         .WithMany("Templates")
                         .HasForeignKey("AuthorId")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -163,12 +176,12 @@ namespace ZvitPlus.DAL.Migrations
                     b.Navigation("Author");
                 });
 
-            modelBuilder.Entity("ZvitPlus.Domain.Entities.Template", b =>
+            modelBuilder.Entity("ZvitPlus.DAL.Entities.Template", b =>
                 {
                     b.Navigation("Reports");
                 });
 
-            modelBuilder.Entity("ZvitPlus.Domain.Entities.User", b =>
+            modelBuilder.Entity("ZvitPlus.DAL.Entities.User", b =>
                 {
                     b.Navigation("Reports");
 

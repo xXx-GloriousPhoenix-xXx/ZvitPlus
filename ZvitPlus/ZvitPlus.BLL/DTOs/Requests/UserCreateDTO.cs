@@ -1,11 +1,21 @@
-﻿using ZvitPlus.BLL.Interfaces.DTOs;
+﻿using System.ComponentModel.DataAnnotations;
+using ZvitPlus.BLL.Interfaces.DTOs;
+using ZvitPlus.DAL.Enums;
 
 namespace ZvitPlus.BLL.DTOs.Requests
 {
     public class UserCreateDTO : ICreateDTO, IUserDTO
     {
-        public required string Email { get; set; }
-        public required string Login { get; set; }
+        [Required]
+        public string Email { get; set; }
+
+        [Required]
+        public string Login { get; set; }
+
+        [Required]
         public required string Password { get; set; }
+
+        [Required]
+        public required UserRole Role { get; set; }
     }
 }

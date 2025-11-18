@@ -22,7 +22,7 @@ namespace ZvitPlus.API.Controllers
         }
 
         [HttpGet("{id:guid}")]
-        public async Task<IActionResult> GetAsync(Guid id)
+        public async Task<IActionResult> GetByIdAsync(Guid id)
         {
             var result = await userService.GetByIdAsync(id);
             return Ok(result);
@@ -32,6 +32,15 @@ namespace ZvitPlus.API.Controllers
         public async Task<IActionResult> GetPaginatedAsync(int page, int itemsPerPage)
         {
             var result = await userService.GetPaginatedAsync(page, itemsPerPage);
+            return Ok(result);
+        }
+
+        [HttpGet("{identifier}")]
+        public async Task<IActionResult> GetByLogin(string identifier)
+        {
+            var result = identifier.Contains('@')
+                ? await userService.GetByEmailAsync(identifier)
+                : await userService.GetByLoginAsync(identifier);
             return Ok(result);
         }
 

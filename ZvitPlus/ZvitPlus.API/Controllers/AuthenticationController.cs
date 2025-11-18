@@ -8,14 +8,26 @@ namespace ZvitPlus.API.Controllers
     public class AuthenticationController(IAuthenticationService authService) : ControllerBase
     {
         [HttpPost("login")]
-        public async Task<IActionResult> LoginAsync([FromBody] AuthRequestDTO dto)
+        public async Task<IActionResult> LoginAsync([FromBody] LoginDTO dto)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var result = await authService.VerifyAsync(dto.Login, dto.Password);
+            var result = await authService.LoginAsync(dto);
+            return Ok(result);
+        }
+
+        [HttpPost("register")]
+        public async Task<IActionResult> RegisterAsync([FromBody] RegisterDTO dto)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var result = await authService.RegisterAsync(dto);
             return Ok(result);
         }
     }

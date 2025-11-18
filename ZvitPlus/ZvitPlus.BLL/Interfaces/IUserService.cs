@@ -4,5 +4,9 @@ using ZvitPlus.BLL.Interfaces.DTOs;
 
 namespace ZvitPlus.BLL.Interfaces
 {
-    public interface IUserService : ICRUDService<UserCreateDTO, UserUpdateDTO, UserReadDTO, IUserDTO>;
+    public interface IUserService : ICRUDService<UserCreateDTO, UserUpdateDTO, UserReadDTO, IUserDTO>
+    {
+        Task<UserReadDTO> GetByEmailAsync(string email);
+        Task<UserReadDTO> GetByLoginAsync(string login);
+    }
 }

@@ -1,71 +1,12 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "F:\\Programmes\\Github\\Reps\\ZvitPlus\\ZvitPlus\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{1B4C3573-5307-4F69-912C-3A1FE649187A}|ZvitPlus.API\\ZvitPlus.API.csproj|f:\\programmes\\github\\reps\\zvitplus\\zvitplus\\zvitplus.api\\controllers\\templatecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1B4C3573-5307-4F69-912C-3A1FE649187A}|ZvitPlus.API\\ZvitPlus.API.csproj|solutionrelative:zvitplus.api\\controllers\\templatecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1B4C3573-5307-4F69-912C-3A1FE649187A}|ZvitPlus.API\\ZvitPlus.API.csproj|f:\\programmes\\github\\reps\\zvitplus\\zvitplus\\zvitplus.api\\controllers\\reportcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1B4C3573-5307-4F69-912C-3A1FE649187A}|ZvitPlus.API\\ZvitPlus.API.csproj|solutionrelative:zvitplus.api\\controllers\\reportcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1B4C3573-5307-4F69-912C-3A1FE649187A}|ZvitPlus.API\\ZvitPlus.API.csproj|f:\\programmes\\github\\reps\\zvitplus\\zvitplus\\zvitplus.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1B4C3573-5307-4F69-912C-3A1FE649187A}|ZvitPlus.API\\ZvitPlus.API.csproj|solutionrelative:zvitplus.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": [
-        {
-          "DockedWidth": 200,
-          "SelectedChildIndex": 0,
-          "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "TemplateController.cs",
-              "DocumentMoniker": "F:\\Programmes\\Github\\Reps\\ZvitPlus\\ZvitPlus\\ZvitPlus.API\\Controllers\\TemplateController.cs",
-              "RelativeDocumentMoniker": "ZvitPlus.API\\Controllers\\TemplateController.cs",
-              "ToolTip": "F:\\Programmes\\Github\\Reps\\ZvitPlus\\ZvitPlus\\ZvitPlus.API\\Controllers\\TemplateController.cs",
-              "RelativeToolTip": "ZvitPlus.API\\Controllers\\TemplateController.cs",
-              "ViewState": "AgIAAA0AAAAAAAAAAAAQwCQAAAAXAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-18T05:53:28.665Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "ReportController.cs",
-              "DocumentMoniker": "F:\\Programmes\\Github\\Reps\\ZvitPlus\\ZvitPlus\\ZvitPlus.API\\Controllers\\ReportController.cs",
-              "RelativeDocumentMoniker": "ZvitPlus.API\\Controllers\\ReportController.cs",
-              "ToolTip": "F:\\Programmes\\Github\\Reps\\ZvitPlus\\ZvitPlus\\ZvitPlus.API\\Controllers\\ReportController.cs",
-              "RelativeToolTip": "ZvitPlus.API\\Controllers\\ReportController.cs",
-              "ViewState": "AgIAABsAAAAAAAAAAAAYwCQAAAAXAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-18T05:53:16.239Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Program.cs",
-              "DocumentMoniker": "F:\\Programmes\\Github\\Reps\\ZvitPlus\\ZvitPlus\\ZvitPlus.API\\Program.cs",
-              "RelativeDocumentMoniker": "ZvitPlus.API\\Program.cs",
-              "ToolTip": "F:\\Programmes\\Github\\Reps\\ZvitPlus\\ZvitPlus\\ZvitPlus.API\\Program.cs",
-              "RelativeToolTip": "ZvitPlus.API\\Program.cs",
-              "ViewState": "AgIAABgAAAAAAAAAAAAkwCwAAAADAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-18T05:52:17.684Z",
-              "EditorCaption": ""
-            }
-          ]
-        }
-      ]
+      "DocumentGroups": []
     }
   ]
 }

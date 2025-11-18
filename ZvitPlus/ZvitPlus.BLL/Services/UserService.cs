@@ -43,12 +43,36 @@ namespace ZvitPlus.BLL.Services
             }
         }
 
+        public async Task<UserReadDTO> GetByEmailAsync(string email)
+        {
+            var entity = await repository.GetByEmailAsync(email);
+            if (entity is null)
+            {
+                throw new UserNotFoundByEmailException(email);
+            }
+
+            var result = mapper.Map<UserReadDTO>(entity);
+            return result;
+        }
+
         public async Task<UserReadDTO> GetByIdAsync(Guid id)
         {
             var entity = await repository.GetByIdAsync(id);
             if (entity is null)
             {
                 throw new NotFoundException("user", id);
+            }
+
+            var result = mapper.Map<UserReadDTO>(entity);
+            return result;
+        }
+
+        public async Task<UserReadDTO> GetByLoginAsync(string login)
+        {
+            var entity = await repository.GetByLoginAsync(login);
+            if (entity is null)
+            {
+                throw new UserNotFoundByLoginException(login);
             }
 
             var result = mapper.Map<UserReadDTO>(entity);

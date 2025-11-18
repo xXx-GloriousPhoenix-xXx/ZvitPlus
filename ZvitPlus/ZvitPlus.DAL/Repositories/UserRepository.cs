@@ -41,6 +41,12 @@ namespace ZvitPlus.DAL.Repositories
             return entity;
         }
 
+        public async Task<User?> GetByEmailAsync(string email)
+        {
+            var entity = await context.Users.SingleOrDefaultAsync(x => x.Email == email);
+            return entity;
+        }
+
         public async Task<bool> UpdateAsync(User entity)
         {
             var rowsAffected = await context.Users

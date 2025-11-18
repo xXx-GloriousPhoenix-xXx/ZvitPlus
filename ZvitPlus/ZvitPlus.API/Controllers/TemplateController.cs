@@ -21,7 +21,7 @@ namespace ZvitPlus.API.Controllers
         }
 
         [HttpGet("{id:guid}")]
-        public async Task<IActionResult> GetAsync(Guid id)
+        public async Task<IActionResult> GetByIdAsync(Guid id)
         {
             var result = await templateService.GetByIdAsync(id);
             return Ok(result);

@@ -31,7 +31,7 @@ namespace ZvitPlus.API.Middleware
                 CreateException => (409, ex.Message),
                 DeleteException => (409, ex.Message),
                 ValidationException => (400, ex.Message),
-                AuthenticationException => (401, ex.Message),
+                LoginException => (401, ex.Message),
                 _ => (500, "Internal server error")
             };
 

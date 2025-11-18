@@ -1,12 +1,14 @@
 using Microsoft.EntityFrameworkCore;
-using ZvitPlus.DAL.Context;
+using ZvitPlus.API.Middleware;
 using ZvitPlus.BLL.Helpers;
-using ZvitPlus.BLL.Interfaces.Helpers;
 using ZvitPlus.BLL.Interfaces;
-using ZvitPlus.BLL.Services;
-using ZvitPlus.DAL.Interfaces;
-using ZvitPlus.DAL.Repository;
+using ZvitPlus.BLL.Interfaces.Helpers;
 using ZvitPlus.BLL.Mapping;
+using ZvitPlus.BLL.Services;
+using ZvitPlus.DAL.Context;
+using ZvitPlus.DAL.Interfaces;
+using ZvitPlus.DAL.Repositories;
+using ZvitPlus.DAL.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
@@ -43,6 +45,8 @@ builder.Services.AddAutoMapper(cfg =>
 });
 
 var app = builder.Build();
+
+app.UseMiddleware<LoggingMiddleware>();
 
 app.MapControllers();
 

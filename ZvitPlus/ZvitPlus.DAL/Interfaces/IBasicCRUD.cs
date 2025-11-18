@@ -6,7 +6,6 @@
         Task<IEnumerable<T>> GetPaginated(int page, int itemsPerPage);
         Task<Guid?> AddAsync(T entity);
         Task<bool> UpdateAsync(T entity);
-        Task<bool> DeleteAsync(T entity);
-        Task<bool> DeleteByIdAsync(Guid id);
+        Task<bool> DeleteAsync (Guid id);
     }
 }

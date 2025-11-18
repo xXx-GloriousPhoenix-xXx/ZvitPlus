@@ -1,5 +1,4 @@
 ﻿namespace ZvitPlus.BLL.Exceptions
 {
-    public class DeleteException(string entityName, Guid entityId)
-        : CRUDException($"Failed to delete <{entityName}> with id <{entityId}>");
+    public class DeleteException(string entity, Guid id) : Exception($"Failed to delete <{entity}> with id <{id}>");
 }

@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+﻿using System.Security.Authentication;
 using ZvitPlus.BLL.DTOs.Responses;
 using ZvitPlus.BLL.Interfaces;
 using ZvitPlus.BLL.Interfaces.Helpers;
@@ -14,13 +14,16 @@ namespace ZvitPlus.BLL.Services
 
         public async Task<AuthResponseDTO> VerifyAsync(string login, string password)
         {
-            var user = await userRepository.GetByLoginAsync(login)
-                ?? throw new UnauthorizedAccessException("User not found");
+            var user = await userRepository.GetByLoginAsync(login);
+            if (user is null)
+            {
+                throw new AuthenticationException("User not found");
+            }
 
             var isValid = passwordHasher.Verify(password, user.PasswordHash);
             if (!isValid)
             {
-                throw new UnauthorizedAccessException("Invalid password");
+                throw new AuthenticationException("Invalid password");
             }
 
             var token = tokenGenerator.GenerateToken(user);

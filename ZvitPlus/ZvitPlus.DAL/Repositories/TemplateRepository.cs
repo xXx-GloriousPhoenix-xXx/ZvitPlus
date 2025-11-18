@@ -16,12 +16,7 @@ namespace ZvitPlus.DAL.Repository
             return rowsAffected > 0 ? entity.Id : null;
         }
 
-        public async Task<bool> DeleteAsync(Template entity)
-        {
-            return await DeleteByIdAsync(entity.Id);
-        }
-
-        public async Task<bool> DeleteByIdAsync(Guid id)
+        public async Task<bool> DeleteAsync(Guid id)
         {
             var rowsAffected = await context.Templates.Where(x => x.Id == id).ExecuteDeleteAsync();
             return rowsAffected > 0;

@@ -1,5 +1,4 @@
 ﻿namespace ZvitPlus.BLL.Exceptions
 {
-    public class CreateException(string entityName)
-        : CRUDException($"Failed creating <{entityName}>");
+    public class CreateException(string entity) : Exception($"Failed to create <{entity}>");
 }

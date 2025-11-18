@@ -3,7 +3,7 @@ using ZvitPlus.DAL.Context;
 using ZvitPlus.DAL.Interfaces;
 using ZvitPlus.DAL.Entities;
 
-namespace ZvitPlus.DAL.Repository
+namespace ZvitPlus.DAL.Repositories
 {
     public class UserRepository(ZvitPlusDbContext context) : IUserRepository
     {
@@ -16,12 +16,7 @@ namespace ZvitPlus.DAL.Repository
             return rowsAffected > 0 ? entity.Id : null;
         }
 
-        public async Task<bool> DeleteAsync(User entity)
-        {
-            return await DeleteByIdAsync(entity.Id);
-        }
-
-        public async Task<bool> DeleteByIdAsync(Guid id)
+        public async Task<bool> DeleteAsync(Guid id)
         {
             var rowsAffected = await context.Users.Where(x => x.Id == id).ExecuteDeleteAsync();
             return rowsAffected > 0;
@@ -42,7 +37,8 @@ namespace ZvitPlus.DAL.Repository
 
         public async Task<User?> GetByLoginAsync(string login)
         {
-            return await context.Users.SingleOrDefaultAsync(x => x.Login == login);
+            var entity = await context.Users.SingleOrDefaultAsync(x => x.Login == login);
+            return entity;
         }
 
         public async Task<bool> UpdateAsync(User entity)

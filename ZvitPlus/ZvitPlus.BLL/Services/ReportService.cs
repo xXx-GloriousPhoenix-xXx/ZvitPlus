@@ -13,33 +13,48 @@ namespace ZvitPlus.BLL.Services
         private readonly IReportRepository repository = repository;
         private readonly IMapper mapper = mapper;
 
-        public async Task<ReportReadDTO> CreateAsync(ReportCreateDTO dto)
+        public async Task<ReportReadDTO> AddAsync(ReportCreateDTO dto)
         {
             var createEntity = mapper.Map<Report>(dto);
-            var id = await repository.AddAsync(createEntity)
-                ?? throw new CreateException("report");
-            var readEntity = await repository.GetByIdAsync(id);
+            var id = await repository.AddAsync(createEntity);
+            if (id is null)
+            {
+                throw new CreateException("report");
+            }
+
+            var readEntity = await repository.GetByIdAsync((Guid)id);
             var result = mapper.Map<ReportReadDTO>(readEntity);
             return result;
         }
 
-        public async Task DeleteByIdAsync(Guid id)
+        public async Task DeleteAsync(Guid id)
         {
-            var success = await repository.DeleteByIdAsync(id);
+            var reportExistsEntity = await repository.GetByIdAsync(id);
+            if (reportExistsEntity is null)
+            {
+                throw new NotFoundException("report", id);
+            }
+
+            var success = await repository.DeleteAsync(id);
             if (!success)
             {
                 throw new DeleteException("report", id);
             }
         }
 
-        public async Task<ReportReadDTO> ReadByIdAsync(Guid id)
+        public async Task<ReportReadDTO> GetByIdAsync(Guid id)
         {
             var entity = await repository.GetByIdAsync(id);
+            if (entity is null)
+            {
+                throw new NotFoundException("report", id);
+            }
+
             var result = mapper.Map<ReportReadDTO>(entity);
             return result;
         }
 
-        public async Task<IEnumerable<ReportReadDTO>> ReadPaginatedAsync(int page, int itemsPerPage)
+        public async Task<IEnumerable<ReportReadDTO>> GetPaginatedAsync(int page, int itemsPerPage)
         {
             var entityCollection = await repository.GetPaginated(page, itemsPerPage);
             var result = entityCollection.Select(mapper.Map<ReportReadDTO>);
@@ -48,12 +63,19 @@ namespace ZvitPlus.BLL.Services
 
         public async Task<ReportReadDTO> UpdateAsync(ReportUpdateDTO dto)
         {
+            var reportExistsEntity = await repository.GetByIdAsync(dto.Id);
+            if (reportExistsEntity is null)
+            {
+                throw new NotFoundException("report", dto.Id);
+            }
+
             var updateEntity = mapper.Map<Report>(dto);
             var success = await repository.UpdateAsync(updateEntity);
             if (!success)
             {
                 throw new UpdateException("report", updateEntity.Id);
             }
+
             var readEntity = await repository.GetByIdAsync(updateEntity.Id);
             var result = mapper.Map<ReportReadDTO>(readEntity);
             return result;

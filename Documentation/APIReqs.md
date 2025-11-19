@@ -20,28 +20,38 @@
 	<tbody>
         <tr>
             <td>PostAsync</td>
-            <td colspan=2>—</td>
-            <td colspan=2>+</td>
+            <td>—</td>
+            <td>—</td>
+            <td>+</td>
+            <td>+</td>
         </tr>
         <tr>
             <td>GetByIdAsync</td>
-            <td colspan=2>—</td>
-            <td colspan=2>+</td>
+            <td>—</td>
+            <td>—</td>
+            <td>+</td>
+            <td>+</td>
         </tr>
         <tr>
             <td>GetPaginatedAsync</td>
-            <td colspan=2>—</td>
-            <td colspan=2>+</td>  
+            <td>—</td>
+            <td>—</td>
+            <td>+</td>
+            <td>+</td> 
         </tr>
         <tr>
             <td>GetByLogin</td>
-            <td colspan=2>—</td>
-            <td colspan=2>+</td>
+            <td>—</td>
+            <td>—</td>
+            <td>+</td>
+            <td>+</td>
         </tr>
         <tr>
             <td>PatchAsync</td>
-            <td colspan=2>—</td>
-            <td colspan=2>+</td>
+            <td>—</td>
+            <td>—</td>
+            <td>+</td>
+            <td>+</td>
         </tr>
         <tr>
             <td>DeleteAsync</td>
@@ -68,32 +78,44 @@
         <tr>
             <td>PostAsync</td>
             <td>—</td>
-            <td colspan=3>+</td>
+            <td>+</td>
+            <td>+</td>
+            <td>+</td>
         </tr>
         <tr>
             <td>GetByIdAsync</td>
-            <td colspan=2>—</td>
-            <td colspan=2>+</td>
+            <td>—</td>
+            <td>—</td>
+            <td>+</td>
+            <td>+</td>
         </tr>
         <tr>
             <td>GetPaginatedAsync</td>
-            <td colspan=4>+</td>
+            <td>+</td>
+            <td>+</td>
+            <td>+</td>
+            <td>+</td>
         </tr>
         <tr>
             <td>GetByNameAsync</td>
-            <td colspan=4>+</td>
+            <td>+</td>
+            <td>+</td>
+            <td>+</td>
+            <td>+</td>
         </tr>
         <tr>
             <td>PatchAsync</td>
             <td>—</td>
             <td>Own</td>
-            <td colspan=2>+</td>
+            <td>+</td>
+            <td>+</td>
         </tr>
         <tr>
             <td>DeleteAsync</td>
             <td>—</td>
             <td>Own</td>
-            <td colspan=2>+</td>
+            <td>+</td>
+            <td>+</td>
         </tr>
 	</tbody>
 </table>
@@ -113,32 +135,44 @@
         <tr>
             <td>PostAsync</td>
             <td>—</td>
-            <td colspan=3>+</td>
+            <td>+</td>
+            <td>+</td>
+            <td>+</td>
         </tr>
         <tr>
             <td>GetByIdAsync</td>
-            <td colspan=2>—</td>
-            <td colspan=2>+</td>
+            <td>—</td>
+            <td>—</td>
+            <td>+</td>
+            <td>+</td>
         </tr>
         <tr>
             <td>GetPaginatedAsync</td>
-            <td colspan=4>+</td>
+            <td>+</td>
+            <td>+</td>
+            <td>+</td>
+            <td>+</td>
         </tr>
         <tr>
             <td>GetByNameAsync</td>
-            <td colspan=4>+</td>
+            <td>+</td>
+            <td>+</td>
+            <td>+</td>
+            <td>+</td>
         </tr>
         <tr>
             <td>PatchAsync</td>
             <td>—</td>
             <td>Own</td>
-            <td colspan=2>+</td>
+            <td>+</td>
+            <td>+</td>
         </tr>
         <tr>
             <td>DeleteAsync</td>
             <td>—</td>
             <td>Own</td>
-            <td colspan=2>+</td>
+            <td>+</td>
+            <td>+</td>
         </tr>
 	</tbody>
 </table>
@@ -158,12 +192,16 @@
         <tr>
             <td>LoginAsync</td>
             <td>+</td>
-            <td colspan=3>—</td>
+            <td>—</td>
+            <td>—</td>
+            <td>—</td>
         </tr>
         <tr>
             <td>RegisterAsync</td>
             <td>+</td>
-            <td colspan=3>—</td>
+            <td>—</td>
+            <td>—</td>
+            <td>—</td>
         </tr>
 	</tbody>
 </table>

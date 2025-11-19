@@ -50,6 +50,9 @@ app.UseMiddleware<LoggingMiddleware>();
 
 app.MapControllers();
 
+app.UseAuthentication();
+app.UseAuthorization();
+
 app.UseSwagger();
 app.UseSwaggerUI();
 

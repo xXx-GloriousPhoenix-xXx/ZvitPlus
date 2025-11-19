@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using ZvitPlus.BLL.DTOs.Requests;
 using ZvitPlus.BLL.Interfaces;
 
@@ -7,6 +8,7 @@ namespace ZvitPlus.API.Controllers
     [Route("api/[controller]")]
     public class AuthenticationController(IAuthenticationService authService) : ControllerBase
     {
+        [Authorize(Roles = "Guest")]
         [HttpPost("login")]
         public async Task<IActionResult> LoginAsync([FromBody] LoginDTO dto)
         {
@@ -19,6 +21,7 @@ namespace ZvitPlus.API.Controllers
             return Ok(result);
         }
 
+        [Authorize(Roles = "Guest")]
         [HttpPost("register")]
         public async Task<IActionResult> RegisterAsync([FromBody] RegisterDTO dto)
         {

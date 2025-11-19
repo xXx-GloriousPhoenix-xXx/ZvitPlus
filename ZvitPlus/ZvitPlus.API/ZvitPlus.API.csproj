@@ -16,10 +16,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Extensions\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\ZvitPlus.DAL\ZvitPlus.DAL.csproj" />
     <ProjectReference Include="..\ZvitPlus.BLL\ZvitPlus.BLL.csproj" />
  

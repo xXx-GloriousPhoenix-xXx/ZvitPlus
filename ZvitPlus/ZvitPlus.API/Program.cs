@@ -1,4 +1,7 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
+using ZvitPlus.API.Authorization.Handlers;
+using ZvitPlus.API.Authorization.Requirements;
 using ZvitPlus.API.Middleware;
 using ZvitPlus.BLL.Helpers;
 using ZvitPlus.BLL.Interfaces;
@@ -42,6 +45,14 @@ builder.Services.AddAutoMapper(cfg =>
     cfg.AddProfile<UserProfile>();
     cfg.AddProfile<TemplateProfile>();
     cfg.AddProfile<ReportProfile>();
+});
+
+builder.Services.AddSingleton<IAuthorizationHandler, DeleteUserHandler>();
+builder.Services.AddHttpContextAccessor();
+
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("CanDeleteUser", policy => policy.Requirements.Add(new DeleteUserRequirement()));
 });
 
 var app = builder.Build();

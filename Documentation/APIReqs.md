@@ -1,10 +1,22 @@
 ## Roles
-<ul>
-    <li>(G)uest</li>
-    <li>(U)ser</li>
-    <li>(M)oderator</li>
-    <li>(A)dmin</li>
-</ul>
+<table>
+    <tr>
+        <th>G</th>
+        <td>Guest</td>
+    </tr>
+    <tr>
+        <th>U</th>
+        <td>User</td>
+    </tr>
+    <tr>
+        <th>M</th>
+        <td>Moderator</td>
+    </tr>
+    <tr>
+        <th>A</th>
+        <td>Administrator</td>
+    </tr>
+</table>
 
 ## Users
 <table style="text-align: center">

@@ -9,7 +9,7 @@ namespace ZvitPlus.DAL.Seeds
         public static void Seed(ModelBuilder modelBuilder)
         {
             var adminId = Guid.Parse("AAAAAAAA-AAAA-AAAA-AAAA-AAAAAAAAAAAA");
-            var adminPasswordHash = "$2a$11$VItJx2dEyqoR2dtqcYxBkuK0OGD1VLD1Q6yYAEZ9rXy8jzvRw7D6K";
+            var adminPasswordHash = "$2a$11$5yuDi3v5GgNM3DKDGxNHrO3zFdcRIGWr/AJoUlouW4huxuvuKIGYK"; //admin
 
             modelBuilder.Entity<User>().HasData(new User
             {

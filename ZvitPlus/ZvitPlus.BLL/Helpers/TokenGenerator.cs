@@ -29,6 +29,8 @@ namespace ZvitPlus.BLL.Helpers
             {
                 Subject = new ClaimsIdentity(claims),
                 Expires = DateTime.UtcNow.AddMinutes(jwtSettings.ExpiryMinutes),
+                Issuer = jwtSettings.Issuer,
+                Audience = jwtSettings.Audience,
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };
 

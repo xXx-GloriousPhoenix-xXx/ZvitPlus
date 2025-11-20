@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using ZvitPlus.BLL.DTOs.Requests;
 using ZvitPlus.BLL.Interfaces;
 
@@ -9,18 +10,15 @@ namespace ZvitPlus.API.Controllers
     public class TemplateController(ITemplateService templateService) : ControllerBase
     {
         [HttpPost]
+        [Authorize(Roles = "User,Moderator,Administrator")]
         public async Task<IActionResult> PostAsync([FromBody] TemplateCreateDTO dto)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
             var result = await templateService.AddAsync(dto);
             return Ok(result);
         }
 
         [HttpGet("{id:guid}")]
+        [Authorize(Roles = "Moderator,Administrator")]
         public async Task<IActionResult> GetByIdAsync(Guid id)
         {
             var result = await templateService.GetByIdAsync(id);
@@ -28,6 +26,7 @@ namespace ZvitPlus.API.Controllers
         }
 
         [HttpGet("{page:int}/{itemsPerPage:int}")]
+        //AllRoles
         public async Task<IActionResult> GetPaginatedAsync(int page, int itemsPerPage)
         {
             var result = await templateService.GetPaginatedAsync(page, itemsPerPage);
@@ -35,6 +34,7 @@ namespace ZvitPlus.API.Controllers
         }
 
         [HttpGet("{name}")]
+        //AllRoles
         public async Task<IActionResult> GetByNameAsync(string name)
         {
             var result = await templateService.GetByNameAsync(name);
@@ -42,23 +42,20 @@ namespace ZvitPlus.API.Controllers
         }
 
         [HttpPatch("{id:guid}")]
+        [Authorize(Policy = "CanPatchTemplate")]
         public async Task<IActionResult> PatchAsync(Guid id, [FromBody] TemplateUpdateDTO dto)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
             dto.Id = id;
             var result = await templateService.UpdateAsync(dto);
             return Ok(result);
         }
 
         [HttpDelete("{id:guid}")]
+        [Authorize(Policy = "CanDeleteTemplate")]
         public async Task<IActionResult> DeleteAsync(Guid id)
         {
             await templateService.DeleteAsync(id);
-            return Ok();
+            return NoContent();
         }
     }
 }

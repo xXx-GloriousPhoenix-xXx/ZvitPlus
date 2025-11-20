@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 using ZvitPlus.API.Authorization.Handlers;
 using ZvitPlus.API.Authorization.Requirements;
 using ZvitPlus.API.Middleware;
@@ -47,24 +49,60 @@ builder.Services.AddAutoMapper(cfg =>
     cfg.AddProfile<ReportProfile>();
 });
 
-builder.Services.AddSingleton<IAuthorizationHandler, DeleteUserHandler>();
+builder.Services.AddScoped<IAuthorizationHandler, DeleteUserHandler>();
+builder.Services.AddScoped<IAuthorizationHandler, PatchTemplateHandler>();
+builder.Services.AddScoped<IAuthorizationHandler, DeleteTemplateHandler>();
+builder.Services.AddScoped<IAuthorizationHandler, PatchReportHandler>();
+builder.Services.AddScoped<IAuthorizationHandler, DeleteReportHandler>();
+
+
 builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddAuthorization(options =>
 {
     options.AddPolicy("CanDeleteUser", policy => policy.Requirements.Add(new DeleteUserRequirement()));
+    options.AddPolicy("CanPatchTemplate", policy => policy.Requirements.Add(new PatchTemplateRequirement()));
+    options.AddPolicy("CanDeleteTemplate", policy => policy.Requirements.Add(new DeleteTemplateRequirement()));
+    options.AddPolicy("CanPatchReport", policy => policy.Requirements.Add(new PatchReportRequirement()));
+    options.AddPolicy("CanDeleteReport", policy => policy.Requirements.Add(new DeleteReportRequirement()));
+});
+
+var jwtSettings = configuration.GetSection("JwtSettings").Get<JwtSettings>();
+var key = Encoding.ASCII.GetBytes(jwtSettings!.SecretKey);
+
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = "JwtBearer";
+    options.DefaultChallengeScheme = "JwtBearer";
+})
+.AddJwtBearer("JwtBearer", options =>
+{
+     options.TokenValidationParameters = new TokenValidationParameters
+     {
+         ValidateIssuerSigningKey = true,
+         IssuerSigningKey = new SymmetricSecurityKey(key),
+
+         ValidateIssuer = true,
+         ValidIssuer = jwtSettings.Issuer,
+
+         ValidateAudience = true,
+         ValidAudience = jwtSettings.Audience,
+
+         ValidateLifetime = true,
+         ClockSkew = TimeSpan.Zero
+     };
 });
 
 var app = builder.Build();
 
 app.UseMiddleware<LoggingMiddleware>();
 
-app.MapControllers();
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.UseSwagger();
-app.UseSwaggerUI();
+app.MapControllers();
 
 app.Run();

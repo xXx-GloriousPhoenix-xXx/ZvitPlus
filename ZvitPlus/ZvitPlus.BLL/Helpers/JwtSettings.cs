@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ZvitPlus.BLL.Helpers
+﻿namespace ZvitPlus.BLL.Helpers
 {
     public class JwtSettings
     {

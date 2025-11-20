@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using ZvitPlus.BLL.DTOs.Requests;
 using ZvitPlus.BLL.Interfaces;
 
@@ -9,18 +10,15 @@ namespace ZvitPlus.API.Controllers
     public class ReportController(IReportService reportService) : ControllerBase
     {
         [HttpPost]
+        [Authorize(Roles = "User,Moderator,Administrator")]
         public async Task<IActionResult> PostAsync([FromBody] ReportCreateDTO dto)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
             var result = await reportService.AddAsync(dto);
             return Ok(result);
         }
 
         [HttpGet("{id:guid}")]
+        [Authorize(Roles = "Moderator,Administrator")]
         public async Task<IActionResult> GetByIdAsync(Guid id)
         {
             var result = await reportService.GetByIdAsync(id);
@@ -28,6 +26,7 @@ namespace ZvitPlus.API.Controllers
         }
 
         [HttpGet("{page:int}/{itemsPerPage:int}")]
+        //AllRoles
         public async Task<IActionResult> GetPaginatedAsync(int page, int itemsPerPage)
         {
             var result = await reportService.GetPaginatedAsync(page, itemsPerPage);
@@ -35,6 +34,7 @@ namespace ZvitPlus.API.Controllers
         }
 
         [HttpGet("{name}")]
+        //AllRoles
         public async Task<IActionResult> GetByNameAsync(string name)
         {
             var result = await reportService.GetByNameAsync(name);
@@ -42,6 +42,7 @@ namespace ZvitPlus.API.Controllers
         }
 
         [HttpPatch("{id:guid}")]
+        [Authorize(Policy = "CanPatchReport")]
         public async Task<IActionResult> PatchAsync(Guid id, [FromBody] ReportUpdateDTO dto)
         {
             if (!ModelState.IsValid)
@@ -55,6 +56,7 @@ namespace ZvitPlus.API.Controllers
         }
 
         [HttpDelete("{id:guid}")]
+        [Authorize(Policy = "CanDeleteReport")]
         public async Task<IActionResult> DeleteAsync(Guid id)
         {
             await reportService.DeleteAsync(id);

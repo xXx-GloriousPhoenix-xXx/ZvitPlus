@@ -3,12 +3,24 @@
   "WorkspaceRootPath": "F:\\Programmes\\Github\\Reps\\ZvitPlus\\ZvitPlus\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{1B4C3573-5307-4F69-912C-3A1FE649187A}|ZvitPlus.API\\ZvitPlus.API.csproj|f:\\programmes\\github\\reps\\zvitplus\\zvitplus\\zvitplus.api\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1B4C3573-5307-4F69-912C-3A1FE649187A}|ZvitPlus.API\\ZvitPlus.API.csproj|solutionrelative:zvitplus.api\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{1B4C3573-5307-4F69-912C-3A1FE649187A}|ZvitPlus.API\\ZvitPlus.API.csproj|f:\\programmes\\github\\reps\\zvitplus\\zvitplus\\zvitplus.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1B4C3573-5307-4F69-912C-3A1FE649187A}|ZvitPlus.API\\ZvitPlus.API.csproj|solutionrelative:zvitplus.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{80CC99FB-4566-405A-A73C-A4FB6D406F86}|ZvitPlus.BLL\\ZvitPlus.BLL.csproj|f:\\programmes\\github\\reps\\zvitplus\\zvitplus\\zvitplus.bll\\helpers\\jwtsettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{80CC99FB-4566-405A-A73C-A4FB6D406F86}|ZvitPlus.BLL\\ZvitPlus.BLL.csproj|solutionrelative:zvitplus.bll\\helpers\\jwtsettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1B4C3573-5307-4F69-912C-3A1FE649187A}|ZvitPlus.API\\ZvitPlus.API.csproj|f:\\programmes\\github\\reps\\zvitplus\\zvitplus\\zvitplus.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{1B4C3573-5307-4F69-912C-3A1FE649187A}|ZvitPlus.API\\ZvitPlus.API.csproj|solutionrelative:zvitplus.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1B4C3573-5307-4F69-912C-3A1FE649187A}|ZvitPlus.API\\ZvitPlus.API.csproj|f:\\programmes\\github\\reps\\zvitplus\\zvitplus\\zvitplus.api\\middleware\\loggingmiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1B4C3573-5307-4F69-912C-3A1FE649187A}|ZvitPlus.API\\ZvitPlus.API.csproj|solutionrelative:zvitplus.api\\middleware\\loggingmiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1B4C3573-5307-4F69-912C-3A1FE649187A}|ZvitPlus.API\\ZvitPlus.API.csproj|f:\\programmes\\github\\reps\\zvitplus\\zvitplus\\zvitplus.api\\zvitplus.api.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{1B4C3573-5307-4F69-912C-3A1FE649187A}|ZvitPlus.API\\ZvitPlus.API.csproj|solutionrelative:zvitplus.api\\zvitplus.api.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,19 +30,32 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Program.cs",
-              "DocumentMoniker": "F:\\Programmes\\Github\\Reps\\ZvitPlus\\ZvitPlus\\ZvitPlus.API\\Program.cs",
-              "RelativeDocumentMoniker": "ZvitPlus.API\\Program.cs",
-              "ToolTip": "F:\\Programmes\\Github\\Reps\\ZvitPlus\\ZvitPlus\\ZvitPlus.API\\Program.cs",
-              "RelativeToolTip": "ZvitPlus.API\\Program.cs",
-              "ViewState": "AgIAACEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Title": "JwtSettings.cs",
+              "DocumentMoniker": "F:\\Programmes\\Github\\Reps\\ZvitPlus\\ZvitPlus\\ZvitPlus.BLL\\Helpers\\JwtSettings.cs",
+              "RelativeDocumentMoniker": "ZvitPlus.BLL\\Helpers\\JwtSettings.cs",
+              "ToolTip": "F:\\Programmes\\Github\\Reps\\ZvitPlus\\ZvitPlus\\ZvitPlus.BLL\\Helpers\\JwtSettings.cs",
+              "RelativeToolTip": "ZvitPlus.BLL\\Helpers\\JwtSettings.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-19T00:06:14.231Z",
+              "WhenOpened": "2025-11-20T01:08:02.022Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "F:\\Programmes\\Github\\Reps\\ZvitPlus\\ZvitPlus\\ZvitPlus.API\\appsettings.json",
+              "RelativeDocumentMoniker": "ZvitPlus.API\\appsettings.json",
+              "ToolTip": "F:\\Programmes\\Github\\Reps\\ZvitPlus\\ZvitPlus\\ZvitPlus.API\\appsettings.json",
+              "RelativeToolTip": "ZvitPlus.API\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-11-20T01:06:53.46Z",
               "EditorCaption": ""
             },
             {
@@ -39,15 +64,41 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "UserController.cs",
-              "DocumentMoniker": "F:\\Programmes\\Github\\Reps\\ZvitPlus\\ZvitPlus\\ZvitPlus.API\\Controllers\\UserController.cs",
-              "RelativeDocumentMoniker": "ZvitPlus.API\\Controllers\\UserController.cs",
-              "ToolTip": "F:\\Programmes\\Github\\Reps\\ZvitPlus\\ZvitPlus\\ZvitPlus.API\\Controllers\\UserController.cs",
-              "RelativeToolTip": "ZvitPlus.API\\Controllers\\UserController.cs",
-              "ViewState": "AgIAAEkAAAAAAAAAAAAAwFwAAAABAAAAAAAAAA==",
+              "DocumentIndex": 4,
+              "Title": "ZvitPlus.API",
+              "DocumentMoniker": "F:\\Programmes\\Github\\Reps\\ZvitPlus\\ZvitPlus\\ZvitPlus.API\\ZvitPlus.API.csproj",
+              "RelativeDocumentMoniker": "ZvitPlus.API\\ZvitPlus.API.csproj",
+              "ToolTip": "F:\\Programmes\\Github\\Reps\\ZvitPlus\\ZvitPlus\\ZvitPlus.API\\ZvitPlus.API.csproj",
+              "RelativeToolTip": "ZvitPlus.API\\ZvitPlus.API.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAABaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-11-20T00:59:35.298Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "LoggingMiddleware.cs",
+              "DocumentMoniker": "F:\\Programmes\\Github\\Reps\\ZvitPlus\\ZvitPlus\\ZvitPlus.API\\Middleware\\LoggingMiddleware.cs",
+              "RelativeDocumentMoniker": "ZvitPlus.API\\Middleware\\LoggingMiddleware.cs",
+              "ToolTip": "F:\\Programmes\\Github\\Reps\\ZvitPlus\\ZvitPlus\\ZvitPlus.API\\Middleware\\LoggingMiddleware.cs",
+              "RelativeToolTip": "ZvitPlus.API\\Middleware\\LoggingMiddleware.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAowCwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-18T23:51:32.465Z",
+              "WhenOpened": "2025-11-20T00:53:34.305Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "F:\\Programmes\\Github\\Reps\\ZvitPlus\\ZvitPlus\\ZvitPlus.API\\Program.cs",
+              "RelativeDocumentMoniker": "ZvitPlus.API\\Program.cs",
+              "ToolTip": "F:\\Programmes\\Github\\Reps\\ZvitPlus\\ZvitPlus\\ZvitPlus.API\\Program.cs",
+              "RelativeToolTip": "ZvitPlus.API\\Program.cs",
+              "ViewState": "AgIAADkAAAAAAAAAAAAgwEsAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-20T00:42:30.381Z",
               "EditorCaption": ""
             }
           ]

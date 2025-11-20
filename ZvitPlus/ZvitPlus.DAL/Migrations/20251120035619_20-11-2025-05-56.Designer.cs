@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ZvitPlus.DAL.Context;
 
@@ -11,9 +12,11 @@ using ZvitPlus.DAL.Context;
 namespace ZvitPlus.DAL.Migrations
 {
     [DbContext(typeof(ZvitPlusDbContext))]
-    partial class ZvitPlusDbContextModelSnapshot : ModelSnapshot
+    [Migration("20251120035619_20-11-2025-05-56")]
+    partial class _201120250556
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -11,5 +11,6 @@ namespace ZvitPlus.BLL.DTOs.Requests
         public string? Login { get; set; }
         public string? Password { get; set; }
         public UserRole? Role { get; set; }
+        public bool IsBanned { get; set; }
     }
 }

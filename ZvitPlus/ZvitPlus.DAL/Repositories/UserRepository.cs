@@ -2,6 +2,7 @@
 using ZvitPlus.DAL.Context;
 using ZvitPlus.DAL.Interfaces;
 using ZvitPlus.DAL.Entities;
+using ZvitPlus.DAL.Enums;
 
 namespace ZvitPlus.DAL.Repositories
 {
@@ -55,8 +56,27 @@ namespace ZvitPlus.DAL.Repositories
                     .SetProperty(x => x.Login, entity.Login)
                     .SetProperty(x => x.Email, entity.Email)
                     .SetProperty(x => x.PasswordHash, entity.PasswordHash)
+                    .SetProperty(x => x.IsBanned, entity.IsBanned)
                     .SetProperty(x => x.Templates, entity.Templates)
                     .SetProperty(x => x.Reports, entity.Reports));
+            return rowsAffected > 0;
+        }
+
+        public async Task<bool> GrantRoleAsync(Guid userId, UserRole newRole)
+        {
+            var rowsAffected = await context.Users
+                .Where(x => x.Id == userId)
+                .ExecuteUpdateAsync(s => s
+                    .SetProperty(x => x.Role, newRole));
+            return rowsAffected > 0;
+        }
+
+        public async Task<bool> BanAsync(Guid userId, bool ban)
+        {
+            var rowsAffected = await context.Users
+                .Where(x => x.Id == userId)
+                .ExecuteUpdateAsync(s => s
+                    .SetProperty(x => x.IsBanned, ban));
             return rowsAffected > 0;
         }
     }

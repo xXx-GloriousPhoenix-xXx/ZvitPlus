@@ -17,7 +17,8 @@ namespace ZvitPlus.DAL.Seeds
                 Login = "admin",
                 Email = "admin@zvitplus.com",
                 PasswordHash = adminPasswordHash,
-                Role = UserRole.Administrator
+                Role = UserRole.Administrator,
+                IsBanned = false
             });
         }
     }

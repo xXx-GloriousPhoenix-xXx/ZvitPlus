@@ -15,7 +15,8 @@ namespace ZvitPlus.BLL.Mapping
                 .ForMember(dest => dest.Login, opt => opt.MapFrom(src => src.Login))
                 .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.Email))
                 .ForMember(dest => dest.PasswordHash, opt => opt.MapFrom(src => 
-                    new PasswordHasher().HashPassword(src.Password)));
+                    new PasswordHasher().HashPassword(src.Password)))
+                .ForMember(dest => dest.IsBanned, opt => opt.MapFrom(src => false));
 
             CreateMap<UserUpdateDTO, User>()
                 .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
@@ -29,7 +30,8 @@ namespace ZvitPlus.BLL.Mapping
                 {
                     opt.PreCondition(src => src.Login is not null);
                     opt.MapFrom(src => src.Login);
-                });
+                })
+                .ForMember(dest => dest.IsBanned, opt => opt.MapFrom(src => false));
 
             CreateMap<User, UserReadDTO>()
                 .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember is not null));
@@ -39,8 +41,8 @@ namespace ZvitPlus.BLL.Mapping
                 .ForMember(dest => dest.Login, opt => opt.MapFrom(src => src.Login))
                 .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.Email))
                 .ForMember(dest => dest.PasswordHash, opt => opt.MapFrom(src =>
-                    new PasswordHasher().HashPassword(src.Password)));
-
+                    new PasswordHasher().HashPassword(src.Password)))
+                .ForMember(dest => dest.IsBanned, opt => opt.MapFrom(src => false));
         }
     }
 }

@@ -18,6 +18,9 @@ namespace ZvitPlus.DAL.Entities
         [Column("role")]
         public required UserRole Role { get; set; }
 
+        [Column("is_banned")]
+        public required bool IsBanned { get; set; } = false;
+
         public ICollection<Template> Templates { get; set; } = [];
 
         public ICollection<Report> Reports = [];

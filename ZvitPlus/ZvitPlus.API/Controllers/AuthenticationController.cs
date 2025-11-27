@@ -4,11 +4,12 @@ using ZvitPlus.BLL.Interfaces;
 
 namespace ZvitPlus.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/auth")]
+    [ApiController]
     public class AuthenticationController(IAuthenticationService authService) : ControllerBase
     {
         [HttpPost("login")]
-        public async Task<IActionResult> LoginAsync([FromBody] LoginDTO dto)
+        public async Task<IActionResult> LoginAsync([FromForm] LoginDTO dto)
         {
             if (!ModelState.IsValid)
             {
@@ -20,7 +21,7 @@ namespace ZvitPlus.API.Controllers
         }
 
         [HttpPost("register")]
-        public async Task<IActionResult> RegisterAsync([FromBody] RegisterDTO dto)
+        public async Task<IActionResult> RegisterAsync([FromForm] RegisterDTO dto)
         {
             if (!ModelState.IsValid)
             {

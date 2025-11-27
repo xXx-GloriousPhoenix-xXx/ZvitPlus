@@ -1,26 +1,26 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using ZvitPlus.BLL.Interfaces;
 using ZvitPlus.DAL.Enums;
 
 namespace ZvitPlus.API.Controllers
 {
-    [Authorize(Roles = "Administrator")]
-    [Route("api/[controller]")]
+    //[Authorize(Roles = "Administrator")]
+    [Route("api/management")]
+    [ApiController]
     public class UserManagementController(IUserManagementService userManagementService) : ControllerBase
     {
-        [HttpPatch("{userId:guid}/role")]
-        public async Task<IActionResult> GrantRoleAsync(Guid userId, [FromQuery] UserRole role)
+        [HttpPost("{userId:guid}/role/{role}")]
+        public async Task<IActionResult> GrantRoleAsync(Guid userId, UserRole role)
         {
-            await userManagementService.GrantRoleAsync(userId, role);
-            return NoContent();
+            var result = await userManagementService.GrantRoleAsync(userId, role);
+            return Ok(result);
         }
 
-        [HttpPatch("{userId:guid}/ban")]
-        public async Task<IActionResult> BanUserAsync(Guid userId, [FromQuery] bool ban)
+        [HttpPost("{userId:guid}/ban/{ban:bool}")]
+        public async Task<IActionResult> BanUserAsync(Guid userId, bool ban)
         {
-            await userManagementService.BanUserAsync(userId, ban);
-            return NoContent();
+            var result = await userManagementService.BanUserAsync(userId, ban);
+            return Ok(result);
         }
     }
 }

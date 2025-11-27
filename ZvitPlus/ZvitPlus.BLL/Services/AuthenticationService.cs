@@ -19,18 +19,22 @@ namespace ZvitPlus.BLL.Services
 
         public async Task<AuthTokenDTO> LoginAsync(LoginDTO dto)
         {
-            var user = dto.Identifier.Contains('@')
-                ? await userRepository.GetByEmailAsync(dto.Identifier)
-                : await userRepository.GetByLoginAsync(dto.Identifier);
-            if (user is null)
+            User? user;
+            if (dto.Identifier.Contains('@'))
             {
-                throw new LoginException("User not found");
+                user = await userRepository.GetByEmailAsync(dto.Identifier)
+                    ?? throw new UserNotFoundByEmailException(dto.Identifier);
+            }
+            else
+            {
+                user = await userRepository.GetByLoginAsync(dto.Identifier)
+                    ?? throw new UserNotFoundByLoginException(dto.Identifier);
             }
 
-            var isValid = passwordHasher.Verify(dto.Password, user.PasswordHash);
+                var isValid = passwordHasher.Verify(dto.Password, user.PasswordHash);
             if (!isValid)
             {
-                throw new LoginException("Invalid password");
+                throw new LoginException(dto.Password, user.Id);
             }
 
             var token = tokenGenerator.GenerateToken(user);
@@ -47,13 +51,13 @@ namespace ZvitPlus.BLL.Services
             var userExistsByLoginEntity = await userRepository.GetByLoginAsync(dto.Login);
             if (userExistsByLoginEntity is not null)
             {
-                throw new RegisterException($"User with login <{dto.Login}> already exists");
+                throw new AlreadyExistsException(userExistsByLoginEntity.Id, "User", "Login", dto.Login);
             }
 
             var userExistsByEmailEntity = await userRepository.GetByEmailAsync(dto.Email);
             if (userExistsByEmailEntity is not null)
             {
-                throw new RegisterException($"User with email <{dto.Email}> already exists");
+                throw new AlreadyExistsException(userExistsByEmailEntity.Id, "User", "Email", dto.Email);
             }
 
             var user = mapper.Map<User>(dto);

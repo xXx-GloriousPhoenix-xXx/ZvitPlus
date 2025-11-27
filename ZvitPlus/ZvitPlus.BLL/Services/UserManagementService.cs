@@ -44,6 +44,17 @@ namespace ZvitPlus.BLL.Services
         }
         public async Task<UserReadDTO> GrantRoleAsync(Guid userId, UserRole role)
         {
+            var grantableRoleCollection = new List<UserRole>()
+            {
+                UserRole.User,
+                UserRole.Moderator
+            };
+
+            if (!grantableRoleCollection.Contains(role))
+            {
+                throw new GrantableRoleException(role);
+            }
+
             var userEntityExists = await userRepository.GetByIdAsync(userId);
             if (userEntityExists is null)
             {

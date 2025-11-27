@@ -5,20 +5,20 @@ using ZvitPlus.BLL.Interfaces;
 
 namespace ZvitPlus.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/users")]
     [ApiController]
     public class UserController(IUserService userService) : ControllerBase
     {
         [HttpPost]
-        [Authorize(Roles = "Moderator,Administrator")]
-        public async Task<IActionResult> PostAsync([FromBody] UserCreateDTO dto)
+        //[Authorize(Roles = "Moderator,Administrator")]
+        public async Task<IActionResult> PostAsync([FromForm] UserCreateDTO dto)
         {
             var result = await userService.AddAsync(dto);
             return Ok(result);
         }
 
         [HttpGet("{id:guid}")]
-        [Authorize(Roles = "Moderator,Administrator")]
+        //[Authorize(Roles = "Moderator,Administrator")]
         public async Task<IActionResult> GetByIdAsync(Guid id)
         {
             var result = await userService.GetByIdAsync(id);
@@ -26,15 +26,15 @@ namespace ZvitPlus.API.Controllers
         }
 
         [HttpGet("{page:int}/{itemsPerPage:int}")]
-        [Authorize(Roles = "Moderator,Administrator")]
-        public async Task<IActionResult> GetPaginatedAsync(int page, int itemsPerPage)
+        //[Authorize(Roles = "Moderator,Administrator")]
+        public async Task<IActionResult> GetPaginatedAsync(int page = 1, int itemsPerPage = 10)
         {
             var result = await userService.GetPaginatedAsync(page, itemsPerPage);
             return Ok(result);
         }
 
         [HttpGet("{identifier}")]
-        [Authorize(Roles = "Moderator,Administrator")]
+        //[Authorize(Roles = "Moderator,Administrator")]
         public async Task<IActionResult> GetByLogin(string identifier)
         {
             var result = identifier.Contains('@')
@@ -44,21 +44,20 @@ namespace ZvitPlus.API.Controllers
         }
 
         [HttpPatch("{id:guid}")]
-        [Authorize(Roles = "Moderator,Administrator")]
-        public async Task<IActionResult> PatchAsync(Guid id, [FromBody] UserUpdateDTO dto)
+        //[Authorize(Roles = "Moderator,Administrator")]
+        public async Task<IActionResult> PatchAsync(Guid id, [FromForm] UserUpdateDTO dto)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            dto.Id = id;
-            var result = await userService.UpdateAsync(dto);
+            var result = await userService.UpdateAsync(id, dto);
             return Ok(result);
         }
 
         [HttpDelete("{id:guid}")]
-        [Authorize(Policy = "CanDeleteUser")]
+        //[Authorize(Policy = "CanDeleteUser")]
         public async Task<IActionResult> DeleteAsync(Guid id)
         {
             await userService.DeleteAsync(id);

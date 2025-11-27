@@ -8,7 +8,7 @@ namespace ZvitPlus.BLL.Interfaces
         where TRead : IReadDTO, TEntityMarker
     {
         Task<TRead> AddAsync(TCreate dto);
-        Task<TRead> UpdateAsync(TUpdate dto);
+        Task<TRead> UpdateAsync(Guid id, TUpdate dto);
         Task<TRead> GetByIdAsync(Guid id);
         Task<IEnumerable<TRead>> GetPaginatedAsync(int page, int itemsPerPage);
         Task DeleteAsync(Guid id);

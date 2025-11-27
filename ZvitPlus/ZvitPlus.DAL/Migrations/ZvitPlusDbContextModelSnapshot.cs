@@ -41,6 +41,11 @@ namespace ZvitPlus.DAL.Migrations
                         .HasColumnType("bit")
                         .HasColumnName("is_private");
 
+                    b.Property<string>("LocalPath")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("local_path");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)")
@@ -102,6 +107,8 @@ namespace ZvitPlus.DAL.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("AuthorId");
+
                     b.ToTable("templates");
                 });
 
@@ -161,7 +168,6 @@ namespace ZvitPlus.DAL.Migrations
                     b.HasOne("ZvitPlus.DAL.Entities.Template", "Template")
                         .WithMany("Reports")
                         .HasForeignKey("TemplateId")
-                        .HasPrincipalKey("AuthorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

@@ -11,11 +11,13 @@ namespace ZvitPlus.DAL.Configuration
             builder
                 .HasOne(x => x.Author)
                 .WithMany(x => x.Reports)
-                .HasForeignKey(x => x.AuthorId);
+                .HasForeignKey(x => x.AuthorId)
+                .OnDelete(DeleteBehavior.Restrict);
             builder
                 .HasOne(x => x.Template)
                 .WithMany(x => x.Reports)
-                .HasPrincipalKey(x => x.AuthorId);
+                .HasForeignKey(x => x.TemplateId)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

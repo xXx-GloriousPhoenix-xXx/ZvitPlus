@@ -14,8 +14,5 @@ namespace ZvitPlus.BLL.DTOs.Responses
         [JsonConverter(typeof(UserRoleConverter))]
         public required UserRole Role { get; set; }
         public required bool IsBanned { get; set; }
-
-        public ICollection<TemplateReadDTO> Templates { get; set; } = [];
-        public ICollection<ReportReadDTO> Reports { get; set; } = [];
     }
 }

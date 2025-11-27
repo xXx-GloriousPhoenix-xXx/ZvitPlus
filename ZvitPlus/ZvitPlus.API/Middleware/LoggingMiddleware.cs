@@ -24,21 +24,54 @@ namespace ZvitPlus.API.Middleware
 
         private static Task HandleExceptionAsync(HttpContext context, Exception ex)
         {
-            var (status, message) = ex switch
+            var response = new ErrorResponse();
+
+            switch (ex)
             {
-                NotFoundException => (404, ex.Message),
-                UpdateException => (409, ex.Message),
-                CreateException => (409, ex.Message),
-                DeleteException => (409, ex.Message),
-                ValidationException => (400, ex.Message),
-                LoginException => (401, ex.Message),
-                _ => (500, "Internal server error")
-            };
+                // 404 - Not Found
+                case NotFoundException:
+                case UserNotFoundByEmailException:
+                case UserNotFoundByLoginException:
+                    response.Status = 404;
+                    response.Message = ex.Message;
+                    break;
+
+                // 400 - Bad Request
+                case ValidationException:
+                case GrantableRoleException:
+                    response.Status = 400;
+                    response.Message = ex.Message;
+                    break;
+
+                // 401 - Unauthorized
+                case LoginException:
+                    response.Status = 401;
+                    response.Message = ex.Message;
+                    break;
+
+                // 409 - Conflict
+                case RoleGrantFailedException:
+                case AlreadyExistsException:
+                case CreateException:
+                case UpdateException:
+                case DeleteException:
+                case BanFailedException:
+                case UnbanFailedException:
+                    response.Status = 409;
+                    response.Message = ex.Message;
+                    break;
+
+                // 500 - Internal Server Error
+                default:
+                    response.Status = 500;
+                    response.Message = "Internal server error";
+                    break;
+            }
 
             context.Response.ContentType = "application/json";
-            context.Response.StatusCode = status;
+            context.Response.StatusCode = response.Status;
 
-            return context.Response.WriteAsJsonAsync(new { error = message });
+            return context.Response.WriteAsJsonAsync(response);
         }
     }
 }

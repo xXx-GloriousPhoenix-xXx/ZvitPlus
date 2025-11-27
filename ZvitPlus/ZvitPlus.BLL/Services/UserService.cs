@@ -15,6 +15,18 @@ namespace ZvitPlus.BLL.Services
 
         public async Task<UserReadDTO> AddAsync(UserCreateDTO dto)
         {
+            var userExistsByEmail = await repository.GetByEmailAsync(dto.Email);
+            if (userExistsByEmail is not null)
+            {
+                throw new AlreadyExistsException(userExistsByEmail.Id, "User", "email", dto.Email);
+            }
+
+            var userExistsByLogin = await repository.GetByLoginAsync(dto.Login);
+            if (userExistsByLogin is not null)
+            {
+                throw new AlreadyExistsException(userExistsByLogin.Id, "User", "login", dto.Login);
+            }
+
             var createEntity = mapper.Map<User>(dto);
             var id = await repository.AddAsync(createEntity);
             if (id is null)
@@ -85,15 +97,16 @@ namespace ZvitPlus.BLL.Services
             return result;
         }
 
-        public async Task<UserReadDTO> UpdateAsync(UserUpdateDTO dto)
+        public async Task<UserReadDTO> UpdateAsync(Guid id, UserUpdateDTO dto)
         {
-            var userExistsEntity = await repository.GetByIdAsync(dto.Id);
+            var userExistsEntity = await repository.GetByIdAsync(id);
             if (userExistsEntity is null)
             {
-                throw new NotFoundException("user", dto.Id);
+                throw new NotFoundException("user", id);
             }
 
             var updateEntity = mapper.Map<User>(dto);
+            updateEntity.Id = id;
             var success = await repository.UpdateAsync(updateEntity);
             if (!success)
             {

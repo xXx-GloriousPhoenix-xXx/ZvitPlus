@@ -5,20 +5,20 @@ using ZvitPlus.BLL.Interfaces;
 
 namespace ZvitPlus.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/reports")]
     [ApiController]
     public class ReportController(IReportService reportService) : ControllerBase
     {
         [HttpPost]
-        [Authorize(Roles = "User,Moderator,Administrator")]
-        public async Task<IActionResult> PostAsync([FromBody] ReportCreateDTO dto)
+        //[Authorize(Roles = "User,Moderator,Administrator")]
+        public async Task<IActionResult> PostAsync([FromForm] ReportCreateDTO dto)
         {
             var result = await reportService.AddAsync(dto);
             return Ok(result);
         }
 
         [HttpGet("{id:guid}")]
-        [Authorize(Roles = "Moderator,Administrator")]
+        //[Authorize(Roles = "Moderator,Administrator")]
         public async Task<IActionResult> GetByIdAsync(Guid id)
         {
             var result = await reportService.GetByIdAsync(id);
@@ -27,13 +27,13 @@ namespace ZvitPlus.API.Controllers
 
         [HttpGet("{page:int}/{itemsPerPage:int}")]
         //AllRoles
-        public async Task<IActionResult> GetPaginatedAsync(int page, int itemsPerPage)
+        public async Task<IActionResult> GetPaginatedAsync(int page = 1, int itemsPerPage = 10)
         {
             var result = await reportService.GetPaginatedAsync(page, itemsPerPage);
             return Ok(result);
         }
 
-        [HttpGet("{name}")]
+        [HttpGet("name/{name}")]
         //AllRoles
         public async Task<IActionResult> GetByNameAsync(string name)
         {
@@ -42,21 +42,20 @@ namespace ZvitPlus.API.Controllers
         }
 
         [HttpPatch("{id:guid}")]
-        [Authorize(Policy = "CanPatchReport")]
-        public async Task<IActionResult> PatchAsync(Guid id, [FromBody] ReportUpdateDTO dto)
+        //[Authorize(Policy = "CanPatchReport")]
+        public async Task<IActionResult> PatchAsync(Guid id, [FromForm] ReportUpdateDTO dto)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            dto.Id = id;
-            var result = await reportService.UpdateAsync(dto);
+            var result = await reportService.UpdateAsync(id, dto);
             return Ok(result);
         }
 
         [HttpDelete("{id:guid}")]
-        [Authorize(Policy = "CanDeleteReport")]
+        //[Authorize(Policy = "CanDeleteReport")]
         public async Task<IActionResult> DeleteAsync(Guid id)
         {
             await reportService.DeleteAsync(id);

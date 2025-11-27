@@ -1,5 +1,8 @@
-﻿namespace ZvitPlus.DAL.Enums
+﻿using System.Text.Json.Serialization;
+
+namespace ZvitPlus.DAL.Enums
 {
+    [JsonConverter(typeof(JsonStringEnumConverter))]
     public enum TemplateType
     {
         Unset,

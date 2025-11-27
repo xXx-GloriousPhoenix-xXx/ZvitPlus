@@ -10,7 +10,7 @@ namespace ZvitPlus.DAL.Entities
         public required string Email { get; set; }
 
         [Column("login")]
-        public required string Login { get; set; } = string.Empty;
+        public required string Login { get; set; }
 
         [Column("password_hash")]
         public required string PasswordHash { get; set; }
@@ -19,7 +19,7 @@ namespace ZvitPlus.DAL.Entities
         public required UserRole Role { get; set; }
 
         [Column("is_banned")]
-        public required bool IsBanned { get; set; } = false;
+        public required bool IsBanned { get; set; }
 
         public ICollection<Template> Templates { get; set; } = [];
 

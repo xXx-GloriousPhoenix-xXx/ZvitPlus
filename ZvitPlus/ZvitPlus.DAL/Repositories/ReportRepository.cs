@@ -1,7 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query;
+using System.Linq.Expressions;
 using ZvitPlus.DAL.Context;
-using ZvitPlus.DAL.Interfaces;
 using ZvitPlus.DAL.Entities;
+using ZvitPlus.DAL.Interfaces;
+using ZvitPlus.DAL.Repositories;
 
 namespace ZvitPlus.DAL.Repository
 {
@@ -25,6 +28,7 @@ namespace ZvitPlus.DAL.Repository
         public async Task<IEnumerable<Report>> GetPaginated(int page, int itemsPerPage)
         {
             return await context.Reports
+                .AsNoTracking()
                 .Skip((page - 1) * itemsPerPage)
                 .Take(itemsPerPage)
                 .ToListAsync();
@@ -32,27 +36,33 @@ namespace ZvitPlus.DAL.Repository
 
         public async Task<Report?> GetByIdAsync(Guid id)
         {
-            return await context.Reports.FindAsync(id);
+            return await context.Reports
+                .AsNoTracking()
+                .SingleOrDefaultAsync(x => x.Id == id);
         }
 
         public async Task<IEnumerable<Report>> GetByNameAsync(string name)
         {
-            return await context.Reports.Where(x => x.Name == name).ToListAsync();
+            return await context.Reports
+                .AsNoTracking()
+                .Where(x => x.Name == name)
+                .ToListAsync();
         }
 
         public async Task<bool> UpdateAsync(Report entity)
         {
-            var rowsAffected = await context.Reports
-                .Where(x => x.Id == entity.Id)
-                .ExecuteUpdateAsync(s => s
-                    .SetProperty(x => x.Name, entity.Name)
-                    .SetProperty(x => x.IsPrivate, entity.IsPrivate)
-                    .SetProperty(x => x.CreatedAt, entity.CreatedAt)
-                    .SetProperty(x => x.UpdatedAt, entity.UpdatedAt)
-                    .SetProperty(x => x.TemplateId, entity.TemplateId)
-                    .SetProperty(x => x.Template, entity.Template)
-                    .SetProperty(x => x.AuthorId, entity.AuthorId)
-                    .SetProperty(x => x.Author, entity.Author));
+            var query = context.Reports.Where(x => x.Id == entity.Id);
+
+            Expression<Func<SetPropertyCalls<Report>, SetPropertyCalls<Report>>> expr = s => s;
+
+            if (entity.Name != null)
+                expr = Helper.Combine(expr, s => s.SetProperty(x => x.Name, entity.Name));
+
+            expr = Helper.Combine(expr, s => s.SetProperty(x => x.UpdatedAt, entity.UpdatedAt));
+            expr = Helper.Combine(expr, s => s.SetProperty(x => x.IsPrivate, entity.IsPrivate));
+
+            var rowsAffected = await query.ExecuteUpdateAsync(expr);
+
             return rowsAffected > 0;
         }
     }

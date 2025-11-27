@@ -17,6 +17,9 @@ namespace ZvitPlus.DAL.Entities
         [Column("updated_at")]
         public DateTime UpdatedAt { get; set; }
 
+        [Column("local_path")]
+        public string LocalPath { get; set; }
+
         [Column("template_id")]
         public Guid TemplateId { get; set; }
 

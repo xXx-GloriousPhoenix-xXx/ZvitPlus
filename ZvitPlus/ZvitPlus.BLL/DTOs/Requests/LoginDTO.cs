@@ -6,9 +6,9 @@ namespace ZvitPlus.BLL.DTOs.Requests
     public class LoginDTO : IAuthDTO
     {
         [Required]
-        public string Identifier { get; set; }
+        public required string Identifier { get; set; }
 
         [Required]
-        public string Password { get; set; }
+        public required string Password { get; set; }
     }
 }

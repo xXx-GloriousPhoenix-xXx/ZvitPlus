@@ -117,7 +117,7 @@ namespace ZvitPlus.BLL.Services
 
             var files = Directory.GetFiles(fullFolderPath, searchPattern, SearchOption.AllDirectories);
             if (files.Length == 0)
-                return Task.FromResult<string>(null);
+                return Task.FromResult<string>(null!);
 
             return Task.FromResult(files[0]);
         }

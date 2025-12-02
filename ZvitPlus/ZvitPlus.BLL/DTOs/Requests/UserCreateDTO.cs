@@ -7,10 +7,10 @@ namespace ZvitPlus.BLL.DTOs.Requests
     public class UserCreateDTO : ICreateDTO, IUserDTO
     {
         [Required]
-        public string Email { get; set; }
+        public required string Email { get; set; }
 
         [Required]
-        public string Login { get; set; }
+        public required string Login { get; set; }
 
         [Required]
         public required string Password { get; set; }

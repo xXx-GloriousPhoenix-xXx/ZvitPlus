@@ -9,7 +9,7 @@ namespace ZvitPlus.DAL.Entities
         public required string Name { get; set; }
 
         [Column("original_filename")]
-        public string OriginalFileName { get; set; }
+        public required string OriginalFileName { get; set; }
 
         [Column("file_size")]
         public long FileSize { get; set; }
@@ -24,7 +24,7 @@ namespace ZvitPlus.DAL.Entities
         public DateTime UpdatedAt { get; set; }
 
         [Column("local_path")]
-        public string LocalPath { get; set; }
+        public required string LocalPath { get; set; }
 
         [Column("template_id")]
         public Guid TemplateId { get; set; }

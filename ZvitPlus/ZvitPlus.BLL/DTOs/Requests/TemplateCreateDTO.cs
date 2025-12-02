@@ -8,7 +8,7 @@ namespace ZvitPlus.BLL.DTOs.Requests
     public class TemplateCreateDTO : ICreateDTO, ITemplateDTO
     {
         [Required]
-        public string Name { get; set; }
+        public required string Name { get; set; }
 
         [Required]
         public TemplateType Type { get; set; }
@@ -20,6 +20,6 @@ namespace ZvitPlus.BLL.DTOs.Requests
         public Guid AuthorId { get; set; }
 
         [Required]
-        public IFormFile File { get; set; }
+        public required IFormFile File { get; set; }
     }
 }

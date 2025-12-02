@@ -9,7 +9,7 @@ namespace ZvitPlus.BLL.Helpers
         public override UserRole Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
             var stringValue = reader.GetString();
-            return Enum.Parse<UserRole>(stringValue);
+            return Enum.Parse<UserRole>(stringValue!);
         }
 
         public override void Write(Utf8JsonWriter writer, UserRole value, JsonSerializerOptions options)

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Http;
+using System.ComponentModel.DataAnnotations;
 using ZvitPlus.BLL.Interfaces.DTOs;
 using ZvitPlus.DAL.Enums;
 
@@ -17,5 +18,8 @@ namespace ZvitPlus.BLL.DTOs.Requests
 
         [Required]
         public Guid AuthorId { get; set; }
+
+        [Required]
+        public IFormFile File { get; set; }
     }
 }

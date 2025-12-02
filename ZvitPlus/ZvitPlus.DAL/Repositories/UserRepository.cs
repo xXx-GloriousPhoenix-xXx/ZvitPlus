@@ -25,7 +25,7 @@ namespace ZvitPlus.DAL.Repositories
             return rowsAffected > 0;
         }
 
-        public async Task<IEnumerable<User>> GetPaginated(int page, int itemsPerPage)
+        public async Task<IEnumerable<User>> GetPaginatedAsync(int page, int itemsPerPage)
         {
             return await context.Users
                 .AsNoTracking()

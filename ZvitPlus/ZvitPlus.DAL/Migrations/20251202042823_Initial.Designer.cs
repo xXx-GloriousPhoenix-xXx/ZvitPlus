@@ -12,8 +12,8 @@ using ZvitPlus.DAL.Context;
 namespace ZvitPlus.DAL.Migrations
 {
     [DbContext(typeof(ZvitPlusDbContext))]
-    [Migration("20251127085756_27-11-2025-10-57")]
-    partial class _271120251057
+    [Migration("20251202042823_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -40,6 +40,10 @@ namespace ZvitPlus.DAL.Migrations
                         .HasColumnType("datetime2")
                         .HasColumnName("created_at");
 
+                    b.Property<long>("FileSize")
+                        .HasColumnType("bigint")
+                        .HasColumnName("file_size");
+
                     b.Property<bool>("IsPrivate")
                         .HasColumnType("bit")
                         .HasColumnName("is_private");
@@ -53,6 +57,11 @@ namespace ZvitPlus.DAL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("name");
+
+                    b.Property<string>("OriginalFileName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("original_filename");
 
                     b.Property<Guid>("TemplateId")
                         .HasColumnType("uniqueidentifier")
@@ -86,6 +95,10 @@ namespace ZvitPlus.DAL.Migrations
                         .HasColumnType("datetime2")
                         .HasColumnName("created_at");
 
+                    b.Property<long>("FileSize")
+                        .HasColumnType("bigint")
+                        .HasColumnName("file_size");
+
                     b.Property<bool>("IsPrivate")
                         .HasColumnType("bit")
                         .HasColumnName("is_private");
@@ -100,6 +113,11 @@ namespace ZvitPlus.DAL.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("name");
 
+                    b.Property<string>("OriginalFileName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("original_filename");
+
                     b.Property<int>("Type")
                         .HasColumnType("int")
                         .HasColumnName("type");
@@ -109,6 +127,8 @@ namespace ZvitPlus.DAL.Migrations
                         .HasColumnName("updated_at");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AuthorId");
 
                     b.ToTable("templates");
                 });
@@ -169,7 +189,6 @@ namespace ZvitPlus.DAL.Migrations
                     b.HasOne("ZvitPlus.DAL.Entities.Template", "Template")
                         .WithMany("Reports")
                         .HasForeignKey("TemplateId")
-                        .HasPrincipalKey("AuthorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

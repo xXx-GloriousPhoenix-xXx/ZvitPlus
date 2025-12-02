@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using ZvitPlus.BLL.DTOs.Requests;
 using ZvitPlus.BLL.Interfaces;
+using ZvitPlus.BLL.Services;
 
 namespace ZvitPlus.API.Controllers
 {
@@ -9,6 +10,13 @@ namespace ZvitPlus.API.Controllers
     [ApiController]
     public class ReportController(IReportService reportService) : ControllerBase
     {
+        [HttpGet("{id:guid}/download")]
+        public async Task<IActionResult> DownloadReportAsync(Guid id)
+        {
+            var (fileData, fileName) = await reportService.DownloadReportFileAsync(id);
+            return File(fileData, "application/octet-stream", fileName);
+        }
+
         [HttpPost]
         //[Authorize(Roles = "User,Moderator,Administrator")]
         public async Task<IActionResult> PostAsync([FromForm] ReportCreateDTO dto)

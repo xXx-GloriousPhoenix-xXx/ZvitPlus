@@ -37,6 +37,10 @@ namespace ZvitPlus.DAL.Migrations
                         .HasColumnType("datetime2")
                         .HasColumnName("created_at");
 
+                    b.Property<long>("FileSize")
+                        .HasColumnType("bigint")
+                        .HasColumnName("file_size");
+
                     b.Property<bool>("IsPrivate")
                         .HasColumnType("bit")
                         .HasColumnName("is_private");
@@ -50,6 +54,11 @@ namespace ZvitPlus.DAL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("name");
+
+                    b.Property<string>("OriginalFileName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("original_filename");
 
                     b.Property<Guid>("TemplateId")
                         .HasColumnType("uniqueidentifier")
@@ -83,6 +92,10 @@ namespace ZvitPlus.DAL.Migrations
                         .HasColumnType("datetime2")
                         .HasColumnName("created_at");
 
+                    b.Property<long>("FileSize")
+                        .HasColumnType("bigint")
+                        .HasColumnName("file_size");
+
                     b.Property<bool>("IsPrivate")
                         .HasColumnType("bit")
                         .HasColumnName("is_private");
@@ -96,6 +109,11 @@ namespace ZvitPlus.DAL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("name");
+
+                    b.Property<string>("OriginalFileName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("original_filename");
 
                     b.Property<int>("Type")
                         .HasColumnType("int")

@@ -25,15 +25,6 @@ namespace ZvitPlus.DAL.Repository
             return rowsAffected > 0;
         }
 
-        public async Task<IEnumerable<Report>> GetPaginated(int page, int itemsPerPage)
-        {
-            return await context.Reports
-                .AsNoTracking()
-                .Skip((page - 1) * itemsPerPage)
-                .Take(itemsPerPage)
-                .ToListAsync();
-        }
-
         public async Task<Report?> GetByIdAsync(Guid id)
         {
             return await context.Reports
@@ -64,6 +55,40 @@ namespace ZvitPlus.DAL.Repository
             var rowsAffected = await query.ExecuteUpdateAsync(expr);
 
             return rowsAffected > 0;
+        }
+        public async Task<Report?> GetByIdWithDetailsAsync(Guid id)
+        {
+            return await context.Reports
+                .Include(r => r.Author)
+                .Include(r => r.Template)
+                .FirstOrDefaultAsync(r => r.Id == id);
+        }
+        public async Task<IEnumerable<Report>> GetPaginatedWithDetailsAsync(int page, int itemsPerPage)
+        {
+            return await context.Reports
+                .Include(r => r.Author)
+                .Include(r => r.Template)
+                .AsNoTracking()
+                .Skip((page - 1) * itemsPerPage)
+                .Take(itemsPerPage)
+                .ToListAsync();
+        }
+        public async Task<IEnumerable<Report>> GetByNameWithDetailsAsync(string name)
+        {
+            return await context.Reports
+                .Include(r => r.Author)
+                .Include(r => r.Template)
+                .Where(x => x.Name == name)
+                .ToListAsync();
+        }
+
+        public async Task<IEnumerable<Report>> GetPaginatedAsync(int page, int itemsPerPage)
+        {
+            return await context.Reports
+                .AsNoTracking()
+                .Skip((page - 1) * itemsPerPage)
+                .Take(itemsPerPage)
+                .ToListAsync();
         }
     }
 }

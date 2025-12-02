@@ -1,6 +1,8 @@
 ﻿{
     "templateName": "Invoice Template",
     "templateType": "Invoice",
+    "pageSize": "A4",
+    "orientation": "portrait",
     "elements": [
     {
         "id": "title1",

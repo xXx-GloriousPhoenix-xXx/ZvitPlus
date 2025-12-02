@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace ZvitPlus.DAL.Migrations
 {
     /// <inheritdoc />
-    public partial class _191120250028 : Migration
+    public partial class Initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -19,7 +19,8 @@ namespace ZvitPlus.DAL.Migrations
                     email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     login = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     password_hash = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    role = table.Column<int>(type: "int", nullable: false)
+                    role = table.Column<int>(type: "int", nullable: false),
+                    is_banned = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -32,6 +33,8 @@ namespace ZvitPlus.DAL.Migrations
                 {
                     id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    original_filename = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    file_size = table.Column<long>(type: "bigint", nullable: false),
                     type = table.Column<int>(type: "int", nullable: false),
                     local_path = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     is_private = table.Column<bool>(type: "bit", nullable: false),
@@ -42,7 +45,6 @@ namespace ZvitPlus.DAL.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_templates", x => x.id);
-                    table.UniqueConstraint("AK_templates_author_id", x => x.author_id);
                     table.ForeignKey(
                         name: "FK_templates_users_author_id",
                         column: x => x.author_id,
@@ -57,9 +59,12 @@ namespace ZvitPlus.DAL.Migrations
                 {
                     id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    original_filename = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    file_size = table.Column<long>(type: "bigint", nullable: false),
                     is_private = table.Column<bool>(type: "bit", nullable: false),
                     created_at = table.Column<DateTime>(type: "datetime2", nullable: false),
                     updated_at = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    local_path = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     template_id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     author_id = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
@@ -70,7 +75,7 @@ namespace ZvitPlus.DAL.Migrations
                         name: "FK_reports_templates_template_id",
                         column: x => x.template_id,
                         principalTable: "templates",
-                        principalColumn: "author_id",
+                        principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_reports_users_author_id",
@@ -82,8 +87,8 @@ namespace ZvitPlus.DAL.Migrations
 
             migrationBuilder.InsertData(
                 table: "users",
-                columns: new[] { "id", "email", "login", "password_hash", "role" },
-                values: new object[] { new Guid("aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa"), "admin@zvitplus.com", "admin", "$2a$11$VItJx2dEyqoR2dtqcYxBkuK0OGD1VLD1Q6yYAEZ9rXy8jzvRw7D6K", 3 });
+                columns: new[] { "id", "email", "is_banned", "login", "password_hash", "role" },
+                values: new object[] { new Guid("aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa"), "admin@zvitplus.com", false, "admin", "$2a$11$5yuDi3v5GgNM3DKDGxNHrO3zFdcRIGWr/AJoUlouW4huxuvuKIGYK", 3 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_reports_author_id",
@@ -94,6 +99,11 @@ namespace ZvitPlus.DAL.Migrations
                 name: "IX_reports_template_id",
                 table: "reports",
                 column: "template_id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_templates_author_id",
+                table: "templates",
+                column: "author_id");
         }
 
         /// <inheritdoc />

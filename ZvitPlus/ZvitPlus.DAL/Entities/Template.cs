@@ -9,6 +9,12 @@ namespace ZvitPlus.DAL.Entities
         [Column("name")]
         public required string Name { get; set; }
 
+        [Column("original_filename")]
+        public string OriginalFileName { get; set; }
+
+        [Column("file_size")]
+        public long FileSize { get; set; }
+
         [Column("type")]
         public TemplateType Type { get; set; }
 

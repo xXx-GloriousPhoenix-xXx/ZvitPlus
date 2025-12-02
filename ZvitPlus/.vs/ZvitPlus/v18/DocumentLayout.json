@@ -3,15 +3,20 @@
   "WorkspaceRootPath": "F:\\Programmes\\Github\\Reps\\ZvitPlus\\ZvitPlus\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A23C6AFD-F7D1-498D-907B-7B7525D63311}|ZvitPlus.DAL\\ZvitPlus.DAL.csproj|f:\\programmes\\github\\reps\\zvitplus\\zvitplus\\zvitplus.dal\\repositories\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A23C6AFD-F7D1-498D-907B-7B7525D63311}|ZvitPlus.DAL\\ZvitPlus.DAL.csproj|solutionrelative:zvitplus.dal\\repositories\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A23C6AFD-F7D1-498D-907B-7B7525D63311}|ZvitPlus.DAL\\ZvitPlus.DAL.csproj|f:\\programmes\\github\\reps\\zvitplus\\zvitplus\\zvitplus.dal\\configuration\\reportconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A23C6AFD-F7D1-498D-907B-7B7525D63311}|ZvitPlus.DAL\\ZvitPlus.DAL.csproj|solutionrelative:zvitplus.dal\\configuration\\reportconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1B4C3573-5307-4F69-912C-3A1FE649187A}|ZvitPlus.API\\ZvitPlus.API.csproj|f:\\programmes\\github\\reps\\zvitplus\\zvitplus\\zvitplus.api\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1B4C3573-5307-4F69-912C-3A1FE649187A}|ZvitPlus.API\\ZvitPlus.API.csproj|solutionrelative:zvitplus.api\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A23C6AFD-F7D1-498D-907B-7B7525D63311}|ZvitPlus.DAL\\ZvitPlus.DAL.csproj|f:\\programmes\\github\\reps\\zvitplus\\zvitplus\\zvitplus.dal\\configuration\\templateconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A23C6AFD-F7D1-498D-907B-7B7525D63311}|ZvitPlus.DAL\\ZvitPlus.DAL.csproj|solutionrelative:zvitplus.dal\\configuration\\templateconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|ViewDataWindow_MSSQL__/Workplace/ZvitPlus/True/SqlTable/dbo.users.sql||{0058A1F7-65F3-4DB9-B3D0-CA7E64DD73CD}"
+      "AbsoluteMoniker": "D:0:0:{A23C6AFD-F7D1-498D-907B-7B7525D63311}|ZvitPlus.DAL\\ZvitPlus.DAL.csproj|f:\\programmes\\github\\reps\\zvitplus\\zvitplus\\zvitplus.dal\\configuration\\userconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A23C6AFD-F7D1-498D-907B-7B7525D63311}|ZvitPlus.DAL\\ZvitPlus.DAL.csproj|solutionrelative:zvitplus.dal\\configuration\\userconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A23C6AFD-F7D1-498D-907B-7B7525D63311}|ZvitPlus.DAL\\ZvitPlus.DAL.csproj|f:\\programmes\\github\\reps\\zvitplus\\zvitplus\\zvitplus.dal\\configuration\\baseconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A23C6AFD-F7D1-498D-907B-7B7525D63311}|ZvitPlus.DAL\\ZvitPlus.DAL.csproj|solutionrelative:zvitplus.dal\\configuration\\baseconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -21,21 +26,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 3,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "UserRepository.cs",
-              "DocumentMoniker": "F:\\Programmes\\Github\\Reps\\ZvitPlus\\ZvitPlus\\ZvitPlus.DAL\\Repositories\\UserRepository.cs",
-              "RelativeDocumentMoniker": "ZvitPlus.DAL\\Repositories\\UserRepository.cs",
-              "ToolTip": "F:\\Programmes\\Github\\Reps\\ZvitPlus\\ZvitPlus\\ZvitPlus.DAL\\Repositories\\UserRepository.cs",
-              "RelativeToolTip": "ZvitPlus.DAL\\Repositories\\UserRepository.cs",
-              "ViewState": "AgIAAD0AAAAAAAAAAAAiwEgAAABqAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-27T10:46:47.214Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
@@ -43,24 +35,53 @@
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "dbo.users [Data]",
-              "DocumentMoniker": "ViewDataWindow_MSSQL__/Workplace/ZvitPlus/True/SqlTable/dbo.users.sql",
-              "ToolTip": "dbo.users [Data]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
-              "WhenOpened": "2025-11-27T10:41:04.434Z",
+              "Title": "UserConfiguration.cs",
+              "DocumentMoniker": "F:\\Programmes\\Github\\Reps\\ZvitPlus\\ZvitPlus\\ZvitPlus.DAL\\Configuration\\UserConfiguration.cs",
+              "RelativeDocumentMoniker": "ZvitPlus.DAL\\Configuration\\UserConfiguration.cs",
+              "ToolTip": "F:\\Programmes\\Github\\Reps\\ZvitPlus\\ZvitPlus\\ZvitPlus.DAL\\Configuration\\UserConfiguration.cs",
+              "RelativeToolTip": "ZvitPlus.DAL\\Configuration\\UserConfiguration.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-02T04:22:01.805Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "UserController.cs",
-              "DocumentMoniker": "F:\\Programmes\\Github\\Reps\\ZvitPlus\\ZvitPlus\\ZvitPlus.API\\Controllers\\UserController.cs",
-              "RelativeDocumentMoniker": "ZvitPlus.API\\Controllers\\UserController.cs",
-              "ToolTip": "F:\\Programmes\\Github\\Reps\\ZvitPlus\\ZvitPlus\\ZvitPlus.API\\Controllers\\UserController.cs",
-              "RelativeToolTip": "ZvitPlus.API\\Controllers\\UserController.cs",
-              "ViewState": "AgIAACYAAAAAAAAAAAAswDYAAAAMAAAAAAAAAA==",
+              "Title": "TemplateConfiguration.cs",
+              "DocumentMoniker": "F:\\Programmes\\Github\\Reps\\ZvitPlus\\ZvitPlus\\ZvitPlus.DAL\\Configuration\\TemplateConfiguration.cs",
+              "RelativeDocumentMoniker": "ZvitPlus.DAL\\Configuration\\TemplateConfiguration.cs",
+              "ToolTip": "F:\\Programmes\\Github\\Reps\\ZvitPlus\\ZvitPlus\\ZvitPlus.DAL\\Configuration\\TemplateConfiguration.cs",
+              "RelativeToolTip": "ZvitPlus.DAL\\Configuration\\TemplateConfiguration.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-27T10:39:53.658Z",
+              "WhenOpened": "2025-12-02T04:21:58.232Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ReportConfiguration.cs",
+              "DocumentMoniker": "F:\\Programmes\\Github\\Reps\\ZvitPlus\\ZvitPlus\\ZvitPlus.DAL\\Configuration\\ReportConfiguration.cs",
+              "RelativeDocumentMoniker": "ZvitPlus.DAL\\Configuration\\ReportConfiguration.cs",
+              "ToolTip": "F:\\Programmes\\Github\\Reps\\ZvitPlus\\ZvitPlus\\ZvitPlus.DAL\\Configuration\\ReportConfiguration.cs",
+              "RelativeToolTip": "ZvitPlus.DAL\\Configuration\\ReportConfiguration.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-02T04:21:54.415Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "BaseConfiguration.cs",
+              "DocumentMoniker": "F:\\Programmes\\Github\\Reps\\ZvitPlus\\ZvitPlus\\ZvitPlus.DAL\\Configuration\\BaseConfiguration.cs",
+              "RelativeDocumentMoniker": "ZvitPlus.DAL\\Configuration\\BaseConfiguration.cs",
+              "ToolTip": "F:\\Programmes\\Github\\Reps\\ZvitPlus\\ZvitPlus\\ZvitPlus.DAL\\Configuration\\BaseConfiguration.cs",
+              "RelativeToolTip": "ZvitPlus.DAL\\Configuration\\BaseConfiguration.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-02T04:21:50.194Z",
               "EditorCaption": ""
             }
           ]

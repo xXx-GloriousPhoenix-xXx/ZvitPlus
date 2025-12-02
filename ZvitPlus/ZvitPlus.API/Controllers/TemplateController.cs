@@ -55,5 +55,7 @@ namespace ZvitPlus.API.Controllers
             await templateService.DeleteAsync(id);
             return NoContent();
         }
+    
+        
     }
 }

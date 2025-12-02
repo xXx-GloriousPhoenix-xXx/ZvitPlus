@@ -5,33 +5,58 @@ using ZvitPlus.BLL.Exceptions;
 using ZvitPlus.BLL.Interfaces;
 using ZvitPlus.DAL.Entities;
 using ZvitPlus.DAL.Interfaces;
+using ZvitPlus.DAL.Repositories;
+using ZvitPlus.DAL.Repository;
 
 namespace ZvitPlus.BLL.Services
 {
-    public class TemplateService(IUserRepository userRepository, ITemplateRepository templateRepository, IMapper mapper) : ITemplateService
+    public class TemplateService(
+        IUserRepository userRepository, 
+        ITemplateRepository templateRepository,
+        IFileStorageService fileStorageService,
+        IMapper mapper
+        ) : ITemplateService
     {
         private readonly IUserRepository userRepository = userRepository;
         private readonly ITemplateRepository templateRepository = templateRepository;
+        private readonly IFileStorageService fileStorageService = fileStorageService;
         private readonly IMapper mapper = mapper;
 
         public async Task<TemplateReadDTO> AddAsync(TemplateCreateDTO dto)
         {
-            var createEntity = mapper.Map<Template>(dto);
-            var id = await templateRepository.AddAsync(createEntity);
-            if (id is null)
+            var author = await userRepository.GetByIdAsync(dto.AuthorId);
+            if (author is null)
+            {
+                throw new NotFoundException("user", dto.AuthorId);
+            }
+
+            var templateEntity = mapper.Map<Template>(dto);
+
+            var templateId = await templateRepository.AddAsync(templateEntity);
+            if (templateId is null)
             {
                 throw new CreateException("template");
             }
 
-            var author = await userRepository.GetByIdAsync(createEntity.AuthorId);
-            if (author is null)
+            string filePath;
+            try
             {
-                throw new NotFoundException("user", createEntity.AuthorId);
+                filePath = await fileStorageService.SaveTemplateFileAsync(
+                    dto.File,
+                    templateId.Value,
+                    dto.AuthorId
+                );
+            }
+            catch (Exception ex)
+            {
+                await templateRepository.DeleteAsync(templateId.Value);
+                throw new FileStorageException("Failed to save template file", ex);
             }
 
-            createEntity.Author = author;
+            templateEntity.LocalPath = filePath;
+            await templateRepository.UpdateAsync(templateEntity);
 
-            var createdEntity = await templateRepository.GetByIdAsync((Guid)id);
+            var createdEntity = await templateRepository.GetByIdWithAuthorAsync(templateId.Value);
             var result = mapper.Map<TemplateReadDTO>(createdEntity);
             return result;
         }
@@ -65,28 +90,51 @@ namespace ZvitPlus.BLL.Services
 
         public async Task<IEnumerable<TemplateReadDTO>> GetPaginatedAsync(int page, int itemsPerPage)
         {
-            var entityCollection = await templateRepository.GetPaginated(page, itemsPerPage);
+            var entityCollection = await templateRepository.GetPaginatedAsync(page, itemsPerPage);
             var result = entityCollection.Select(mapper.Map<TemplateReadDTO>);
             return result;
         }
 
         public async Task<TemplateReadDTO> UpdateAsync(Guid id, TemplateUpdateDTO dto)
         {
-            var templateExistsEntity = await templateRepository.GetByIdAsync(id);
-            if (templateExistsEntity is null)
+            var existingTemplate = await templateRepository.GetByIdAsync(id);
+            if (existingTemplate is null)
             {
                 throw new NotFoundException("template", id);
             }
 
             var updateEntity = mapper.Map<Template>(dto);
             updateEntity.Id = id;
+
+            updateEntity.AuthorId = existingTemplate.AuthorId;
+            updateEntity.Type = existingTemplate.Type;
+            updateEntity.CreatedAt = existingTemplate.CreatedAt;
+            updateEntity.LocalPath = existingTemplate.LocalPath;
+            updateEntity.OriginalFileName = existingTemplate.OriginalFileName;
+            updateEntity.FileSize = existingTemplate.FileSize;
+
+            if (dto.File != null)
+            {
+                await fileStorageService.DeleteTemplateFileAsync(id);
+
+                var newFilePath = await fileStorageService.SaveTemplateFileAsync(
+                    dto.File,
+                    id,
+                    existingTemplate.AuthorId
+                );
+
+                updateEntity.LocalPath = newFilePath;
+                updateEntity.OriginalFileName = dto.File.FileName;
+                updateEntity.FileSize = dto.File.Length;
+            }
+
             var success = await templateRepository.UpdateAsync(updateEntity);
             if (!success)
             {
                 throw new UpdateException("template", updateEntity.Id);
             }
 
-            var updatedEntity = await templateRepository.GetByIdAsync(updateEntity.Id);
+            var updatedEntity = await templateRepository.GetByIdWithAuthorAsync(updateEntity.Id);
             var result = mapper.Map<TemplateReadDTO>(updatedEntity);
             return result;
         }

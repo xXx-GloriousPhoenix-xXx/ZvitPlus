@@ -92,7 +92,7 @@ namespace ZvitPlus.BLL.Services
 
         public async Task<IEnumerable<UserReadDTO>> GetPaginatedAsync(int page, int itemsPerPage)
         {
-            var entityCollection = await repository.GetPaginated(page, itemsPerPage);
+            var entityCollection = await repository.GetPaginatedAsync(page, itemsPerPage);
             var result = entityCollection.Select(mapper.Map<UserReadDTO>);
             return result;
         }

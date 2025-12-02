@@ -25,7 +25,7 @@ namespace ZvitPlus.DAL.Repository
             return rowsAffected > 0;
         }
 
-        public async Task<IEnumerable<Template>> GetPaginated(int page, int itemsPerPage)
+        public async Task<IEnumerable<Template>> GetPaginatedAsync(int page, int itemsPerPage)
         {
             return await context.Templates
                 .AsNoTracking()
@@ -64,6 +64,13 @@ namespace ZvitPlus.DAL.Repository
             var rowsAffected = await query.ExecuteUpdateAsync(expr);
 
             return rowsAffected > 0;
+        }
+
+        public async Task<Template?> GetByIdWithAuthorAsync(Guid id)
+        {
+            return await context.Templates
+                .Include(t => t.Author)
+                .FirstOrDefaultAsync(t => t.Id == id);
         }
     }
 }

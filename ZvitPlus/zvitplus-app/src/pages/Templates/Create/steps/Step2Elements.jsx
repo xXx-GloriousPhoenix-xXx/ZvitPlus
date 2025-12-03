@@ -305,11 +305,6 @@ const Step2Elements = ({
             </Box>
           </Paper>
         </Grid>
-        
-        {/* Панель редактирования */}
-        <Grid item xs={12} md={3}>
-          
-        </Grid>
       </Grid>
     </Box>
   );

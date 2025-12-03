@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 // Layout
-import Navbar from './components/Layout/Navbar';
+import Navbar from './components/Layout/index.jsx';
 
 // Auth
 import Login from './pages/Auth/Login';
@@ -19,12 +19,14 @@ import MyReports from './pages/MySpace/MyReports';
 // Templates
 import TemplateList from './pages/Templates/TemplateList';
 import TemplateDetail from './pages/Templates/TemplateDetail';
-import CreateReport from './pages/Templates/CreateReport';
+import CreateTemplate from './pages/Templates/Create/CreateTemplate.jsx';
 
 // Reports
 import ReportList from './pages/Reports/ReportList';
 import RecentReports from './pages/Reports/RecentReports';
 import ReportDetail from './pages/Reports/ReportDetail';
+import CreateReport from './pages/Reports/CreateReport';
+
 
 // Если нужны эти компоненты, создайте их:
 // import CreateTemplate from './pages/Templates/CreateTemplate';
@@ -33,7 +35,7 @@ import Profile from './pages/Profile/Profile';
 import TemplateUpload from './pages/Templates/Upload/index.jsx';
 
 // Для этих компонентов пока можно использовать заглушки:
-const CreateTemplate = () => <div>Create Template (в разработке)</div>;
+// const CreateTemplate = () => <div>Create Template (в разработке)</div>;
 const CreateReportFromTemplate = () => <div>Create Report from Template (в разработке)</div>;
 // const Profile = () => <div>Profile (в разработке)</div>;
 

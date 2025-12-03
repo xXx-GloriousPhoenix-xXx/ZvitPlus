@@ -4,13 +4,17 @@ import axiosInstance from './axiosConfig';
 export const templateApi = {
   getAll: (page = 1, itemsPerPage = 10) =>
     axiosInstance.get(`/templates/${page}/${itemsPerPage}`),
+
+  getByUserId: (userId) => {
+    axiosInstance.get(`/templates/user/${userId}`);
+  },
   
   getById: (id) => axiosInstance.get(`/templates/${id}`),
   
   create: (templateData, onUploadProgress) =>
     axiosInstance.post('/templates', templateData, {
       headers: { 'Content-Type': 'multipart/form-data' },
-      onUploadProgress: onUploadProgress // Опционально для отслеживания прогресса
+      onUploadProgress: onUploadProgress
     }),
   
   update: (id, templateData) =>

@@ -117,7 +117,7 @@ const Step2Elements = ({
   };
 
   return (
-    <Box sx={{ p: 3, height: 'calc(100vh - 200px)' }}>
+    <Box sx={{ p: 3 }}>
       <Typography variant="h6" gutterBottom fontWeight="bold">
         Візуальний редактор шаблону
       </Typography>
@@ -171,6 +171,16 @@ const Step2Elements = ({
             
             <Divider sx={{ my: 2 }} />
             
+            <Box sx={{ mb: 3 }}>
+              <ElementEditor
+                selectedElement={selectedElement}
+                onUpdate={onUpdateElement}
+                onClose={handleClearSelection}
+              />
+            </Box>
+
+            <Divider sx={{ my: 2 }} />
+
             <Box>
               <Typography variant="caption" color="text.secondary" display="block" gutterBottom>
                 Керування:
@@ -262,7 +272,7 @@ const Step2Elements = ({
                   key={element.id}
                   element={element}
                   isSelected={element.id === selectedElementId}
-                  onSelect={onSelectElement}  // Передаем функцию из пропсов
+                  onSelect={onSelectElement} 
                   onUpdate={onUpdateElement}
                   onRemove={onRemoveElement}
                   canvasRef={canvasRef}
@@ -298,11 +308,7 @@ const Step2Elements = ({
         
         {/* Панель редактирования */}
         <Grid item xs={12} md={3}>
-          <ElementEditor
-            selectedElement={selectedElement}
-            onUpdate={onUpdateElement}
-            onClose={handleClearSelection}
-          />
+          
         </Grid>
       </Grid>
     </Box>

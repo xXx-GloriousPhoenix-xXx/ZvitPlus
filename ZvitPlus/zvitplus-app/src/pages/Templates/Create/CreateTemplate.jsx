@@ -188,7 +188,7 @@ const CreateTemplate = () => {
   };
 
   return (
-    <Container maxWidth="md" sx={{ mt: 4, mb: 6 }}>
+    <Container maxWidth={activeStep === 1 ? false : "md"} sx={{ mt: 4, mb: 6 }}>
       {/* Заголовок и кнопка назад */}
       <Box sx={{ display: 'flex', alignItems: 'center', mb: 4 }}>
         <Button

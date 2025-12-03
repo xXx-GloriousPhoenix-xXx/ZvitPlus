@@ -19,7 +19,10 @@ namespace ZvitPlus.DAL.Entities
         public required UserRole Role { get; set; }
 
         [Column("is_banned")]
-        public required bool IsBanned { get; set; }
+        public bool IsBanned { get; set; } = false;
+
+        [Column("registered_at")]
+        public DateTime RegisteredAt { get; set; } = DateTime.UtcNow;
 
         public ICollection<Template> Templates { get; set; } = [];
 

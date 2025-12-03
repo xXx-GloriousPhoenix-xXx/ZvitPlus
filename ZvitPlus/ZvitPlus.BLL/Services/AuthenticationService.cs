@@ -37,13 +37,13 @@ namespace ZvitPlus.BLL.Services
                 throw new LoginException(dto.Password, user.Id);
             }
 
-            var token = tokenGenerator.GenerateToken(user);
-
-            return new()
+            var response = new AuthTokenDTO
             {
-                UserId = user.Id,
-                Token = token 
+                User = mapper.Map<UserReadDTO>(user),
+                Token = tokenGenerator.GenerateToken(user)
             };
+
+            return response;
         }
 
         public async Task<UserReadDTO> RegisterAsync(RegisterDTO dto)

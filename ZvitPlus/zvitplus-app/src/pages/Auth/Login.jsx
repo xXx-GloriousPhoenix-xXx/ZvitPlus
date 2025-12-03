@@ -24,7 +24,7 @@ const validationSchema = Yup.object({
     .email('Невірний формат email')
     .required('Email обов\'язковий'),
   password: Yup.string()
-    .min(4, 'Пароль має містити мінімум 6 символів') //6
+    .min(6, 'Пароль має містити мінімум 6 символів')
     .required('Пароль обов\'язковий'),
 });
 
@@ -252,21 +252,36 @@ const Login = () => {
             size="small"
             onClick={() => {
               formik.setValues({ 
-                email: 'admin@zvitplus.com', // Используем правильный email
-                password: 'admin' 
+                email: 'admin1@zvitplus.com',
+                password: '1GvSlNpr$oM2' 
               });
             }}
           >
-            Тест админа
+            Тест адміну
           </Button>
           <Button
             variant="outlined"
             size="small"
             onClick={() => {
-              formik.setValues({ email: 'user@example.com', password: 'User123!' });
+              formik.setValues({ 
+                email: 'moderator1@zvitplus.com',
+                password: 'AYow2Y1XYZ6%@wK2'
+              });
             }}
           >
-            Тест пользователя
+            Тест модератора
+          </Button>
+          <Button
+            variant="outlined"
+            size="small"
+            onClick={() => {
+              formik.setValues({ 
+                email: 'user1@zvitplus.com',
+                password: 'a7Nzf!BIz@w!'
+              });
+            }}
+          >
+            Тест користувача
           </Button>
         </Box>
       </Paper>

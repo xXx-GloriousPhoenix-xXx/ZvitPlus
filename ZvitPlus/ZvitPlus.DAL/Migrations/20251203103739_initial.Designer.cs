@@ -12,8 +12,8 @@ using ZvitPlus.DAL.Context;
 namespace ZvitPlus.DAL.Migrations
 {
     [DbContext(typeof(ZvitPlusDbContext))]
-    [Migration("20251202042823_Initial")]
-    partial class Initial
+    [Migration("20251203103739_initial")]
+    partial class initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -158,6 +158,10 @@ namespace ZvitPlus.DAL.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("password_hash");
 
+                    b.Property<DateTime>("RegisteredAt")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("registered_at");
+
                     b.Property<int>("Role")
                         .HasColumnType("int")
                         .HasColumnName("role");
@@ -170,11 +174,32 @@ namespace ZvitPlus.DAL.Migrations
                         new
                         {
                             Id = new Guid("aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa"),
-                            Email = "admin@zvitplus.com",
+                            Email = "admin1@zvitplus.com",
                             IsBanned = false,
-                            Login = "admin",
-                            PasswordHash = "$2a$11$5yuDi3v5GgNM3DKDGxNHrO3zFdcRIGWr/AJoUlouW4huxuvuKIGYK",
+                            Login = "admin1",
+                            PasswordHash = "$2a$11$n8TO6y5rRkgUFq1BChLzYujRVKDnJMD41Fcr/raP/tKGTmXuNXXMC",
+                            RegisteredAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Role = 3
+                        },
+                        new
+                        {
+                            Id = new Guid("bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb"),
+                            Email = "moderator1@zvitplus.com",
+                            IsBanned = false,
+                            Login = "moderator1",
+                            PasswordHash = "$2a$11$MwiHAjOk/BL8WXH5p0R.zu9eiTk.w/ucGkSvNuF/yo3bm6PBzdwIG",
+                            RegisteredAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Role = 2
+                        },
+                        new
+                        {
+                            Id = new Guid("cccccccc-cccc-cccc-cccc-cccccccccccc"),
+                            Email = "user1@zvitplus.com",
+                            IsBanned = false,
+                            Login = "user1",
+                            PasswordHash = "$2a$11$EP0H.6k.9mu7II7lwUqy6uuV5HVq6nGtCHrpqzgBXyrSjpk/Xub1G",
+                            RegisteredAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Role = 1
                         });
                 });
 

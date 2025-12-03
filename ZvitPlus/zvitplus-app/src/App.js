@@ -29,12 +29,13 @@ import ReportDetail from './pages/Reports/ReportDetail';
 // Если нужны эти компоненты, создайте их:
 // import CreateTemplate from './pages/Templates/CreateTemplate';
 // import CreateReportFromTemplate from './pages/Templates/CreateReportFromTemplate';
-// import Profile from './pages/Profile/Profile';
+import Profile from './pages/Profile/Profile';
+import TemplateUpload from './pages/Templates/TemplateUpload';
 
 // Для этих компонентов пока можно использовать заглушки:
 const CreateTemplate = () => <div>Create Template (в разработке)</div>;
 const CreateReportFromTemplate = () => <div>Create Report from Template (в разработке)</div>;
-const Profile = () => <div>Profile (в разработке)</div>;
+// const Profile = () => <div>Profile (в разработке)</div>;
 
 function App() {
   return (
@@ -56,6 +57,7 @@ function App() {
         <Route path="/templates" element={<TemplateList />} />
         <Route path="/templates/create" element={<CreateTemplate />} />
         <Route path="/templates/:id" element={<TemplateDetail />} />
+        <Route path="/templates/upload" element={<TemplateUpload/>} />
         
         {/* Reports */}
         <Route path="/reports" element={<ReportList />} />

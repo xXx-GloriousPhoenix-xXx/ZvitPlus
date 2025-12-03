@@ -3,10 +3,12 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace ZvitPlus.DAL.Migrations
 {
     /// <inheritdoc />
-    public partial class Initial : Migration
+    public partial class initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -20,7 +22,8 @@ namespace ZvitPlus.DAL.Migrations
                     login = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     password_hash = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     role = table.Column<int>(type: "int", nullable: false),
-                    is_banned = table.Column<bool>(type: "bit", nullable: false)
+                    is_banned = table.Column<bool>(type: "bit", nullable: false),
+                    registered_at = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -87,8 +90,13 @@ namespace ZvitPlus.DAL.Migrations
 
             migrationBuilder.InsertData(
                 table: "users",
-                columns: new[] { "id", "email", "is_banned", "login", "password_hash", "role" },
-                values: new object[] { new Guid("aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa"), "admin@zvitplus.com", false, "admin", "$2a$11$5yuDi3v5GgNM3DKDGxNHrO3zFdcRIGWr/AJoUlouW4huxuvuKIGYK", 3 });
+                columns: new[] { "id", "email", "is_banned", "login", "password_hash", "registered_at", "role" },
+                values: new object[,]
+                {
+                    { new Guid("aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa"), "admin1@zvitplus.com", false, "admin1", "$2a$11$n8TO6y5rRkgUFq1BChLzYujRVKDnJMD41Fcr/raP/tKGTmXuNXXMC", new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), 3 },
+                    { new Guid("bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb"), "moderator1@zvitplus.com", false, "moderator1", "$2a$11$MwiHAjOk/BL8WXH5p0R.zu9eiTk.w/ucGkSvNuF/yo3bm6PBzdwIG", new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), 2 },
+                    { new Guid("cccccccc-cccc-cccc-cccc-cccccccccccc"), "user1@zvitplus.com", false, "user1", "$2a$11$EP0H.6k.9mu7II7lwUqy6uuV5HVq6nGtCHrpqzgBXyrSjpk/Xub1G", new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), 1 }
+                });
 
             migrationBuilder.CreateIndex(
                 name: "IX_reports_author_id",

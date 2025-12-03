@@ -4,7 +4,7 @@ namespace ZvitPlus.BLL.DTOs.Responses
 {
     public class AuthTokenDTO : IAuthDTO
     {
-        public Guid UserId { get; set; }
+        public required UserReadDTO User { get; set; }
         public required string Token { get; set; }
     }
 }

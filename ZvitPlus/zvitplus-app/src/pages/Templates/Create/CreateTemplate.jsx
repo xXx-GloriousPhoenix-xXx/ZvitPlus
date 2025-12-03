@@ -24,7 +24,8 @@ import StepperNavigation from './steps/StepperNavigation';
 // Импорт констант
 import { 
   steps, 
-  defaultElementConfig 
+  defaultElementConfig,
+  elementTypes  // Добавляем импорт
 } from './constants';
 
 const CreateTemplate = () => {
@@ -41,6 +42,7 @@ const CreateTemplate = () => {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
   const [validationErrors, setValidationErrors] = useState({});
+  const [selectedElementId, setSelectedElementId] = useState(null); // Добавляем состояние для выбранного элемента
 
   const handleNext = () => {
     const errors = {};
@@ -67,6 +69,7 @@ const CreateTemplate = () => {
   const handleBack = () => {
     setValidationErrors({});
     setError('');
+    setSelectedElementId(null); // Сбрасываем выбранный элемент при возврате
     setActiveStep((prevStep) => prevStep - 1);
   };
 
@@ -85,22 +88,34 @@ const CreateTemplate = () => {
     }
   };
 
-  const handleAddElement = (type) => {
+  const handleAddElement = (type, position = { x: 50, y: 50 }) => {
     const newElement = {
       id: `element_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
       type: type,
-      position: { x: 50, y: 50 },
+      position: position,
+      size: elementTypes.find(t => t.type === type)?.defaultSize || { width: 100, height: 100 },
       ...defaultElementConfig(type)
     };
     setElements([...elements, newElement]);
+    setSelectedElementId(newElement.id); // Автоматически выбираем новый элемент
   };
 
   const handleRemoveElement = (id) => {
     setElements(elements.filter(element => element.id !== id));
+    if (selectedElementId === id) {
+      setSelectedElementId(null); // Сбрасываем выбор если удалили выбранный элемент
+    }
+  };
+
+  const handleUpdateElement = (id, updates) => {
+    setElements(elements.map(element => 
+      element.id === id ? { ...element, ...updates } : element
+    ));
   };
 
   const handleClearAllElements = () => {
     setElements([]);
+    setSelectedElementId(null); // Сбрасываем выбор при очистке всех элементов
   };
 
   const handleSaveTemplate = async () => {
@@ -151,7 +166,11 @@ const CreateTemplate = () => {
             elements={elements}
             onAddElement={handleAddElement}
             onRemoveElement={handleRemoveElement}
+            onUpdateElement={handleUpdateElement}
             onClearAll={handleClearAllElements}
+            templateData={templateData}
+            selectedElementId={selectedElementId}
+            onSelectElement={setSelectedElementId}
           />
         );
       

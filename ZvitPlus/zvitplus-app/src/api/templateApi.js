@@ -1,3 +1,4 @@
+// src/api/templateApi.js - обновленная версия
 import axiosInstance from './axiosConfig';
 
 export const templateApi = {
@@ -6,9 +7,10 @@ export const templateApi = {
   
   getById: (id) => axiosInstance.get(`/templates/${id}`),
   
-  create: (templateData) =>
+  create: (templateData, onUploadProgress) =>
     axiosInstance.post('/templates', templateData, {
-      headers: { 'Content-Type': 'multipart/form-data' }
+      headers: { 'Content-Type': 'multipart/form-data' },
+      onUploadProgress: onUploadProgress // Опционально для отслеживания прогресса
     }),
   
   update: (id, templateData) =>
@@ -22,4 +24,13 @@ export const templateApi = {
     axiosInstance.get(`/templates/${id}/download`, {
       responseType: 'blob'
     }),
+  
+  // Можно добавить метод для валидации файла перед загрузкой
+  validateTemplate: (file) => {
+    const formData = new FormData();
+    formData.append('file', file);
+    return axiosInstance.post('/templates/validate', formData, {
+      headers: { 'Content-Type': 'multipart/form-data' }
+    });
+  }
 };

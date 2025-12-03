@@ -30,7 +30,7 @@ import ReportDetail from './pages/Reports/ReportDetail';
 // import CreateTemplate from './pages/Templates/CreateTemplate';
 // import CreateReportFromTemplate from './pages/Templates/CreateReportFromTemplate';
 import Profile from './pages/Profile/Profile';
-import TemplateUpload from './pages/Templates/TemplateUpload';
+import TemplateUpload from './pages/Templates/Upload/index.jsx';
 
 // Для этих компонентов пока можно использовать заглушки:
 const CreateTemplate = () => <div>Create Template (в разработке)</div>;

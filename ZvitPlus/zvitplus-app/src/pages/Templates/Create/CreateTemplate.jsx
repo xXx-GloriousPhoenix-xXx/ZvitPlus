@@ -17,7 +17,7 @@ import { Link as RouterLink } from 'react-router-dom';
 
 // Импорт компонентов
 import Step1BasicInfo from './steps/Step1BasicInfo';
-import Step2Elements from './steps/Step2Elements';
+import Step2Elements from './steps/step2/Step2Elements';
 import Step3Preview from './steps/Step3Preview';
 import StepperNavigation from './steps/StepperNavigation';
 

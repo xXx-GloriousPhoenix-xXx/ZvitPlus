@@ -1,4 +1,4 @@
-import React, { useState, useRef, useCallback } from 'react';
+import React, { useRef } from 'react';
 import {
   Box,
   Typography,
@@ -6,10 +6,8 @@ import {
   Card,
   CardContent,
   Button,
-  Alert,
   Divider,
-  Paper,
-  IconButton
+  Paper
 } from '@mui/material';
 import {
   TextFields,
@@ -19,9 +17,10 @@ import {
   Delete,
   Download
 } from '@mui/icons-material';
-import { elementTypes } from '../constants';
-import CanvasElement from '../CanvasElement';
-import ElementEditor from '../ElementEditor';
+import { elementTypes } from '../../constants';
+import CanvasElement from '../../CanvasElement';
+import ElementEditor from '../../ElementEditor';
+import { useStep2Handlers } from './useStep2Handlers';
 
 const Step2Elements = ({ 
   elements, 
@@ -30,90 +29,43 @@ const Step2Elements = ({
   onClearAll,
   onUpdateElement,
   templateData,
-  selectedElementId,  // Принимаем как пропс
-  onSelectElement     // Принимаем как пропс
+  selectedElementId,
+  onSelectElement
 }) => {
-  const [draggedElementType, setDraggedElementType] = useState(null);
   const canvasRef = useRef(null);
 
+  const {
+    getCanvasStyle,
+    handleDragStart,
+    handleCanvasDrop,
+    handleCanvasDragOver,
+    handleClearSelection,
+    handleDownloadTemplate,
+    handleRemoveSelectedElement,
+    getSelectedElement,
+    getElementStatistics
+  } = useStep2Handlers({
+    elements,
+    onAddElement,
+    onRemoveElement,
+    onClearAll,
+    onUpdateElement,
+    templateData,
+    selectedElementId,
+    onSelectElement
+  });
+
+  const { totalElements, selectedElementType, hasSelectedElement } = getElementStatistics();
+  const selectedElement = getSelectedElement();
+
   const getElementIcon = (type) => {
-    switch (type) {
-      case 'text': return <TextFields />;
-      case 'image': return <Image />;
-      case 'table': return <TableChart />;
-      case 'chart': return <BarChart />;
-      default: return null;
-    }
-  };
-
-  const handleDragStart = (type) => (e) => {
-    setDraggedElementType(type);
-    e.dataTransfer.setData('elementType', type);
-    e.dataTransfer.effectAllowed = 'copy';
-  };
-
-  const handleCanvasDrop = (e) => {
-    e.preventDefault();
-    const type = draggedElementType || e.dataTransfer.getData('elementType');
-    
-    if (type && canvasRef.current) {
-      const canvasRect = canvasRef.current.getBoundingClientRect();
-      const x = e.clientX - canvasRect.left - 75;
-      const y = e.clientY - canvasRect.top - 20;
-      
-      onAddElement(type, { x, y });
-    }
-    
-    setDraggedElementType(null);
-  };
-
-  const handleCanvasDragOver = (e) => {
-    e.preventDefault();
-    e.dataTransfer.dropEffect = 'copy';
-  };
-
-  const handleClearSelection = () => {
-    onSelectElement(null);
-  };
-
-  const selectedElement = elements.find(el => el.id === selectedElementId);
-
-  const getCanvasStyle = () => {
-    const isPortrait = templateData.orientation === 'portrait';
-    const baseWidth = 800;
-    const baseHeight = isPortrait ? 1131 : 566; // A4 пропорции в пикселях
-    
-    return {
-      width: baseWidth,
-      height: baseHeight,
-      backgroundColor: '#ffffff',
-      border: '2px solid #ccc',
-      position: 'relative',
-      overflow: 'hidden',
-      boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
-      margin: '0 auto'
+    const icons = {
+      'text': <TextFields />,
+      'image': <Image />,
+      'table': <TableChart />,
+      'chart': <BarChart />
     };
-  };
-
-  const handleDownloadTemplate = () => {
-    const templateJson = {
-      templateName: templateData.name,
-      templateType: templateData.type,
-      pageSize: templateData.pageSize,
-      orientation: templateData.orientation,
-      elements: elements
-    };
-
-    const dataStr = JSON.stringify(templateJson, null, 2);
-    const dataBlob = new Blob([dataStr], { type: 'application/json' });
-    const url = URL.createObjectURL(dataBlob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = `${templateData.name || 'template'}.json`;
-    document.body.appendChild(link);
-    link.click();
-    link.remove();
-    URL.revokeObjectURL(url);
+    return icons[type] || null;
   };
 
   return (
@@ -188,73 +140,70 @@ const Step2Elements = ({
   
               <Grid container spacing={1} sx={{ mb: 1 }}>
                 <Grid item xs={4}>
-                <Button
-                  fullWidth
-                  variant="outlined"
-                  size="small"
-                  startIcon={<Delete />}
-                  onClick={onClearAll}
-                  disabled={elements.length === 0}
-                sx={{ 
-                  height: '32px',
-                  fontSize: '0.75rem'
-                }}
-                >
-                  Очистити
-                </Button>
-                </Grid>
-                <Grid item xs={4}>
-                <Button
-                  fullWidth
-                  variant="outlined"
-                  size="small"
-                  startIcon={<Download />}
-                  onClick={handleDownloadTemplate}
-                  disabled={elements.length === 0}
-                  sx={{ 
-                    height: '32px',
-                    fontSize: '0.75rem'
-                  }}
-                >
-                  Експорт
-                </Button>
-                </Grid>
-                <Grid item xs={4}>
-                {selectedElement && (
                   <Button
                     fullWidth
                     variant="outlined"
                     size="small"
-                    color="error"
                     startIcon={<Delete />}
-                    onClick={() => {
-                      onRemoveElement(selectedElementId);
-                      onSelectElement(null);
-                    }}
+                    onClick={onClearAll}
+                    disabled={totalElements === 0}
                     sx={{ 
                       height: '32px',
                       fontSize: '0.75rem'
                     }}
                   >
-                    Видалити
+                    Очистити
                   </Button>
-                )}
+                </Grid>
+                <Grid item xs={4}>
+                  <Button
+                    fullWidth
+                    variant="outlined"
+                    size="small"
+                    startIcon={<Download />}
+                    onClick={handleDownloadTemplate}
+                    disabled={totalElements === 0}
+                    sx={{ 
+                      height: '32px',
+                      fontSize: '0.75rem'
+                    }}
+                  >
+                    Експорт
+                  </Button>
+                </Grid>
+                <Grid item xs={4}>
+                  {hasSelectedElement && (
+                    <Button
+                      fullWidth
+                      variant="outlined"
+                      size="small"
+                      color="error"
+                      startIcon={<Delete />}
+                      onClick={handleRemoveSelectedElement}
+                      sx={{ 
+                        height: '32px',
+                        fontSize: '0.75rem'
+                      }}
+                    >
+                      Видалити
+                    </Button>
+                  )}
                 </Grid>
               </Grid>
 
-              {!selectedElement && (
+              {!hasSelectedElement && (
                 <Box sx={{ 
-                height: '32px', 
-                display: 'flex', 
-                alignItems: 'center', 
-                justifyContent: 'center',
-                border: '1px dashed',
-                borderColor: 'divider',
-                borderRadius: '4px'
-              }}>
-                <Typography variant="caption" color="text.secondary">
-                  Виберіть елемент для видалення
-                </Typography>
+                  height: '32px', 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  justifyContent: 'center',
+                  border: '1px dashed',
+                  borderColor: 'divider',
+                  borderRadius: '4px'
+                }}>
+                  <Typography variant="caption" color="text.secondary">
+                    Виберіть елемент для видалення
+                  </Typography>
                 </Box>
               )}
             </Box>
@@ -266,11 +215,11 @@ const Step2Elements = ({
                 Статистика:
               </Typography>
               <Typography variant="body2">
-                Елементів: <strong>{elements.length}</strong>
+                Елементів: <strong>{totalElements}</strong>
               </Typography>
-              {selectedElement && (
+              {hasSelectedElement && (
                 <Typography variant="caption" color="text.secondary" display="block" sx={{ mt: 1 }}>
-                  Вибрано: {elementTypes.find(t => t.type === selectedElement.type)?.label}
+                  Вибрано: {elementTypes.find(t => t.type === selectedElementType)?.label}
                 </Typography>
               )}
             </Box>
@@ -287,7 +236,7 @@ const Step2Elements = ({
               <Button
                 size="small"
                 onClick={handleClearSelection}
-                disabled={!selectedElement}
+                disabled={!hasSelectedElement}
               >
                 Скасувати вибір
               </Button>
@@ -296,7 +245,7 @@ const Step2Elements = ({
             <Box
               ref={canvasRef}
               sx={getCanvasStyle()}
-              onDrop={handleCanvasDrop}
+              onDrop={(e) => handleCanvasDrop(e, canvasRef)}
               onDragOver={handleCanvasDragOver}
               onClick={handleClearSelection}
             >

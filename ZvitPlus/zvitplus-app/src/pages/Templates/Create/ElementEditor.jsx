@@ -39,13 +39,40 @@ const ElementEditor = ({ selectedElement, onUpdate, onClose }) => {
 
   if (!selectedElement) {
     return (
-      <Paper sx={{ p: 3, height: '100%' }}> {/* width: '25dvw' */}
-        <Typography variant="h6" gutterBottom>
-          Редактор елементів
-        </Typography>
-        <Typography color="text.secondary" align="center" sx={{ mt: 8 }}>
-          Оберіть елемент на полотні для редагування
-        </Typography>
+      <Paper sx={{ 
+        p: 2, 
+        height: '100%',
+        display: 'flex',
+        flexDirection: 'column'
+      }}>
+        <Box sx={{ 
+          flex: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+          textAlign: 'center'
+        }}>
+          <Box sx={{ 
+            p: 3,
+            border: '2px dashed',
+            borderColor: 'divider',
+            borderRadius: 2,
+            bgcolor: 'action.hover'
+          }}>
+            <Typography variant="h6" gutterBottom color="text.secondary">
+              <Box component="span" sx={{ display: 'block', mb: 1 }}>
+                📝
+              </Box>
+              Редактор елементів
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              Оберіть будь-який елемент на полотні
+              <br />
+              для початку редагування
+            </Typography>
+          </Box>
+        </Box>
       </Paper>
     );
   }
@@ -168,13 +195,12 @@ const ElementEditor = ({ selectedElement, onUpdate, onClose }) => {
   );
 
   const renderImageEditor = () => (
-    <Box>
+    <Box sx={{display: 'flex', flexDirection: "column"}}>
       <Typography variant="subtitle2" gutterBottom fontWeight="bold">
         Зображення
       </Typography>
       
       <TextField
-        fullWidth
         label="URL зображення"
         value={selectedElement.src || ''}
         onChange={(e) => handleChange('src', e.target.value)}
@@ -182,7 +208,6 @@ const ElementEditor = ({ selectedElement, onUpdate, onClose }) => {
       />
       
       <TextField
-        fullWidth
         label="Альтернативний текст"
         value={selectedElement.alt || ''}
         onChange={(e) => handleChange('alt', e.target.value)}
@@ -194,6 +219,7 @@ const ElementEditor = ({ selectedElement, onUpdate, onClose }) => {
           Прозорість
         </Typography>
         <Slider
+        fullWidth
           value={selectedElement.opacity || 1}
           onChange={(e, value) => handleChange('opacity', value)}
           min={0}
@@ -261,12 +287,12 @@ const ElementEditor = ({ selectedElement, onUpdate, onClose }) => {
   );
 
   const renderChartEditor = () => (
-    <Box>
+    <Box sx={{display: 'flex', flexDirection: "column"}}>
       <Typography variant="subtitle2" gutterBottom fontWeight="bold">
         Діаграма
       </Typography>
       
-      <FormControl fullWidth size="small" sx={{ mb: 2 }}>
+      <FormControl size="small" sx={{ mb: 2 }}>
         <InputLabel>Тип діаграми</InputLabel>
         <Select
           value={selectedElement.chartType || 'bar'}
@@ -280,7 +306,6 @@ const ElementEditor = ({ selectedElement, onUpdate, onClose }) => {
       </FormControl>
       
       <TextField
-        fullWidth
         label="Заголовок"
         value={selectedElement.title || ''}
         onChange={(e) => handleChange('title', e.target.value)}
@@ -315,7 +340,7 @@ const ElementEditor = ({ selectedElement, onUpdate, onClose }) => {
       <Typography variant="subtitle2" gutterBottom fontWeight="bold">
         Розмір та позиція
       </Typography>
-      <Grid container spacing={2}>
+      <Grid container spacing={2} sx={{display: 'flex', flexDirection: "column"}}>
         <Grid item xs={6}>
           <TextField
             label="Ширина"
@@ -435,7 +460,6 @@ const ElementEditor = ({ selectedElement, onUpdate, onClose }) => {
         {/* Контент с прокруткой */}
         <Box sx={{ 
           flex: 1, 
-          overflow: 'auto', // Прокрутка только для контента
           pb: 2 
         }}>
           {renderTabContent()}

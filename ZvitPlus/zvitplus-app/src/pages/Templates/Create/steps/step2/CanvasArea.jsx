@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { Box, Typography, Button, Paper } from '@mui/material';
 import CanvasElement from './CanvasElement';
 
@@ -16,6 +16,15 @@ const CanvasArea = ({
   onUpdateElement,
   onRemoveElement
 }) => {
+  
+  // Обработчик клика по канвасу
+  const handleCanvasClick = useCallback((e) => {
+    // Проверяем, был ли клик именно по канвасу (не по элементу)
+    if (e.target === canvasRef.current) {
+      handleClearSelection();
+    }
+  }, [handleClearSelection, canvasRef]);
+
   return (
     <Paper sx={{ p: 3, height: '100%', display: 'flex', flexDirection: 'column' }}>
       {/* Заголовок и кнопка отмены выбора */}
@@ -31,7 +40,7 @@ const CanvasArea = ({
         getCanvasStyle={getCanvasStyle}
         handleCanvasDrop={handleCanvasDrop}
         handleCanvasDragOver={handleCanvasDragOver}
-        handleClearSelection={handleClearSelection}
+        handleCanvasClick={handleCanvasClick}
         elements={elements}
         selectedElementId={selectedElementId}
         onSelectElement={onSelectElement}
@@ -67,7 +76,7 @@ const Canvas = ({
   getCanvasStyle,
   handleCanvasDrop,
   handleCanvasDragOver,
-  handleClearSelection,
+  handleCanvasClick,
   elements,
   selectedElementId,
   onSelectElement,
@@ -79,7 +88,7 @@ const Canvas = ({
     sx={getCanvasStyle()}
     onDrop={handleCanvasDrop}
     onDragOver={handleCanvasDragOver}
-    onClick={handleClearSelection}
+    onClick={handleCanvasClick}
   >
     {elements.map((element) => (
       <CanvasElement

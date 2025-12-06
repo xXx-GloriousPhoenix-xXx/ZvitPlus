@@ -34,6 +34,13 @@ export const useStep2Handlers = ({
     setDraggedElementType(type);
     e.dataTransfer.setData('elementType', type);
     e.dataTransfer.effectAllowed = 'copy';
+    
+    // Добавляем визуальный элемент для перетаскивания
+    const dragImage = document.createElement('div');
+    dragImage.style.opacity = '0';
+    document.body.appendChild(dragImage);
+    e.dataTransfer.setDragImage(dragImage, 0, 0);
+    setTimeout(() => document.body.removeChild(dragImage), 0);
   }, []);
 
   const handleCanvasDrop = useCallback((e, canvasRef) => {
@@ -42,8 +49,10 @@ export const useStep2Handlers = ({
     
     if (type && canvasRef.current) {
       const canvasRect = canvasRef.current.getBoundingClientRect();
-      const x = e.clientX - canvasRect.left - 75;
-      const y = e.clientY - canvasRect.top - 20;
+      
+      // Более точное позиционирование
+      const x = Math.max(0, e.clientX - canvasRect.left - 50); // Центрируем по курсору
+      const y = Math.max(0, e.clientY - canvasRect.top - 25);
       
       onAddElement(type, { x, y });
     }

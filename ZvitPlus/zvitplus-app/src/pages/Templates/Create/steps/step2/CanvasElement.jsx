@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 import {
   Box,
   Paper,
@@ -45,13 +45,17 @@ const CanvasElement = ({
 }) => {
   const [isResizing, setIsResizing] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
-  const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
+  const [dragStart, setDragStart] = useState({ x: 0, y: 0, elementX: 0, elementY: 0 });
   const [resizeStart, setResizeStart] = useState({ x: 0, y: 0, width: 0, height: 0 });
   const elementRef = useRef(null);
 
-  const handleMouseDown = (e) => {
+  const handleMouseDown = useCallback((e) => {
     e.stopPropagation();
-    onSelect(element.id);
+    
+    // Выбираем элемент при клике
+    if (!isSelected) {
+      onSelect(element.id);
+    }
     
     if (e.target.classList.contains('resize-handle')) {
       // Начало изменения размера
@@ -65,43 +69,61 @@ const CanvasElement = ({
     } else {
       // Начало перетаскивания
       setIsDragging(true);
+      
+      // Получаем позицию канваса один раз
+      const canvasRect = canvasRef.current?.getBoundingClientRect();
+      if (!canvasRect) return;
+      
       setDragStart({
-        x: e.clientX - element.position.x,
-        y: e.clientY - element.position.y
+        x: e.clientX,
+        y: e.clientY,
+        elementX: element.position.x,
+        elementY: element.position.y,
+        canvasLeft: canvasRect.left,
+        canvasTop: canvasRect.top
       });
     }
-  };
+  }, [element, isSelected, onSelect, canvasRef]);
+
+  const handleMouseMove = useCallback((e) => {
+    if (isDragging && dragStart.canvasLeft !== undefined) {
+      const deltaX = e.clientX - dragStart.x;
+      const deltaY = e.clientY - dragStart.y;
+      
+      const newX = dragStart.elementX + deltaX;
+      const newY = dragStart.elementY + deltaY;
+      
+      // Получаем текущие размеры канваса
+      const canvasRect = canvasRef.current?.getBoundingClientRect();
+      if (!canvasRect) return;
+      
+      const maxX = canvasRect.width - element.size.width;
+      const maxY = canvasRect.height - element.size.height;
+      
+      onUpdate(element.id, {
+        position: {
+          x: Math.max(0, Math.min(maxX, newX)),
+          y: Math.max(0, Math.min(maxY, newY))
+        }
+      });
+    } else if (isResizing) {
+      const deltaX = e.clientX - resizeStart.x;
+      const deltaY = e.clientY - resizeStart.y;
+      const newWidth = Math.max(50, resizeStart.width + deltaX);
+      const newHeight = Math.max(20, resizeStart.height + deltaY);
+      
+      onUpdate(element.id, {
+        size: { width: newWidth, height: newHeight }
+      });
+    }
+  }, [isDragging, isResizing, dragStart, resizeStart, element, onUpdate, canvasRef]);
+
+  const handleMouseUp = useCallback(() => {
+    setIsDragging(false);
+    setIsResizing(false);
+  }, []);
 
   useEffect(() => {
-    const handleMouseMove = (e) => {
-      if (isDragging && canvasRef.current) {
-        const canvasRect = canvasRef.current.getBoundingClientRect();
-        const newX = e.clientX - dragStart.x - canvasRect.left;
-        const newY = e.clientY - dragStart.y - canvasRect.top;
-        
-        onUpdate(element.id, {
-          position: {
-            x: Math.max(0, Math.min(canvasRect.width - element.size.width, newX)),
-            y: Math.max(0, Math.min(canvasRect.height - element.size.height, newY))
-          }
-        });
-      } else if (isResizing) {
-        const deltaX = e.clientX - resizeStart.x;
-        const deltaY = e.clientY - resizeStart.y;
-        const newWidth = Math.max(50, resizeStart.width + deltaX);
-        const newHeight = Math.max(20, resizeStart.height + deltaY);
-        
-        onUpdate(element.id, {
-          size: { width: newWidth, height: newHeight }
-        });
-      }
-    };
-
-    const handleMouseUp = () => {
-      setIsDragging(false);
-      setIsResizing(false);
-    };
-
     if (isDragging || isResizing) {
       document.addEventListener('mousemove', handleMouseMove);
       document.addEventListener('mouseup', handleMouseUp);
@@ -111,7 +133,7 @@ const CanvasElement = ({
         document.removeEventListener('mouseup', handleMouseUp);
       };
     }
-  }, [isDragging, isResizing, dragStart, resizeStart, element, onUpdate, canvasRef]);
+  }, [isDragging, isResizing, handleMouseMove, handleMouseUp]);
 
   const renderElementContent = () => {
     switch (element.type) {
@@ -266,12 +288,13 @@ const CanvasElement = ({
         top: element.position.y,
         width: element.size.width,
         height: element.size.height,
-        cursor: isDragging ? 'grabbing' : 'grab',
+        cursor: isDragging ? 'grabbing' : (isSelected ? 'move' : 'pointer'),
         border: isSelected ? '2px solid #1976d2' : '1px solid #ccc',
         overflow: 'hidden',
         userSelect: 'none',
         '&:hover': {
-          boxShadow: 3
+          boxShadow: 3,
+          borderColor: isSelected ? '#1976d2' : '#999'
         }
       }}
       onMouseDown={handleMouseDown}
@@ -291,7 +314,8 @@ const CanvasElement = ({
             color: 'white',
             padding: '2px 8px',
             borderRadius: '4px 4px 0 0',
-            fontSize: '12px'
+            fontSize: '12px',
+            zIndex: 10
           }}
         >
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
@@ -331,7 +355,8 @@ const CanvasElement = ({
             backgroundColor: '#1976d2',
             border: '2px solid white',
             borderRadius: '50%',
-            cursor: 'nwse-resize'
+            cursor: 'nwse-resize',
+            zIndex: 10
           }}
         />
       )}

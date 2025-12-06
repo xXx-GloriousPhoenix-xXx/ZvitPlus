@@ -39,7 +39,7 @@ const ElementEditor = ({ selectedElement, onUpdate, onClose }) => {
 
   if (!selectedElement) {
     return (
-      <Paper sx={{ p: 3, height: '100%' }}>
+      <Paper sx={{ p: 3, height: '100%' }}> {/* width: '25dvw' */}
         <Typography variant="h6" gutterBottom>
           Редактор елементів
         </Typography>
@@ -387,31 +387,61 @@ const ElementEditor = ({ selectedElement, onUpdate, onClose }) => {
   };
 
   return (
-    <Paper sx={{ p: 2, height: '100%', display: 'flex', flexDirection: 'column' }}>
-      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
-        <Typography variant="h6">
-          Редагування елементу
-        </Typography>
-        <IconButton size="small" onClick={onClose}>
-          <Cancel />
-        </IconButton>
-      </Box>
+    <Box sx={{ 
+      // width: '25dvw',
+      height: '100%',
+      bgcolor: 'background.paper',
+      borderLeft: '1px solid',
+      borderColor: 'divider',
+      display: 'flex',
+      flexDirection: 'column'
+    }}>
+      <Paper sx={{ 
+        p: 2, 
+        height: '100%', 
+        display: 'flex', 
+        flexDirection: 'column',
+        overflow: 'hidden' // Скрываем переполнение
+      }}>
+        {/* Заголовок */}
+        <Box sx={{ 
+          display: 'flex', 
+          justifyContent: 'space-between', 
+          alignItems: 'center', 
+          mb: 2,
+          flexShrink: 0 // Не сжимается
+        }}>
+          <Typography variant="h6">
+            Редагування елементу
+          </Typography>
+          <IconButton size="small" onClick={onClose}>
+            <Cancel />
+          </IconButton>
+        </Box>
 
-      <Tabs
-        value={activeTab}
-        onChange={(e, newValue) => setActiveTab(newValue)}
-        sx={{ mb: 2 }}
-      >
-        <Tab label="Властивості" />
-        <Tab label="Розміщення" />
-      </Tabs>
+        {/* Tabs */}
+        <Box sx={{ flexShrink: 0 }}>
+          <Tabs
+            value={activeTab}
+            onChange={(e, newValue) => setActiveTab(newValue)}
+            sx={{ mb: 2 }}
+          >
+            <Tab label="Властивості" />
+            <Tab label="Розміщення" />
+          </Tabs>
+          <Divider sx={{ mb: 2 }} />
+        </Box>
 
-      <Divider sx={{ mb: 2 }} />
-
-      <Box sx={{ flex: 1, overflow: 'auto' }}>
-        {renderTabContent()}
-      </Box>
-    </Paper>
+        {/* Контент с прокруткой */}
+        <Box sx={{ 
+          flex: 1, 
+          overflow: 'auto', // Прокрутка только для контента
+          pb: 2 
+        }}>
+          {renderTabContent()}
+        </Box>
+      </Paper>
+    </Box>
   );
 };
 

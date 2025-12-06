@@ -181,50 +181,83 @@ const Step2Elements = ({
 
             <Divider sx={{ my: 2 }} />
 
-            <Box>
-              <Typography variant="caption" color="text.secondary" display="block" gutterBottom>
-                Керування:
-              </Typography>
-              <Button
-                fullWidth
-                variant="outlined"
-                size="small"
-                startIcon={<Delete />}
-                onClick={onClearAll}
-                disabled={elements.length === 0}
-                sx={{ mb: 1 }}
-              >
-                Очистити все
-              </Button>
-              
-              <Button
-                fullWidth
-                variant="outlined"
-                size="small"
-                startIcon={<Download />}
-                onClick={handleDownloadTemplate}
-                disabled={elements.length === 0}
-                sx={{ mb: 1 }}
-              >
-                Експорт JSON
-              </Button>
-              
-              {selectedElement && (
-                <Button
-                  fullWidth
-                  variant="outlined"
-                  size="small"
-                  color="error"
-                  startIcon={<Delete />}
-                  onClick={() => {
-                    onRemoveElement(selectedElementId);
-                    onSelectElement(null);
-                  }}
-                >
-                  Видалити вибраний
-                </Button>
-              )}
-            </Box>
+            <Box sx={{ mb: 3 }}>
+  <Typography variant="caption" color="text.secondary" display="block" gutterBottom>
+    Керування:
+  </Typography>
+  
+  <Grid container spacing={1} sx={{ mb: 1 }}>
+    <Grid item xs={4}>
+      <Button
+        fullWidth
+        variant="outlined"
+        size="small"
+        startIcon={<Delete />}
+        onClick={onClearAll}
+        disabled={elements.length === 0}
+        sx={{ 
+          height: '32px',
+          fontSize: '0.75rem'
+        }}
+      >
+        Очистити
+      </Button>
+    </Grid>
+    <Grid item xs={4}>
+      <Button
+        fullWidth
+        variant="outlined"
+        size="small"
+        startIcon={<Download />}
+        onClick={handleDownloadTemplate}
+        disabled={elements.length === 0}
+        sx={{ 
+          height: '32px',
+          fontSize: '0.75rem'
+        }}
+      >
+        Експорт
+      </Button>
+    </Grid>
+    <Grid item xs={4}>
+      {selectedElement && (
+        <Button
+          fullWidth
+          variant="outlined"
+          size="small"
+          color="error"
+          startIcon={<Delete />}
+          onClick={() => {
+            onRemoveElement(selectedElementId);
+            onSelectElement(null);
+          }}
+          sx={{ 
+            height: '32px',
+            fontSize: '0.75rem'
+          }}
+        >
+          Видалити
+        </Button>
+      )}
+    </Grid>
+  </Grid>
+  
+  {!selectedElement && (
+    <Box sx={{ 
+      height: '32px', 
+      display: 'flex', 
+      alignItems: 'center', 
+      justifyContent: 'center',
+      border: '1px dashed',
+      borderColor: 'divider',
+      borderRadius: '4px'
+    }}>
+      <Typography variant="caption" color="text.secondary">
+        Виберіть елемент для видалення
+      </Typography>
+    </Box>
+  )}
+</Box>
             
             <Divider sx={{ my: 2 }} />
             
@@ -245,7 +278,7 @@ const Step2Elements = ({
         </Grid>
         
         {/* Полотно для редактирования */}
-        <Grid item xs={12} md={7}>
+        <Grid item xs={12} md={10}>
           <Paper sx={{ p: 3, height: '100%', display: 'flex', flexDirection: 'column' }}>
             <Box sx={{ mb: 2, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <Typography variant="subtitle1" fontWeight="bold">

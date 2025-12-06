@@ -200,7 +200,7 @@ const CreateTemplate = () => {
       <Box sx={{ display: 'flex', alignItems: 'center', mb: 4 }}>
         <Button
           component={RouterLink}
-          to="/templates/create"
+          to="/templates"
           startIcon={<ArrowBack />}
           sx={{ mr: 2 }}
         >

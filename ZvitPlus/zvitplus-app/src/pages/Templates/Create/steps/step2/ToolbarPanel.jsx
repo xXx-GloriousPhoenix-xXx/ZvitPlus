@@ -11,7 +11,7 @@ import {
 } from '@mui/material';
 import { Delete, Download } from '@mui/icons-material';
 import { elementTypes } from '../../constants';
-import ElementEditor from '../ElementEditor';
+import ElementEditor from './ElementEditor';
 import { getElementIcon } from './elementUtils';
 
 const ToolbarPanel = ({

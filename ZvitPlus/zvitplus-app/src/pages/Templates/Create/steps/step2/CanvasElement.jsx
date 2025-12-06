@@ -7,9 +7,7 @@ import {
 } from '@mui/material';
 import {
   DragIndicator,
-  Delete,
-  Edit,
-  Close
+  Delete
 } from '@mui/icons-material';
 
 // Выносим elementTypes в компонент или импортируем

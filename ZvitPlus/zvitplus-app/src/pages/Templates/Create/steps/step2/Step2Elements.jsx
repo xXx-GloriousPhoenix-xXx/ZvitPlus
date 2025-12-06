@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { Box, Typography, Grid, Divider, Paper } from '@mui/material';
+import { Box, Typography, Grid, Divider } from '@mui/material';
 
 import ToolbarPanel from './ToolbarPanel';
 import CanvasArea from './CanvasArea';
@@ -52,9 +52,13 @@ const Step2Elements = ({
       
       <Divider sx={{ my: 3 }} />
       
-      <Grid container spacing={3} sx={{ height: '100%' }}>
+      <Grid
+        container
+        spacing={3}
+        sx={{ height: '100%' }}
+      >
         {/* Панель инструментов */}
-        <Grid item xs={12} md={2}>
+        <Grid item xs={12} md={4}>
           <ToolbarPanel
             onDragStart={handleDragStart}
             selectedElement={selectedElement}
@@ -70,7 +74,7 @@ const Step2Elements = ({
         </Grid>
         
         {/* Полотно для редактирования */}
-        <Grid item xs={12} md={10}>
+        <Grid item xs={12} md={8}>
           <CanvasArea
             canvasRef={canvasRef}
             getCanvasStyle={getCanvasStyle}

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Typography, Button, Paper } from '@mui/material';
-import CanvasElement from '../../CanvasElement';
+import CanvasElement from './CanvasElement';
 
 const CanvasArea = ({
   canvasRef,

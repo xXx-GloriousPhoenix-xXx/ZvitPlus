@@ -1,6 +1,7 @@
 ﻿using ZvitPlus.BLL.DTOs.Requests;
 using ZvitPlus.BLL.DTOs.Responses;
 using ZvitPlus.BLL.Interfaces.DTOs;
+using ZvitPlus.DAL.Enums;
 
 namespace ZvitPlus.BLL.Interfaces
 {
@@ -8,5 +9,6 @@ namespace ZvitPlus.BLL.Interfaces
     {
         Task<IEnumerable<ReportReadDTO>> GetByNameAsync(string name);
         Task<(byte[] fileData, string fileName)> DownloadReportFileAsync(Guid reportId);
+        Task<IEnumerable<ReportReadDTO>> GetPaginatedAsync(int page, int itemsPerPage);
     }
 }

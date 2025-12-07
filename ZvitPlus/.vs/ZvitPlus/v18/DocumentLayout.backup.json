@@ -3,8 +3,44 @@
   "WorkspaceRootPath": "F:\\Programmes\\Github\\Reps\\ZvitPlus\\ZvitPlus\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A23C6AFD-F7D1-498D-907B-7B7525D63311}|ZvitPlus.DAL\\ZvitPlus.DAL.csproj|f:\\programmes\\github\\reps\\zvitplus\\zvitplus\\zvitplus.dal\\seeds\\userseed.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A23C6AFD-F7D1-498D-907B-7B7525D63311}|ZvitPlus.DAL\\ZvitPlus.DAL.csproj|solutionrelative:zvitplus.dal\\seeds\\userseed.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{80CC99FB-4566-405A-A73C-A4FB6D406F86}|ZvitPlus.BLL\\ZvitPlus.BLL.csproj|f:\\programmes\\github\\reps\\zvitplus\\zvitplus\\zvitplus.bll\\services\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{80CC99FB-4566-405A-A73C-A4FB6D406F86}|ZvitPlus.BLL\\ZvitPlus.BLL.csproj|solutionrelative:zvitplus.bll\\services\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1B4C3573-5307-4F69-912C-3A1FE649187A}|ZvitPlus.API\\ZvitPlus.API.csproj|f:\\programmes\\github\\reps\\zvitplus\\zvitplus\\zvitplus.api\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1B4C3573-5307-4F69-912C-3A1FE649187A}|ZvitPlus.API\\ZvitPlus.API.csproj|solutionrelative:zvitplus.api\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{80CC99FB-4566-405A-A73C-A4FB6D406F86}|ZvitPlus.BLL\\ZvitPlus.BLL.csproj|f:\\programmes\\github\\reps\\zvitplus\\zvitplus\\zvitplus.bll\\interfaces\\iuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{80CC99FB-4566-405A-A73C-A4FB6D406F86}|ZvitPlus.BLL\\ZvitPlus.BLL.csproj|solutionrelative:zvitplus.bll\\interfaces\\iuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{80CC99FB-4566-405A-A73C-A4FB6D406F86}|ZvitPlus.BLL\\ZvitPlus.BLL.csproj|f:\\programmes\\github\\reps\\zvitplus\\zvitplus\\zvitplus.bll\\interfaces\\ireportservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{80CC99FB-4566-405A-A73C-A4FB6D406F86}|ZvitPlus.BLL\\ZvitPlus.BLL.csproj|solutionrelative:zvitplus.bll\\interfaces\\ireportservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A23C6AFD-F7D1-498D-907B-7B7525D63311}|ZvitPlus.DAL\\ZvitPlus.DAL.csproj|f:\\programmes\\github\\reps\\zvitplus\\zvitplus\\zvitplus.dal\\interfaces\\ireportrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A23C6AFD-F7D1-498D-907B-7B7525D63311}|ZvitPlus.DAL\\ZvitPlus.DAL.csproj|solutionrelative:zvitplus.dal\\interfaces\\ireportrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{80CC99FB-4566-405A-A73C-A4FB6D406F86}|ZvitPlus.BLL\\ZvitPlus.BLL.csproj|f:\\programmes\\github\\reps\\zvitplus\\zvitplus\\zvitplus.bll\\interfaces\\itemplateservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{80CC99FB-4566-405A-A73C-A4FB6D406F86}|ZvitPlus.BLL\\ZvitPlus.BLL.csproj|solutionrelative:zvitplus.bll\\interfaces\\itemplateservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1B4C3573-5307-4F69-912C-3A1FE649187A}|ZvitPlus.API\\ZvitPlus.API.csproj|f:\\programmes\\github\\reps\\zvitplus\\zvitplus\\zvitplus.api\\controllers\\reportcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1B4C3573-5307-4F69-912C-3A1FE649187A}|ZvitPlus.API\\ZvitPlus.API.csproj|solutionrelative:zvitplus.api\\controllers\\reportcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1B4C3573-5307-4F69-912C-3A1FE649187A}|ZvitPlus.API\\ZvitPlus.API.csproj|f:\\programmes\\github\\reps\\zvitplus\\zvitplus\\zvitplus.api\\controllers\\templatecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1B4C3573-5307-4F69-912C-3A1FE649187A}|ZvitPlus.API\\ZvitPlus.API.csproj|solutionrelative:zvitplus.api\\controllers\\templatecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A23C6AFD-F7D1-498D-907B-7B7525D63311}|ZvitPlus.DAL\\ZvitPlus.DAL.csproj|f:\\programmes\\github\\reps\\zvitplus\\zvitplus\\zvitplus.dal\\repositories\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A23C6AFD-F7D1-498D-907B-7B7525D63311}|ZvitPlus.DAL\\ZvitPlus.DAL.csproj|solutionrelative:zvitplus.dal\\repositories\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A23C6AFD-F7D1-498D-907B-7B7525D63311}|ZvitPlus.DAL\\ZvitPlus.DAL.csproj|f:\\programmes\\github\\reps\\zvitplus\\zvitplus\\zvitplus.dal\\interfaces\\iuserrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A23C6AFD-F7D1-498D-907B-7B7525D63311}|ZvitPlus.DAL\\ZvitPlus.DAL.csproj|solutionrelative:zvitplus.dal\\interfaces\\iuserrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,23 +50,140 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 7,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "UserController.cs",
+              "DocumentMoniker": "F:\\Programmes\\Github\\Reps\\ZvitPlus\\ZvitPlus\\ZvitPlus.API\\Controllers\\UserController.cs",
+              "RelativeDocumentMoniker": "ZvitPlus.API\\Controllers\\UserController.cs",
+              "ToolTip": "F:\\Programmes\\Github\\Reps\\ZvitPlus\\ZvitPlus\\ZvitPlus.API\\Controllers\\UserController.cs",
+              "RelativeToolTip": "ZvitPlus.API\\Controllers\\UserController.cs",
+              "ViewState": "AgIAABcAAAAAAAAAAAAIwCIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-07T18:19:26.326Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ITemplateService.cs",
+              "DocumentMoniker": "F:\\Programmes\\Github\\Reps\\ZvitPlus\\ZvitPlus\\ZvitPlus.BLL\\Interfaces\\ITemplateService.cs",
+              "RelativeDocumentMoniker": "ZvitPlus.BLL\\Interfaces\\ITemplateService.cs",
+              "ToolTip": "F:\\Programmes\\Github\\Reps\\ZvitPlus\\ZvitPlus\\ZvitPlus.BLL\\Interfaces\\ITemplateService.cs",
+              "RelativeToolTip": "ZvitPlus.BLL\\Interfaces\\ITemplateService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-07T18:18:46.802Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "UserSeed.cs",
-              "DocumentMoniker": "F:\\Programmes\\Github\\Reps\\ZvitPlus\\ZvitPlus\\ZvitPlus.DAL\\Seeds\\UserSeed.cs",
-              "RelativeDocumentMoniker": "ZvitPlus.DAL\\Seeds\\UserSeed.cs",
-              "ToolTip": "F:\\Programmes\\Github\\Reps\\ZvitPlus\\ZvitPlus\\ZvitPlus.DAL\\Seeds\\UserSeed.cs",
-              "RelativeToolTip": "ZvitPlus.DAL\\Seeds\\UserSeed.cs",
-              "ViewState": "AgIAABAAAAAAAAAAAAAQwAwAAAAfAAAAAAAAAA==",
+              "DocumentIndex": 2,
+              "Title": "IUserService.cs",
+              "DocumentMoniker": "F:\\Programmes\\Github\\Reps\\ZvitPlus\\ZvitPlus\\ZvitPlus.BLL\\Interfaces\\IUserService.cs",
+              "RelativeDocumentMoniker": "ZvitPlus.BLL\\Interfaces\\IUserService.cs",
+              "ToolTip": "F:\\Programmes\\Github\\Reps\\ZvitPlus\\ZvitPlus\\ZvitPlus.BLL\\Interfaces\\IUserService.cs",
+              "RelativeToolTip": "ZvitPlus.BLL\\Interfaces\\IUserService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAABVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-03T10:39:54.598Z",
+              "WhenOpened": "2025-12-07T18:18:49.122Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "IReportService.cs",
+              "DocumentMoniker": "F:\\Programmes\\Github\\Reps\\ZvitPlus\\ZvitPlus\\ZvitPlus.BLL\\Interfaces\\IReportService.cs",
+              "RelativeDocumentMoniker": "ZvitPlus.BLL\\Interfaces\\IReportService.cs",
+              "ToolTip": "F:\\Programmes\\Github\\Reps\\ZvitPlus\\ZvitPlus\\ZvitPlus.BLL\\Interfaces\\IReportService.cs",
+              "RelativeToolTip": "ZvitPlus.BLL\\Interfaces\\IReportService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-07T18:18:41.708Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "IReportRepository.cs",
+              "DocumentMoniker": "F:\\Programmes\\Github\\Reps\\ZvitPlus\\ZvitPlus\\ZvitPlus.DAL\\Interfaces\\IReportRepository.cs",
+              "RelativeDocumentMoniker": "ZvitPlus.DAL\\Interfaces\\IReportRepository.cs",
+              "ToolTip": "F:\\Programmes\\Github\\Reps\\ZvitPlus\\ZvitPlus\\ZvitPlus.DAL\\Interfaces\\IReportRepository.cs",
+              "RelativeToolTip": "ZvitPlus.DAL\\Interfaces\\IReportRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-07T18:17:57.637Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "ReportController.cs",
+              "DocumentMoniker": "F:\\Programmes\\Github\\Reps\\ZvitPlus\\ZvitPlus\\ZvitPlus.API\\Controllers\\ReportController.cs",
+              "RelativeDocumentMoniker": "ZvitPlus.API\\Controllers\\ReportController.cs",
+              "ToolTip": "F:\\Programmes\\Github\\Reps\\ZvitPlus\\ZvitPlus\\ZvitPlus.API\\Controllers\\ReportController.cs",
+              "RelativeToolTip": "ZvitPlus.API\\Controllers\\ReportController.cs",
+              "ViewState": "AgIAABcAAAAAAAAAAAAAACoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-07T18:17:52.445Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "UserService.cs",
+              "DocumentMoniker": "F:\\Programmes\\Github\\Reps\\ZvitPlus\\ZvitPlus\\ZvitPlus.BLL\\Services\\UserService.cs",
+              "RelativeDocumentMoniker": "ZvitPlus.BLL\\Services\\UserService.cs",
+              "ToolTip": "F:\\Programmes\\Github\\Reps\\ZvitPlus\\ZvitPlus\\ZvitPlus.BLL\\Services\\UserService.cs",
+              "RelativeToolTip": "ZvitPlus.BLL\\Services\\UserService.cs",
+              "ViewState": "AgIAABgAAAAAAAAAAAAmwB8AAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-07T18:17:32.409Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "TemplateController.cs",
+              "DocumentMoniker": "F:\\Programmes\\Github\\Reps\\ZvitPlus\\ZvitPlus\\ZvitPlus.API\\Controllers\\TemplateController.cs",
+              "RelativeDocumentMoniker": "ZvitPlus.API\\Controllers\\TemplateController.cs",
+              "ToolTip": "F:\\Programmes\\Github\\Reps\\ZvitPlus\\ZvitPlus\\ZvitPlus.API\\Controllers\\TemplateController.cs",
+              "RelativeToolTip": "ZvitPlus.API\\Controllers\\TemplateController.cs",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAWwCQAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-07T18:17:24.841Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "IUserRepository.cs",
+              "DocumentMoniker": "F:\\Programmes\\Github\\Reps\\ZvitPlus\\ZvitPlus\\ZvitPlus.DAL\\Interfaces\\IUserRepository.cs",
+              "RelativeDocumentMoniker": "ZvitPlus.DAL\\Interfaces\\IUserRepository.cs",
+              "ToolTip": "F:\\Programmes\\Github\\Reps\\ZvitPlus\\ZvitPlus\\ZvitPlus.DAL\\Interfaces\\IUserRepository.cs",
+              "RelativeToolTip": "ZvitPlus.DAL\\Interfaces\\IUserRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-07T18:17:14.309Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "UserRepository.cs",
+              "DocumentMoniker": "F:\\Programmes\\Github\\Reps\\ZvitPlus\\ZvitPlus\\ZvitPlus.DAL\\Repositories\\UserRepository.cs",
+              "RelativeDocumentMoniker": "ZvitPlus.DAL\\Repositories\\UserRepository.cs",
+              "ToolTip": "F:\\Programmes\\Github\\Reps\\ZvitPlus\\ZvitPlus\\ZvitPlus.DAL\\Repositories\\UserRepository.cs",
+              "RelativeToolTip": "ZvitPlus.DAL\\Repositories\\UserRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwBQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-07T18:17:03.555Z",
               "EditorCaption": ""
             }
           ]

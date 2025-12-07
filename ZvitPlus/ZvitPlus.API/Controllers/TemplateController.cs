@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ZvitPlus.BLL.DTOs.Requests;
 using ZvitPlus.BLL.Interfaces;
+using ZvitPlus.DAL.Enums;
 
 namespace ZvitPlus.API.Controllers
 {
@@ -26,9 +27,12 @@ namespace ZvitPlus.API.Controllers
 
         [HttpGet("{page:int}/{itemsPerPage:int}")]
         //AllRoles
-        public async Task<IActionResult> GetPaginatedAsync(int page = 1, int itemsPerPage = 10)
+        public async Task<IActionResult> GetPaginatedAsync(
+            int page = 1, int itemsPerPage = 10,
+            [FromQuery] string search = "",
+            [FromQuery] TemplateType? type = null)
         {
-            var result = await templateService.GetPaginatedAsync(page, itemsPerPage);
+            var result = await templateService.GetPaginatedAsync(page, itemsPerPage, search, type);
             return Ok(result);
         }
 

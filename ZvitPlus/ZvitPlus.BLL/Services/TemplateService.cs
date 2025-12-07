@@ -4,6 +4,7 @@ using ZvitPlus.BLL.DTOs.Responses;
 using ZvitPlus.BLL.Exceptions;
 using ZvitPlus.BLL.Interfaces;
 using ZvitPlus.DAL.Entities;
+using ZvitPlus.DAL.Enums;
 using ZvitPlus.DAL.Interfaces;
 using ZvitPlus.DAL.Repositories;
 using ZvitPlus.DAL.Repository;
@@ -88,9 +89,17 @@ namespace ZvitPlus.BLL.Services
             return result;
         }
 
-        public async Task<IEnumerable<TemplateReadDTO>> GetPaginatedAsync(int page, int itemsPerPage)
+        public async Task<IEnumerable<TemplateReadDTO>> GetPaginatedAsync(
+            int page = 1, int itemsPerPage = 10,
+            string search = "",
+            TemplateType? type = null
+            )
         {
-            var entityCollection = await templateRepository.GetPaginatedAsync(page, itemsPerPage);
+            var entityCollection = await templateRepository.GetPaginatedAsync(
+                page, itemsPerPage,
+                search,
+                type
+                );
             var result = entityCollection.Select(mapper.Map<TemplateReadDTO>);
             return result;
         }

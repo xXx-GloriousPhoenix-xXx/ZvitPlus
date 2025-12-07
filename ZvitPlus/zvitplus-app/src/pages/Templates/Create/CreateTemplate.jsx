@@ -14,6 +14,7 @@ import {
   ArrowBack
 } from '@mui/icons-material';
 import { Link as RouterLink } from 'react-router-dom';
+import {templateApi} from '../../../api/templateApi';
 
 // Импорт компонентов
 import Step1BasicInfo from './steps/Step1BasicInfo';
@@ -121,8 +122,44 @@ const CreateTemplate = () => {
   const handleSaveTemplate = async () => {
     setLoading(true);
     setError('');
+    setSuccess('');
     
     try {
+      // Валидация данных
+      if (!templateData.name || templateData.name.trim() === '') {
+        throw new Error('Введіть назву шаблону');
+      }
+      
+      if (!templateData.type || templateData.type === 'Unset') {
+        throw new Error('Виберіть тип шаблону');
+      }
+      
+      if (elements.length === 0) {
+        throw new Error('Додайте хоча б один елемент на полотно');
+      }
+  
+      // Получаем информацию о пользователе
+      let userId = null;
+      let userName = 'Unknown';
+      
+      try {
+        const userData = localStorage.getItem('user');
+        if (userData) {
+          const parsedUser = JSON.parse(userData);
+          userId = parsedUser.id || parsedUser.userId;
+          userName = parsedUser.login || parsedUser.email || 'Unknown';
+          
+          // Проверяем, что userId есть
+          if (!userId) {
+            throw new Error('Не вдалося отримати ID користувача. Будь ласка, увійдіть знову.');
+          }
+        } else {
+          throw new Error('Користувач не авторизований');
+        }
+      } catch (e) {
+        throw new Error('Помилка отримання даних користувача: ' + e.message);
+      }
+  
       // Создаем структуру template.json
       const templateJson = {
         templateName: templateData.name,
@@ -130,22 +167,150 @@ const CreateTemplate = () => {
         pageSize: templateData.pageSize,
         orientation: templateData.orientation,
         createdDate: new Date().toISOString(),
-        author: localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')).login : 'Unknown',
+        authorId: userId,
+        authorName: userName,
         version: '1.0',
-        elements: elements
+        description: templateData.description || '',
+        elements: elements.map(element => {
+          // Очищаем элементы от временных полей
+          const { isDragging, isResizing, isSelected, ...cleanElement } = element;
+          return cleanElement;
+        })
       };
-
+  
       console.log('Сохранение шаблона:', templateJson);
       
-      // Симуляция задержки
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      // Создаем FormData для отправки
+      const formData = new FormData();
       
-      setSuccess('Шаблон успішно створено!');
+      // 1. Добавляем файл с расширением .rep
+      const jsonContent = JSON.stringify(templateJson, null, 2);
+      const jsonBlob = new Blob([jsonContent], {
+        type: 'application/json'
+      });
+      
+      // Используем расширение .rep как требуется сервером
+      const fileName = `${templateData.name.replace(/\s+/g, '_')}.rep`;
+      formData.append('File', jsonBlob, fileName);
+      
+      // 2. Добавляем обязательные поля согласно TemplateCreateDTO
+      formData.append('Name', templateData.name);
+      
+      // Преобразуем тип шаблона в формат, который понимает сервер
+      // Сопоставление типов с enum TemplateType
+      const templateTypeMapping = {
+        'Invoice': 'Invoice',
+        'Contract': 'Contract',
+        'Report': 'Report',
+        'Letter': 'Letter',
+        'Form': 'Form',
+        'Certificate': 'Certificate',
+        'Unset': 'Report' // По умолчанию ставим Report
+      };
+      
+      const serverTemplateType = templateTypeMapping[templateData.type] || 'Report';
+      formData.append('Type', serverTemplateType);
+      
+      // 3. Добавляем IsPrivate (по умолчанию false - шаблон публичный)
+      formData.append('IsPrivate', 'false');
+      
+      // 4. Добавляем AuthorId
+      formData.append('AuthorId', userId);
+      
+      // Для отладки: выводим содержимое FormData
+      console.log('Отправляемые данные:');
+      for (let pair of formData.entries()) {
+        console.log(pair[0] + ': ', pair[1]);
+      }
+      
+      // Отправляем на сервер через API
+      const response = await templateApi.create(formData, (progressEvent) => {
+        if (progressEvent.lengthComputable) {
+          const percentCompleted = Math.round(
+            (progressEvent.loaded * 100) / progressEvent.total
+          );
+          console.log(`Прогресс загрузки: ${percentCompleted}%`);
+        }
+      });
+      
+      console.log('Ответ сервера:', response.data);
+      
+      if (response.data) {
+        setSuccess(`Шаблон "${templateData.name}" успішно створено!`);
+        
+        // Сброс формы через 3 секунды
+        setTimeout(() => {
+          setTemplateData({
+            name: '',
+            type: '',
+            description: '',
+            pageSize: 'A4',
+            orientation: 'portrait'
+          });
+          setElements([]);
+          setActiveStep(0);
+          setSelectedElementId(null);
+        }, 3000);
+      }
+      
       setLoading(false);
       
     } catch (err) {
-      setError('Помилка при збереженні шаблона: ' + err.message);
+      console.error('Ошибка сохранения шаблона:', err);
+      
+      let errorMessage = 'Помилка при збереженні шаблона';
+      
+      if (err.response) {
+        const { status, data } = err.response;
+        
+        console.log('Данные ошибки:', data);
+        
+        switch (status) {
+          case 400:
+            // Пробуем извлечь детали ошибки
+            if (data && typeof data === 'object') {
+              if (data.errors) {
+                // ASP.NET Core Validation Errors
+                const validationMessages = Object.values(data.errors).flat();
+                errorMessage = `Помилки валідації: ${validationMessages.join(', ')}`;
+              } else if (data.message) {
+                errorMessage = data.message;
+              } else {
+                errorMessage = 'Невірний формат даних. Перевірте всі поля.';
+              }
+            } else if (typeof data === 'string') {
+              errorMessage = data;
+            }
+            break;
+          case 401:
+            errorMessage = 'Необхідно авторизуватися';
+            break;
+          case 403:
+            errorMessage = 'Недостатньо прав для створення шаблону';
+            break;
+          case 409:
+            errorMessage = 'Шаблон з такою назвою вже існує';
+            break;
+          case 413:
+            errorMessage = 'Файл занадто великий';
+            break;
+          case 500:
+            errorMessage = 'Внутрішня помилка сервера';
+            break;
+          default:
+            errorMessage = `Помилка сервера: ${status}`;
+        }
+      } else if (err.message) {
+        errorMessage = err.message;
+      }
+      
+      setError(errorMessage);
       setLoading(false);
+      
+      // Автоматическое скрытие ошибки через 5 секунд
+      setTimeout(() => {
+        setError('');
+      }, 5000);
     }
   };
 

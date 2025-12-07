@@ -10,7 +10,6 @@ namespace ZvitPlus.BLL.Interfaces
         Task<TRead> AddAsync(TCreate dto);
         Task<TRead> UpdateAsync(Guid id, TUpdate dto);
         Task<TRead> GetByIdAsync(Guid id);
-        Task<IEnumerable<TRead>> GetPaginatedAsync(int page, int itemsPerPage);
         Task DeleteAsync(Guid id);
     }
 }

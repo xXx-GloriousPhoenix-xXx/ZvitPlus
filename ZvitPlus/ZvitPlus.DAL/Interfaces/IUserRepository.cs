@@ -9,5 +9,6 @@ namespace ZvitPlus.DAL.Interfaces
         Task<User?> GetByEmailAsync(string login);
         Task<bool> GrantRoleAsync(Guid userId, UserRole newRole);
         Task<bool> BanAsync(Guid userId, bool ban);
+        Task<IEnumerable<User>> GetPaginatedAsync(int page, int itemsPerPage);
     }
 }

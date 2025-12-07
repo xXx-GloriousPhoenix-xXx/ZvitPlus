@@ -8,5 +8,6 @@ namespace ZvitPlus.BLL.Interfaces
     {
         Task<UserReadDTO> GetByEmailAsync(string email);
         Task<UserReadDTO> GetByLoginAsync(string login);
+        Task<IEnumerable<UserReadDTO>> GetPaginatedAsync(int page, int itemsPerPage);
     }
 }

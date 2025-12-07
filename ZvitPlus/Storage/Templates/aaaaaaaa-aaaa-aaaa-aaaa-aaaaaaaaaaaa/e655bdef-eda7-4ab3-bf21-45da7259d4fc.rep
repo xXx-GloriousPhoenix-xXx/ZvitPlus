@@ -1,0 +1,163 @@
+{
+  "templateName": "asdasdasdasd",
+  "templateType": "Invoice",
+  "pageSize": "A4",
+  "orientation": "portrait",
+  "createdDate": "2025-12-07T15:48:48.931Z",
+  "authorId": "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa",
+  "authorName": "admin1",
+  "version": "1.0",
+  "description": "",
+  "elements": [
+    {
+      "id": "element_1765122506285_1f9vtm0o7",
+      "type": "text",
+      "position": {
+        "x": 102.4000244140625,
+        "y": 123.36666870117188
+      },
+      "size": {
+        "width": 150,
+        "height": 40
+      },
+      "text": "Текст",
+      "fontSize": 12,
+      "fontFamily": "Arial",
+      "fontWeight": "normal",
+      "fontStyle": "normal",
+      "textDecoration": "none",
+      "color": "#000000",
+      "backgroundColor": "transparent",
+      "alignment": "left",
+      "padding": 5,
+      "borderWidth": 0,
+      "borderColor": "#000000",
+      "borderRadius": 0
+    },
+    {
+      "id": "element_1765122507522_75o279p0j",
+      "type": "text",
+      "position": {
+        "x": 263.4000244140625,
+        "y": 159.36666870117188
+      },
+      "size": {
+        "width": 150,
+        "height": 40
+      },
+      "text": "Текст",
+      "fontSize": 12,
+      "fontFamily": "Arial",
+      "fontWeight": "normal",
+      "fontStyle": "normal",
+      "textDecoration": "none",
+      "color": "#000000",
+      "backgroundColor": "transparent",
+      "alignment": "left",
+      "padding": 5,
+      "borderWidth": 0,
+      "borderColor": "#000000",
+      "borderRadius": 0
+    },
+    {
+      "id": "element_1765122510116_9szvfaxov",
+      "type": "text",
+      "position": {
+        "x": 121.4000244140625,
+        "y": 204.96665954589844
+      },
+      "size": {
+        "width": 150,
+        "height": 40
+      },
+      "text": "Текст",
+      "fontSize": 12,
+      "fontFamily": "Arial",
+      "fontWeight": "normal",
+      "fontStyle": "normal",
+      "textDecoration": "none",
+      "color": "#000000",
+      "backgroundColor": "transparent",
+      "alignment": "left",
+      "padding": 5,
+      "borderWidth": 0,
+      "borderColor": "#000000",
+      "borderRadius": 0
+    },
+    {
+      "id": "element_1765122511420_dkvkvlmyu",
+      "type": "text",
+      "position": {
+        "x": 262.4000244140625,
+        "y": 248.96665954589844
+      },
+      "size": {
+        "width": 150,
+        "height": 40
+      },
+      "text": "Текст",
+      "fontSize": 12,
+      "fontFamily": "Arial",
+      "fontWeight": "normal",
+      "fontStyle": "normal",
+      "textDecoration": "none",
+      "color": "#000000",
+      "backgroundColor": "transparent",
+      "alignment": "left",
+      "padding": 5,
+      "borderWidth": 0,
+      "borderColor": "#000000",
+      "borderRadius": 0
+    },
+    {
+      "id": "element_1765122512643_mhn3qcur4",
+      "type": "text",
+      "position": {
+        "x": 112.4000244140625,
+        "y": 273.96665954589844
+      },
+      "size": {
+        "width": 150,
+        "height": 40
+      },
+      "text": "Текст",
+      "fontSize": 12,
+      "fontFamily": "Arial",
+      "fontWeight": "normal",
+      "fontStyle": "normal",
+      "textDecoration": "none",
+      "color": "#000000",
+      "backgroundColor": "transparent",
+      "alignment": "left",
+      "padding": 5,
+      "borderWidth": 0,
+      "borderColor": "#000000",
+      "borderRadius": 0
+    },
+    {
+      "id": "element_1765122514544_moduswicj",
+      "type": "text",
+      "position": {
+        "x": 214.4000244140625,
+        "y": 288.96665954589844
+      },
+      "size": {
+        "width": 150,
+        "height": 40
+      },
+      "text": "Текст",
+      "fontSize": 12,
+      "fontFamily": "Arial",
+      "fontWeight": "normal",
+      "fontStyle": "normal",
+      "textDecoration": "none",
+      "color": "#000000",
+      "backgroundColor": "transparent",
+      "alignment": "left",
+      "padding": 5,
+      "borderWidth": 0,
+      "borderColor": "#000000",
+      "borderRadius": 0
+    }
+  ]
+}

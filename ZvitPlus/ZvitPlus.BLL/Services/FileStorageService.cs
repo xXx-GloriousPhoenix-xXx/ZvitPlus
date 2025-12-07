@@ -2,7 +2,6 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using ZvitPlus.BLL.Interfaces;
-using ZvitPlus.DAL.Entities;
 
 namespace ZvitPlus.BLL.Services
 {

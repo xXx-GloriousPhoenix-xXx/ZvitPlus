@@ -203,58 +203,61 @@ const CanvasElement = ({
           </Box>
         );
         
-      case 'table':
-        return (
-          <Box sx={{ width: '100%', height: '100%', overflow: 'auto' }}>
-            <table
-              style={{
-                width: '100%',
-                borderCollapse: 'collapse',
-                border: `${element.borderWidth}px solid ${element.borderColor}`
-              }}
-            >
-              {element.header && (
-                <thead>
-                  <tr>
-                    {element.columns.map((col, idx) => (
-                      <th
-                        key={idx}
-                        style={{
-                          backgroundColor: element.headerBackground,
-                          color: element.headerTextColor,
-                          padding: element.cellPadding,
-                          border: `${element.borderWidth}px solid ${element.borderColor}`,
-                          textAlign: 'left'
-                        }}
-                      >
-                        {col}
-                      </th>
-                    ))}
-                  </tr>
-                </thead>
-              )}
-              <tbody>
-                {element.rows.map((row, rowIdx) => (
-                  <tr key={rowIdx}>
-                    {row.map((cell, cellIdx) => (
-                      <td
-                        key={cellIdx}
-                        style={{
-                          backgroundColor: element.cellBackground,
-                          color: element.cellTextColor,
-                          padding: element.cellPadding,
-                          border: `${element.borderWidth}px solid ${element.borderColor}`
-                        }}
-                      >
-                        {cell}
-                      </td>
-                    ))}
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </Box>
-        );
+        case 'table':
+          return (
+            <Box sx={{ width: '100%', height: '100%', overflow: 'auto', p: 1 }}>
+              <table
+                style={{
+                  width: '100%',
+                  borderCollapse: 'collapse',
+                  tableLayout: 'auto'
+                }}
+              >
+                {element.header && (
+                  <thead>
+                    <tr>
+                      {element.columns.map((col, idx) => (
+                        <th
+                          key={idx}
+                          style={{
+                            backgroundColor: element.headerBackground || '#f5f5f5',
+                            color: element.headerTextColor || '#000000',
+                            padding: `${element.cellPadding || 8}px`,
+                            border: `${element.borderWidth || 1}px solid ${element.borderColor || '#dddddd'}`,
+                            textAlign: 'left',
+                            fontWeight: 'bold',
+                            fontSize: '14px'
+                          }}
+                        >
+                          {col}
+                        </th>
+                      ))}
+                    </tr>
+                  </thead>
+                )}
+                <tbody>
+                  {element.rows.map((row, rowIdx) => (
+                    <tr key={rowIdx}>
+                      {row.map((cell, cellIdx) => (
+                        <td
+                          key={cellIdx}
+                          style={{
+                            backgroundColor: element.cellBackground || '#ffffff',
+                            color: element.cellTextColor || '#000000',
+                            padding: `${element.cellPadding || 8}px`,
+                            border: `${element.borderWidth || 1}px solid ${element.borderColor || '#dddddd'}`,
+                            fontSize: '13px'
+                          }}
+                        >
+                          {cell || '\u00A0'}
+                        </td>
+                      ))}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </Box>
+          );
         
       case 'chart':
         return (

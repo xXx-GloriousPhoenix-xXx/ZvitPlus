@@ -250,15 +250,39 @@ const ElementEditor = ({ selectedElement, onUpdate, onClose }) => {
       
       <Box sx={{ mt: 2 }}>
         <Typography variant="subtitle2" gutterBottom>
-          Кількість колонок
+          Кількість колонок: {selectedElement.columns?.length || 3}
         </Typography>
         <Slider
           value={selectedElement.columns?.length || 3}
           onChange={(e, value) => {
-            const newColumns = Array(value).fill(0).map((_, i) => 
-              selectedElement.columns?.[i] || `Колонка ${i + 1}`
-            );
-            handleChange('columns', newColumns);
+            const currentColumns = selectedElement.columns || ['Колонка 1', 'Колонка 2', 'Колонка 3'];
+            const currentRows = selectedElement.rows || [['Дані 1-1', 'Дані 1-2', 'Дані 1-3'], ['Дані 2-1', 'Дані 2-2', 'Дані 2-3']];
+            
+            let newColumns;
+            let newRows;
+            
+            if (value > currentColumns.length) {
+              // Додаємо колонки
+              const columnsToAdd = value - currentColumns.length;
+              newColumns = [...currentColumns, ...Array(columnsToAdd).fill(0).map((_, i) => 
+                `Колонка ${currentColumns.length + i + 1}`
+              )];
+              newRows = currentRows.map((row, rowIdx) => [
+                ...row, 
+                ...Array(columnsToAdd).fill(0).map((_, colIdx) => 
+                  `Дані ${rowIdx + 1}-${currentColumns.length + colIdx + 1}`
+                )
+              ]);
+            } else {
+              // Видаляємо колонки
+              newColumns = currentColumns.slice(0, value);
+              newRows = currentRows.map(row => row.slice(0, value));
+            }
+            
+            onUpdate(selectedElement.id, {
+              columns: newColumns,
+              rows: newRows
+            });
           }}
           min={1}
           max={10}
@@ -268,17 +292,45 @@ const ElementEditor = ({ selectedElement, onUpdate, onClose }) => {
       
       <Box sx={{ mt: 2 }}>
         <Typography variant="subtitle2" gutterBottom>
-          Кількість рядків
+          Кількість рядків: {selectedElement.rows?.length || 2}
         </Typography>
         <Slider
           value={selectedElement.rows?.length || 2}
           onChange={(e, value) => {
-            const newRows = Array(value).fill(0).map((_, i) => 
-              selectedElement.rows?.[i] || Array(selectedElement.columns?.length || 3).fill('')
-            );
+            const currentRows = selectedElement.rows || [['Дані 1-1', 'Дані 1-2', 'Дані 1-3'], ['Дані 2-1', 'Дані 2-2', 'Дані 2-3']];
+            const columnsCount = selectedElement.columns?.length || 3;
+            
+            let newRows;
+            
+            if (value > currentRows.length) {
+              // Додаємо рядки
+              const rowsToAdd = value - currentRows.length;
+              newRows = [...currentRows, ...Array(rowsToAdd).fill(0).map((_, i) => 
+                Array(columnsCount).fill(0).map((_, colIdx) => 
+                  `Дані ${currentRows.length + i + 1}-${colIdx + 1}`
+                )
+              )];
+            } else {
+              // Видаляємо рядки
+              newRows = currentRows.slice(0, value);
+            }
+            
             handleChange('rows', newRows);
           }}
           min={1}
+          max={20}
+          valueLabelDisplay="auto"
+        />
+      </Box>
+      
+      <Box sx={{ mt: 2 }}>
+        <Typography variant="subtitle2" gutterBottom>
+          Відступ у клітинках (px)
+        </Typography>
+        <Slider
+          value={selectedElement.cellPadding || 8}
+          onChange={(e, value) => handleChange('cellPadding', value)}
+          min={2}
           max={20}
           valueLabelDisplay="auto"
         />

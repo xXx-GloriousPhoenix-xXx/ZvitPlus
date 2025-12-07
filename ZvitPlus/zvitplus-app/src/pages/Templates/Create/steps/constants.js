@@ -1,4 +1,3 @@
-// src/pages/Templates/CreateTemplate/constants.js
 export const templateTypes = [
   { value: 'Unset', label: 'Не вказано' },
   { value: 'Invoice', label: 'Рахунок' },

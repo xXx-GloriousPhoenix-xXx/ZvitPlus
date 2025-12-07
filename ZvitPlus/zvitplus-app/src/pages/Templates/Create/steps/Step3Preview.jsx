@@ -9,7 +9,7 @@ import {
   Stack,
   Divider
 } from '@mui/material';
-import { templateTypes, pageSizes, orientations, elementTypes } from '../constants';
+import { templateTypes, pageSizes, orientations, elementTypes } from './constants';
 
 const Step3Preview = ({ templateData, elements }) => {
   const getTypeLabel = (typeValue) => {

@@ -14,7 +14,7 @@ import {
   UploadFile
 } from '@mui/icons-material';
 import { Link as RouterLink } from 'react-router-dom';
-import { steps } from '../constants';
+import { steps } from './constants';
 
 const StepperNavigation = ({ 
   activeStep, 

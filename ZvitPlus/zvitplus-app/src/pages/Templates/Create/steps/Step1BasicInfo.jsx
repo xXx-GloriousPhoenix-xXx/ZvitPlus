@@ -11,7 +11,7 @@ import {
   Divider,
   Stack
 } from '@mui/material';
-import { templateTypes, pageSizes, orientations } from '../constants';
+import { templateTypes, pageSizes, orientations } from './constants';
 
 const Step1BasicInfo = ({ templateData, onInputChange, errors }) => {
   const handleChange = (field) => (event) => {

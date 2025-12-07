@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { Box, Typography, Divider } from '@mui/material';
 
 import ToolbarPanel from './ToolbarPanel';
@@ -40,6 +40,28 @@ const Step2Elements = ({
 
   const { totalElements, selectedElementType, hasSelectedElement } = getElementStatistics();
   const selectedElement = getSelectedElement();
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      // Удаление по клавише Delete или Backspace
+      if ((e.key === 'Delete') && selectedElementId) {
+        e.preventDefault(); // Предотвращаем стандартное поведение
+        handleRemoveSelectedElement();
+      }
+      
+      // Escape - отмена выбора
+      if (e.key === 'Escape' && selectedElementId) {
+        handleClearSelection();
+      }
+    };
+
+    // Добавляем обработчик только если есть выбранный элемент
+    document.addEventListener('keydown', handleKeyDown);
+    
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [selectedElementId, handleRemoveSelectedElement, handleClearSelection]);
 
   return (
     <Box sx={{ p: 3 }}>

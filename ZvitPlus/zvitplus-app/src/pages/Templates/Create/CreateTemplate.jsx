@@ -26,7 +26,7 @@ import {
   steps, 
   defaultElementConfig,
   elementTypes  // Добавляем импорт
-} from './constants';
+} from './steps/constants';
 
 const CreateTemplate = () => {
   const [activeStep, setActiveStep] = useState(0);

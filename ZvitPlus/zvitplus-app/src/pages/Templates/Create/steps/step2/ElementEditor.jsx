@@ -32,7 +32,7 @@ import {
   Save,
   Cancel
 } from '@mui/icons-material';
-import { fontSizes, fontFamilies, alignments, chartTypes } from '../../constants';
+import { fontSizes, fontFamilies, alignments, chartTypes } from '../constants';
 
 const ElementEditor = ({ selectedElement, onUpdate, onClose }) => {
   const [activeTab, setActiveTab] = React.useState(0);

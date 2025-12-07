@@ -1,4 +1,3 @@
-// hooks/useStep2Handlers.js
 import { useState, useCallback } from 'react';
 
 export const useStep2Handlers = ({ 

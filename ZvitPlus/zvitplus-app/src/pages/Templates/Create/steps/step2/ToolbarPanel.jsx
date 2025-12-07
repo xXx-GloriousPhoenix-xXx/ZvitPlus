@@ -10,7 +10,7 @@ import {
   Paper
 } from '@mui/material';
 import { Delete, Download } from '@mui/icons-material';
-import { elementTypes } from '../../constants';
+import { elementTypes } from '../constants';
 import ElementEditor from './ElementEditor';
 import { getElementIcon } from './elementUtils';
 

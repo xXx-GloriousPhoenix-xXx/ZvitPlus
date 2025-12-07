@@ -136,30 +136,37 @@ const CanvasElement = ({
   }, [isDragging, isResizing, handleMouseMove, handleMouseUp]);
 
   const renderElementContent = () => {
+    console.log('Rendering element type:', element.type, 'Content:', element);
+
     switch (element.type) {
       case 'text':
         return (
-          <Typography
+          <Box
             sx={{
-              fontSize: element.fontSize,
-              fontFamily: element.fontFamily,
-              fontWeight: element.fontWeight === 'bold' ? 'bold' : 'normal',
-              fontStyle: element.fontStyle === 'italic' ? 'italic' : 'normal',
-              textDecoration: element.textDecoration,
-              color: element.color,
-              backgroundColor: element.backgroundColor !== 'transparent' ? element.backgroundColor : 'transparent',
-              textAlign: element.alignment,
-              padding: element.padding,
-              border: element.borderWidth > 0 ? `${element.borderWidth}px solid ${element.borderColor}` : 'none',
-              borderRadius: element.borderRadius,
               width: '100%',
               height: '100%',
-              overflow: 'hidden',
-              wordBreak: 'break-word'
+              backgroundColor: element.backgroundColor || '#ffffff',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              overflow: 'hidden'
             }}
           >
-            {element.text}
-          </Typography>
+            <Typography
+              component="div" // Используем div для лучшего контроля
+              sx={{
+                fontSize: element.fontSize || '16px',
+                color: element.color || '#000000',
+                fontWeight: element.fontWeight || 'normal',
+                textAlign: element.alignment || 'center',
+                padding: element.padding || '8px',
+                width: '100%',
+                wordBreak: 'break-word'
+              }}
+            >
+              {element.text || '[Пустой текст]'}
+            </Typography>
+          </Box>
         );
         
       case 'image':
